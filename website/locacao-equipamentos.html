@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Locação de Equipamentos | Worknet Eventos</title>
+  <meta name="description" content="Alugue computadores, impressoras, leitores de QR Code, tablets, catracas e muito mais para seu evento com suporte técnico incluso." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:24px; }
+    .benefit-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: all var(--transition); }
+    .benefit-card:hover { border-color: rgba(91,163,217,.35); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+    .benefit-icon { font-size: 2rem; margin-bottom: 14px; }
+    .benefit-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .benefit-card p { font-size: .88rem; color: var(--silver); }
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: flex; gap: 24px; padding-bottom: 40px; position: relative; }
+    .step:last-child { padding-bottom: 0; }
+    .step::after { content:''; position:absolute; left:22px; top:52px; bottom:0; width:2px; background: linear-gradient(var(--blue), transparent); }
+    .step:last-child::after { display:none; }
+    .step-num { min-width:46px; height:46px; background:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-weight:800; color:#fff; position:relative; z-index:1; box-shadow:0 4px 15px rgba(46,110,166,.5); }
+    .step-content h3 { margin-bottom:6px; }
+    .step-content p { color:var(--silver); font-size:.95rem; }
+    .cta-service { background: linear-gradient(135deg, #1a3a5c, #0d2640); padding: 80px 0; text-align: center; position:relative; overflow:hidden; }
+    .cta-service::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(91,163,217,.1), transparent); }
+    .cta-service > .container { position:relative; z-index:1; }
+    @media(max-width:768px){ .hero-service .btn-group { flex-direction:column; } }
+  </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero-service">
+  <div class="grid-lines"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="badge">Locação de Equipamentos</div>
+    <h1 class="fade-up">Locação de Equipamentos — Tudo que seu evento precisa</h1>
+    <p class="lead fade-up fade-up-delay-1">Alugue computadores, impressoras, leitores de QR Code, tablets, catracas e muito mais com suporte técnico incluso para seu evento.</p>
+    <div class="btn-group fade-up fade-up-delay-2">
+      <a href="https://wa.me/5511967792549" class="btn btn-primary btn-lg" target="_blank" rel="noopener">💬 Solicitar Orçamento</a>
+      <a href="contato.html" class="btn btn-outline btn-lg">Falar com especialista</a>
+    </div>
+  </div>
+</section>
+
+<!-- DESCRIÇÃO -->
+<section class="section" style="background:var(--navy-light)">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto;text-align:center">
+      <div class="section-tag">Sobre o Serviço</div>
+      <h2 class="section-title fade-up">Equipamentos de qualidade, sem complicação</h2>
+      <p class="fade-up fade-up-delay-1" style="color:var(--silver);font-size:1.05rem;line-height:1.8">Nossa frota de equipamentos é constantemente renovada e mantida para garantir máxima confiabilidade. Locamos computadores, impressoras térmicas e jato de tinta, leitores de QR Code e RFID, tablets, totens, catracas, detectores de metal, roteadores e switches. Todos os equipamentos são entregues configurados e com suporte técnico presencial durante todo o evento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-tag">Benefícios</div>
+      <h2 class="section-title fade-up">Por que escolher este serviço</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">💻</div>
+        <h3>Computadores e notebooks</h3>
+        <p>Frota renovada de computadores e notebooks com configuração robusta para operação de sistemas de evento.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-1">
+        <div class="benefit-icon">🖨️</div>
+        <h3>Impressoras térmicas</h3>
+        <p>Impressoras térmicas de alta velocidade para crachás e impressoras jato de tinta para materiais coloridos.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-2">
+        <div class="benefit-icon">📡</div>
+        <h3>Leitores QR e RFID</h3>
+        <p>Leitores de QR Code, RFID e NFC para controle de acesso, credenciamento e coletor de leads.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-3">
+        <div class="benefit-icon">🔧</div>
+        <h3>Suporte técnico incluso</h3>
+        <p>Técnico especializado no local durante todo o evento para resolução imediata de qualquer problema.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-4">
+        <div class="benefit-icon">🚚</div>
+        <h3>Entrega e retirada</h3>
+        <p>Logística completa de entrega, instalação e retirada dos equipamentos no local do evento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section" style="background:var(--navy-light)">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+      <div>
+        <div class="section-tag">Como Funciona</div>
+        <h2 class="section-title fade-up">Processo simples e eficiente</h2>
+        <div class="steps fade-up fade-up-delay-1">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>Consulta e levantamento de necessidades</h3>
+              <p>Nossa equipe faz um levantamento completo dos equipamentos necessários para o seu evento.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>Proposta personalizada</h3>
+              <p>Elaboramos uma proposta com os equipamentos ideais, quantidades e condições de locação.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>Configuração e entrega</h3>
+              <p>Todos os equipamentos são configurados previamente e entregues prontos para uso no evento.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h3>Suporte durante e devolução</h3>
+              <p>Suporte técnico presencial durante o evento e retirada de todos os equipamentos após o término.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-2">
+        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80" alt="Locação de equipamentos para eventos" style="border-radius:var(--radius-lg);width:100%;aspect-ratio:4/3;object-fit:cover" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-service">
+  <div class="container">
+    <div class="section-tag" style="margin:0 auto 16px">Pronto para começar?</div>
+    <h2 style="margin-bottom:16px">Solicite um orçamento agora</h2>
+    <p style="color:var(--silver);max-width:480px;margin:0 auto 32px">Entre em contato e receba uma proposta personalizada para o seu evento.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/5511967792549" class="btn btn-white btn-lg" target="_blank" rel="noopener">💬 Falar no WhatsApp</a>
+      <a href="contato.html" class="btn btn-outline btn-lg">Formulário de contato</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

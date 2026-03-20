@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Worknet Eventos — Credenciamento e Tecnologia para Eventos</title>
+  <meta name="description" content="Há mais de 20 anos a Worknet oferece soluções completas em credenciamento, controle de acesso e tecnologia para eventos corporativos em todo o Brasil." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ---- HOME-ONLY STYLES ---- */
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #080f18 0%, var(--navy) 50%, #0f2238 100%);
+      overflow: hidden;
+      padding: 80px 0;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 900px 700px at 80% 40%, rgba(46,110,166,.18), transparent 70%),
+        radial-gradient(ellipse 400px 400px at 15% 80%, rgba(91,163,217,.08), transparent 60%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 640px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(46,110,166,.2);
+      border: 1px solid rgba(91,163,217,.35);
+      color: var(--blue-light);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: var(--blue-light); border-radius: 50%; animation: blink 1.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+    .hero h1 { margin-bottom: 22px; }
+    .hero h1 span { color: var(--blue-light); }
+    .hero .hero-sub {
+      color: var(--silver);
+      font-size: 1.15rem;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero-metrics {
+      display: flex; gap: 36px; flex-wrap: wrap;
+    }
+    .hero-metric { text-align: center; }
+    .hero-metric .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--blue-light);
+      line-height: 1;
+    }
+    .hero-metric .label { font-size: .78rem; color: var(--silver); margin-top: 4px; }
+
+    /* Visual card */
+    .hero-visual {
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 480px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      backdrop-filter: blur(20px);
+    }
+    @media(max-width:1100px){ .hero-visual { display:none; } }
+    .hero-visual-title { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--blue-light); margin-bottom: 20px; font-weight: 700; }
+    .metric-row {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,.04);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+    }
+    .metric-row .icon {
+      width: 42px; height: 42px;
+      background: rgba(46,110,166,.25);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .metric-row .info { flex: 1; }
+    .metric-row .info strong { display: block; font-size: .95rem; }
+    .metric-row .info span { font-size: .8rem; color: var(--silver); }
+    .metric-row .val {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--blue-light);
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      background: var(--blue);
+      padding: 40px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      text-align: center;
+    }
+    .stat-item {
+      padding: 0 24px;
+      border-right: 1px solid rgba(255,255,255,.2);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      display: flex; align-items: baseline; justify-content: center; gap: 2px;
+    }
+    .stat-num sup { font-size: 1.2rem; }
+    .stat-label { color: rgba(255,255,255,.8); font-size: .9rem; margin-top: 6px; }
+
+    /* About snippet */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-badge {
+      position: absolute; bottom: 20px; left: 20px;
+      background: var(--blue);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+    .about-img-badge small { font-size: .75rem; font-weight: 400; display: block; }
+    .about-features { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .about-feature {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .about-feature .ico {
+      font-size: 1.5rem;
+      min-width: 40px;
+      height: 40px;
+      background: rgba(46,110,166,.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-feature h4 { font-size: .95rem; margin-bottom: 2px; }
+    .about-feature p { font-size: .85rem; color: var(--silver); }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      transition: all var(--transition);
+      display: flex; flex-direction: column; gap: 12px;
+      cursor: pointer;
+    }
+    .service-card:hover {
+      border-color: rgba(91,163,217,.4);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 50px rgba(0,0,0,.35);
+    }
+    .service-card .s-icon {
+      font-size: 1.8rem;
+      width: 52px; height: 52px;
+      background: rgba(46,110,166,.15);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .service-card:hover .s-icon { background: rgba(46,110,166,.3); }
+    .service-card h3 { font-size: .95rem; line-height: 1.3; }
+    .service-card p { font-size: .82rem; color: var(--silver); flex: 1; }
+    .service-card .s-link {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--blue-light);
+      display: flex; align-items: center; gap: 4px;
+      transition: gap var(--transition);
+    }
+    .service-card:hover .s-link { gap: 8px; }
+
+    /* Why Us */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .why-features { display: flex; flex-direction: column; gap: 20px; }
+    .why-feature {
+      display: flex; gap: 18px;
+      padding: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .why-feature .ico {
+      font-size: 1.6rem;
+      min-width: 50px; height: 50px;
+      background: rgba(46,110,166,.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-feature h4 { font-size: 1rem; margin-bottom: 4px; }
+    .why-feature p { font-size: .88rem; color: var(--silver); }
+    .why-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .why-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Testimonials */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .video-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .video-embed {
+      position: relative;
+      padding-bottom: 177.78%;
+      height: 0;
+      overflow: hidden;
+    }
+    .video-embed iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-info {
+      padding: 16px 20px;
+    }
+    .video-info strong { display: block; font-size: .95rem; }
+    .video-info span { font-size: .82rem; color: var(--silver); }
+
+    /* Clients carousel */
+    .clients-section {
+      background: var(--navy-light);
+      padding: 70px 0;
+      overflow: hidden;
+    }
+    .clients-track-wrap { overflow: hidden; position: relative; margin-top: 40px; }
+    .clients-track-wrap::before,
+    .clients-track-wrap::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+    }
+    .clients-track-wrap::before { left: 0; background: linear-gradient(to right, var(--navy-light), transparent); }
+    .clients-track-wrap::after  { right: 0; background: linear-gradient(to left, var(--navy-light), transparent); }
+    .clients-track {
+      display: flex;
+      gap: 48px;
+      animation: scroll-logos 30s linear infinite;
+      width: max-content;
+    }
+    .clients-track:hover { animation-play-state: paused; }
+    @keyframes scroll-logos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .client-logo {
+      height: 40px;
+      min-width: 100px;
+      display: flex; align-items: center;
+      filter: grayscale(1) opacity(.65);
+      transition: filter var(--transition);
+    }
+    .client-logo:hover { filter: grayscale(0) opacity(1); }
+    .client-logo img {
+      height: 40px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
+    .portfolio-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .portfolio-card:first-child { grid-row: span 2; }
+    .portfolio-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .portfolio-card:hover img { transform: scale(1.05); }
+    .portfolio-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,15,24,.9) 0%, transparent 60%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px;
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-tag {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: .72rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+    .portfolio-overlay h3 { font-size: 1rem; margin-bottom: 4px; }
+    .portfolio-overlay p { font-size: .82rem; color: var(--silver); }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1a3a5c 0%, #0d2640 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 90px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(91,163,217,.1), transparent);
+    }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+
+    /* Responsive home */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-img { display: none; }
+    }
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .stat-item { border-right: none; }
+      .stat-item:nth-child(1),
+      .stat-item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 20px; margin-bottom: 4px; }
+      .videos-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-card:first-child { grid-column: span 2; grid-row: span 1; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .hero-metrics { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="grid-lines"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="hero-content fade-up">
+      <div class="hero-badge"><span></span> 20 Anos de Experiência</div>
+      <h1>Tecnologia que <span>transforma</span> eventos em experiências</h1>
+      <p class="hero-sub">Soluções completas em credenciamento, controle de acesso e tecnologia para eventos corporativos em todo o Brasil.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/5511967792549" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.522 5.84L.057 23.452a.5.5 0 0 0 .599.578l5.782-1.456A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.685-.51-5.22-1.396l-.374-.22-3.877.977.997-3.778-.243-.388A9.948 9.948 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Solicitar Orçamento
+        </a>
+        <a href="quem-somos.html" class="btn btn-outline btn-lg">Conheça a Worknet</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <div class="num"><span data-target="97">0</span>%</div>
+          <div class="label">Satisfação dos clientes</div>
+        </div>
+        <div class="hero-metric">
+          <div class="num">+<span data-target="1000">0</span></div>
+          <div class="label">Empresas atendidas</div>
+        </div>
+        <div class="hero-metric">
+          <div class="num">+<span data-target="3500">0</span></div>
+          <div class="label">Eventos realizados</div>
+        </div>
+        <div class="hero-metric">
+          <div class="num">+<span data-target="2000000">0</span></div>
+          <div class="label">Pessoas credenciadas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero visual card -->
+  <div class="hero-visual fade-up fade-up-delay-2" style="right:60px">
+    <div class="hero-visual-title">📊 Painel de Resultados em Tempo Real</div>
+    <div class="metric-row">
+      <div class="icon">🎫</div>
+      <div class="info"><strong>Credenciamentos hoje</strong><span>Evento Tech Summit 2025</span></div>
+      <div class="val">4.872</div>
+    </div>
+    <div class="metric-row">
+      <div class="icon">⚡</div>
+      <div class="info"><strong>Tempo médio</strong><span>Por participante</span></div>
+      <div class="val">8s</div>
+    </div>
+    <div class="metric-row">
+      <div class="icon">📱</div>
+      <div class="info"><strong>Check-ins mobile</strong><span>Via QR Code</span></div>
+      <div class="val">68%</div>
+    </div>
+    <div class="metric-row">
+      <div class="icon">🔒</div>
+      <div class="info"><strong>Controle de acesso</strong><span>Zonas restritas</span></div>
+      <div class="val">100%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS STRIP ===== -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-up">
+        <div class="stat-num"><span data-target="97">0</span>%</div>
+        <div class="stat-label">Índice de satisfação</div>
+      </div>
+      <div class="stat-item fade-up fade-up-delay-1">
+        <div class="stat-num">+<span data-target="1000">0</span></div>
+        <div class="stat-label">Empresas atendidas</div>
+      </div>
+      <div class="stat-item fade-up fade-up-delay-2">
+        <div class="stat-num">+<span data-target="3500">0</span></div>
+        <div class="stat-label">Eventos realizados</div>
+      </div>
+      <div class="stat-item fade-up fade-up-delay-3">
+        <div class="stat-num">2M<sup>+</sup></div>
+        <div class="stat-label">Pessoas credenciadas</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== QUEM SOMOS (snippet) ===== -->
+<section class="section" style="background: var(--navy-light);">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="about-img-wrap fade-up">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Evento corporativo Worknet" loading="lazy" />
+          <div class="about-img-badge">
+            20<small>anos de mercado</small>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-1">
+        <div class="section-tag">Quem Somos</div>
+        <h2 class="section-title">Referência em tecnologia para eventos no Brasil</h2>
+        <p style="color:var(--silver);margin-bottom:20px">A Worknet é especializada em credenciamento e tecnologia para eventos há mais de 20 anos. Atendemos congressos, feiras, exposições e grandes eventos corporativos com soluções inovadoras e eficientes.</p>
+        <p style="color:var(--silver);margin-bottom:28px">Com uma equipe altamente qualificada e equipamentos de última geração, garantimos que cada evento seja um sucesso, desde o planejamento até a execução.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="ico">🏆</div>
+            <div><h4>Líderes no mercado</h4><p>Reconhecidos pela excelência em credenciamento e controle de acesso para eventos.</p></div>
+          </div>
+          <div class="about-feature">
+            <div class="ico">🌎</div>
+            <div><h4>Atendimento nacional</h4><p>Presença em todo o Brasil com equipes especializadas e equipamentos de ponta.</p></div>
+          </div>
+          <div class="about-feature">
+            <div class="ico">⚡</div>
+            <div><h4>Tecnologia de ponta</h4><p>Sistemas integrados, biometria facial, QR Code e muito mais para seu evento.</p></div>
+          </div>
+        </div>
+        <div style="margin-top:28px">
+          <a href="quem-somos.html" class="btn btn-primary">Saiba mais sobre nós</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVIÇOS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-tag">Nossas Soluções</div>
+      <h2 class="section-title">14 serviços para o seu evento</h2>
+      <p class="section-subtitle">Do credenciamento ao controle de acesso, temos tudo que seu evento precisa para ser um sucesso.</p>
+    </div>
+    <div class="services-grid">
+
+      <a href="credenciamento.html" class="service-card fade-up">
+        <div class="s-icon">🎫</div>
+        <h3>Credenciamento</h3>
+        <p>Sistema completo de credenciamento com impressão de crachás e QR Code em tempo real.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="sistema-inscricao.html" class="service-card fade-up fade-up-delay-1">
+        <div class="s-icon">📋</div>
+        <h3>Sistema de Inscrição</h3>
+        <p>Plataforma online personalizada para gerenciamento completo de inscrições.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="venda-online.html" class="service-card fade-up fade-up-delay-2">
+        <div class="s-icon">🛒</div>
+        <h3>Venda Online</h3>
+        <p>Venda ingressos e pacotes diretamente pelo site com gateway de pagamento integrado.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="manual-expositor.html" class="service-card fade-up fade-up-delay-3">
+        <div class="s-icon">📖</div>
+        <h3>Manual do Expositor</h3>
+        <p>Manual digital interativo com todas as informações para seus expositores.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="caex.html" class="service-card fade-up">
+        <div class="s-icon">🗂️</div>
+        <h3>CAEX</h3>
+        <p>Central de Atendimento ao Expositor com suporte dedicado antes e durante o evento.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="certificado.html" class="service-card fade-up fade-up-delay-1">
+        <div class="s-icon">🏆</div>
+        <h3>Certificado Digital</h3>
+        <p>Emissão automática de certificados digitais personalizados para participantes.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="controle-acesso.html" class="service-card fade-up fade-up-delay-2">
+        <div class="s-icon">🚪</div>
+        <h3>Controle de Acesso</h3>
+        <p>Controle preciso de acesso por área, perfil e horário com relatórios em tempo real.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="coletor-leads.html" class="service-card fade-up fade-up-delay-3">
+        <div class="s-icon">📊</div>
+        <h3>Coletor de Leads</h3>
+        <p>Capture contatos qualificados dos participantes de forma rápida e inteligente.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="biometria-facial.html" class="service-card fade-up">
+        <div class="s-icon">🤳</div>
+        <h3>Biometria Facial</h3>
+        <p>Reconhecimento facial para credenciamento seguro e ágil sem contato físico.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="aplicativos-eventos.html" class="service-card fade-up fade-up-delay-1">
+        <div class="s-icon">📱</div>
+        <h3>Aplicativos para Eventos</h3>
+        <p>App personalizado para seu evento com agenda, speakers, networking e muito mais.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="totem-autoatendimento.html" class="service-card fade-up fade-up-delay-2">
+        <div class="s-icon">🖥️</div>
+        <h3>Totem de Autoatendimento</h3>
+        <p>Totens interativos para credenciamento autônomo, reduzindo filas e agilizando o acesso.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="locacao-equipamentos.html" class="service-card fade-up fade-up-delay-3">
+        <div class="s-icon">🔧</div>
+        <h3>Locação de Equipamentos</h3>
+        <p>Aluguel de computadores, impressoras, leitores e demais equipamentos para eventos.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="catracas-eventos.html" class="service-card fade-up">
+        <div class="s-icon">🔒</div>
+        <h3>Catracas para Eventos</h3>
+        <p>Catracas eletrônicas integradas ao sistema de credenciamento para controle rigoroso.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+      <a href="detector-metal.html" class="service-card fade-up fade-up-delay-1">
+        <div class="s-icon">🔍</div>
+        <h3>Detector de Metal</h3>
+        <p>Portais e detectores de metal para eventos que exigem máxima segurança.</p>
+        <span class="s-link">Saiba mais →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== POR QUE NOS ESCOLHER ===== -->
+<section class="section" style="background:var(--navy-light)">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <div class="section-tag">Por que nos escolher</div>
+        <h2 class="section-title">A escolha certa para o sucesso do seu evento</h2>
+        <p style="color:var(--silver);margin-bottom:32px">Somos mais do que fornecedores — somos parceiros estratégicos que entendem que cada evento é único e merece atenção especializada.</p>
+        <div class="why-features">
+          <div class="why-feature fade-up">
+            <div class="ico">🎯</div>
+            <div>
+              <h4>Experiência comprovada</h4>
+              <p>Mais de 20 anos e 3.500 eventos realizados nos tornaram referência absoluta no mercado de eventos corporativos.</p>
+            </div>
+          </div>
+          <div class="why-feature fade-up fade-up-delay-1">
+            <div class="ico">⚡</div>
+            <div>
+              <h4>Tecnologia de ponta</h4>
+              <p>Sistemas proprietários constantemente atualizados garantem agilidade, segurança e confiabilidade total.</p>
+            </div>
+          </div>
+          <div class="why-feature fade-up fade-up-delay-2">
+            <div class="ico">🤝</div>
+            <div>
+              <h4>Suporte 24/7</h4>
+              <p>Equipe dedicada disponível antes, durante e após o evento para resolver qualquer situação.</p>
+            </div>
+          </div>
+          <div class="why-feature fade-up fade-up-delay-3">
+            <div class="ico">📈</div>
+            <div>
+              <h4>Relatórios em tempo real</h4>
+              <p>Dashboard completo com dados ao vivo para tomada de decisão durante o evento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-img fade-up fade-up-delay-2">
+        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80" alt="Equipe Worknet em evento" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEPOIMENTOS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-tag">Depoimentos</div>
+      <h2 class="section-title">O que nossos clientes dizem</h2>
+      <p class="section-subtitle">Veja os resultados reais que entregamos a quem confia na Worknet.</p>
+    </div>
+    <div class="videos-grid">
+      <div class="video-card fade-up">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/ZA5lekCotiQ" title="Depoimento Xavier – Casa Moda" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <strong>Xavier</strong>
+          <span>Casa Moda</span>
+        </div>
+      </div>
+      <div class="video-card fade-up fade-up-delay-1">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/Fetg9L429mI" title="Depoimento Raquel – Dash Eventos" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <strong>Raquel</strong>
+          <span>Dash Eventos</span>
+        </div>
+      </div>
+      <div class="video-card fade-up fade-up-delay-2">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/arES65_vq0E" title="Depoimento Helo – Plataforma Eduzz" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <strong>Helo</strong>
+          <span>Plataforma Eduzz</span>
+        </div>
+      </div>
+      <div class="video-card fade-up fade-up-delay-3">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/Gpjq6T0jwnE" title="Depoimento Jéssica Pacheco – Bold Eventos" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <strong>Jéssica Pacheco</strong>
+          <span>Bold Eventos</span>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:36px">
+      <a href="depoimentos.html" class="btn btn-outline">Ver todos os depoimentos</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENTES ===== -->
+<section class="clients-section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title fade-up">Veja quem confia na Worknet</h2>
+      <p class="section-subtitle fade-up fade-up-delay-1" style="margin:12px auto 0">Mais de 570 empresas já escolheram a Worknet para seus eventos</p>
+    </div>
+  </div>
+  <div class="clients-track-wrap" style="margin-top:40px">
+    <div class="clients-track" id="clientsTrack">
+      <!-- logos will be duplicated by JS for infinite loop -->
+      <div class="client-logo"><img src="https://logo.clearbit.com/sebrae.com.br" alt="Sebrae" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/itau.com.br" alt="Itaú" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/bb.com.br" alt="Banco do Brasil" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/samsung.com" alt="Samsung" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/santander.com.br" alt="Santander" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/cna.com.br" alt="CNA" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/tagima.com.br" alt="Tagima" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/jovempan.com.br" alt="Jovem Pan" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/eduzz.com" alt="Eduzz" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/leroymerlin.com.br" alt="Leroy Merlin" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/brasilgameshow.com.br" alt="BGS" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/ahoraph.com.br" alt="A Hora H" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/feminino-moderno.com.br" alt="Feminino Moderno" /></div>
+      <div class="client-logo"><img src="https://logo.clearbit.com/casadecriadores.com.br" alt="Casa de Criadores" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-tag">Portfólio</div>
+      <h2 class="section-title">Eventos que marcaram história</h2>
+      <p class="section-subtitle">Conheça alguns dos projetos que realizamos com excelência e tecnologia.</p>
+    </div>
+    <div class="portfolio-grid fade-up">
+      <div class="portfolio-card" style="min-height:500px">
+        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80" alt="Congresso Nacional de Tecnologia" loading="lazy" />
+        <div class="portfolio-overlay">
+          <div class="portfolio-tag">Congresso</div>
+          <h3>Congresso Nacional de Tecnologia</h3>
+          <p>12.000 participantes credenciados em menos de 2 horas com biometria facial.</p>
+        </div>
+      </div>
+      <div class="portfolio-card" style="min-height:240px">
+        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80" alt="Feira de Negócios" loading="lazy" />
+        <div class="portfolio-overlay">
+          <div class="portfolio-tag">Feira</div>
+          <h3>Feira Internacional de Negócios</h3>
+          <p>500 expositores e 30.000 visitantes gerenciados.</p>
+        </div>
+      </div>
+      <div class="portfolio-card" style="min-height:240px">
+        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80" alt="Summit Corporativo" loading="lazy" />
+        <div class="portfolio-overlay">
+          <div class="portfolio-tag">Summit</div>
+          <h3>Summit Corporativo 2024</h3>
+          <p>Credenciamento VIP com totem de autoatendimento.</p>
+        </div>
+      </div>
+      <div class="portfolio-card" style="min-height:240px">
+        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80" alt="Controle de Acesso" loading="lazy" />
+        <div class="portfolio-overlay">
+          <div class="portfolio-tag">Segurança</div>
+          <h3>Festival de Tecnologia</h3>
+          <p>Controle de acesso com catracas e detecção biométrica.</p>
+        </div>
+      </div>
+      <div class="portfolio-card" style="min-height:240px">
+        <img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?w=800&q=80" alt="Evento Corporativo" loading="lazy" />
+        <div class="portfolio-overlay">
+          <div class="portfolio-tag">Corporativo</div>
+          <h3>Conferência Nacional de Saúde</h3>
+          <p>Certificados digitais emitidos automaticamente.</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:36px">
+      <a href="portifolio.html" class="btn btn-primary">Ver portfólio completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-tag" style="margin:0 auto 16px">Pronto para começar?</div>
+    <h2 style="margin-bottom:16px;max-width:600px;margin-left:auto;margin-right:auto">Vamos transformar seu próximo evento juntos</h2>
+    <p style="color:var(--silver);max-width:500px;margin:0 auto">Entre em contato agora e receba uma proposta personalizada para o seu evento.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/5511967792549" class="btn btn-white btn-lg" target="_blank" rel="noopener">
+        💬 Falar no WhatsApp
+      </a>
+      <a href="contato.html" class="btn btn-outline btn-lg">Formulário de contato</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<!-- Duplicate client logos for infinite scroll -->
+<script>
+  const track = document.getElementById('clientsTrack');
+  if (track) {
+    const clone = track.innerHTML;
+    track.innerHTML += clone;
+  }
+</script>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

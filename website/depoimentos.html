@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Depoimentos | Worknet Eventos</title>
+  <meta name="description" content="Veja o que nossos clientes dizem sobre a Worknet Eventos. Depoimentos reais de organizadores de congressos, feiras e eventos corporativos em todo o Brasil." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ---- DEPOIMENTOS STYLES ---- */
+
+    /* Hero */
+    .dep-hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #080f18 0%, #0d1b2a 50%, #0f2238 100%);
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+    .dep-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(46,110,166,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,110,166,.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .dep-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 800px 500px at 55% 50%, rgba(46,110,166,.18), transparent 70%);
+    }
+    .dep-hero-content {
+      position: relative; z-index: 1;
+      max-width: 700px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(46,110,166,.2);
+      border: 1px solid rgba(91,163,217,.35);
+      color: #5ba3d9;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: #5ba3d9; border-radius: 50%; animation: blink 1.5s infinite; display: inline-block; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+    .dep-hero h1 { margin-bottom: 22px; font-size: clamp(2rem, 4vw, 3.2rem); }
+    .dep-hero h1 span { color: #5ba3d9; }
+    .dep-hero .hero-sub { color: #c0cdd8; font-size: 1.1rem; line-height: 1.7; }
+
+    /* Stars display */
+    .stars-display {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 24px;
+    }
+    .stars-display svg { color: #f59e0b; }
+    .stars-display span {
+      color: #c0cdd8;
+      font-size: .9rem;
+      margin-left: 8px;
+    }
+
+    /* Vídeos */
+    .videos-section {
+      padding: 80px 0;
+      background: #0d1b2a;
+    }
+    .videos-section .section-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .videos-section .section-sub {
+      text-align: center;
+      color: #c0cdd8;
+      margin-bottom: 52px;
+      font-size: 1rem;
+    }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+    .video-card {
+      background: #080f18;
+      border: 1px solid rgba(91,163,217,.15);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s;
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(91,163,217,.4);
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 177.78%; /* 9:16 aspect ratio for Shorts */
+      height: 0;
+      overflow: hidden;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-info {
+      padding: 16px 18px 20px;
+    }
+    .video-info h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .video-info span {
+      color: #5ba3d9;
+      font-size: .82rem;
+    }
+    .video-stars {
+      display: flex; gap: 2px;
+      margin-top: 8px;
+    }
+    .video-stars svg { width: 14px; height: 14px; color: #f59e0b; fill: currentColor; }
+
+    /* Depoimentos Escritos */
+    .written-section {
+      padding: 80px 0;
+      background: #080f18;
+    }
+    .written-section .section-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .written-section .section-sub {
+      text-align: center;
+      color: #c0cdd8;
+      margin-bottom: 52px;
+    }
+    .written-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .written-card {
+      background: rgba(46,110,166,.07);
+      border: 1px solid rgba(91,163,217,.15);
+      border-radius: 20px;
+      padding: 32px;
+      transition: transform .3s, border-color .3s;
+      position: relative;
+    }
+    .written-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px; right: 28px;
+      font-family: 'Syne', sans-serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(91,163,217,.12);
+      font-weight: 800;
+    }
+    .written-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(91,163,217,.35);
+    }
+    .written-stars {
+      display: flex; gap: 3px;
+      margin-bottom: 16px;
+    }
+    .written-stars svg { width: 16px; height: 16px; color: #f59e0b; fill: currentColor; }
+    .written-text {
+      color: #c0cdd8;
+      font-size: .95rem;
+      line-height: 1.75;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .written-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .written-author img {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(91,163,217,.3);
+    }
+    .written-author-info h5 {
+      font-family: 'Syne', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .written-author-info span {
+      color: #5ba3d9;
+      font-size: .82rem;
+    }
+
+    /* Logos Clientes */
+    .clients-section {
+      padding: 60px 0;
+      background: #0d1b2a;
+      border-top: 1px solid rgba(91,163,217,.1);
+      border-bottom: 1px solid rgba(91,163,217,.1);
+    }
+    .clients-section .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .clients-section h3 {
+      font-size: 1rem;
+      color: #c0cdd8;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .clients-track-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    .clients-track {
+      display: flex;
+      gap: 48px;
+      animation: scroll-logos 22s linear infinite;
+      width: max-content;
+    }
+    .clients-track:hover { animation-play-state: paused; }
+    @keyframes scroll-logos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .client-logo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(46,110,166,.1);
+      border: 1px solid rgba(91,163,217,.15);
+      border-radius: 10px;
+      padding: 14px 28px;
+      min-width: 140px;
+      white-space: nowrap;
+      color: #c0cdd8;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .05em;
+      transition: border-color .3s, color .3s;
+    }
+    .client-logo-item:hover {
+      border-color: rgba(91,163,217,.4);
+      color: #fff;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 80px 0;
+      background: #080f18;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(46,110,166,.12), transparent 70%);
+    }
+    .cta-section .container { position: relative; z-index: 1; }
+    .cta-section h2 { margin-bottom: 16px; font-size: clamp(1.6rem, 2.5vw, 2.4rem); }
+    .cta-section p { color: #c0cdd8; margin-bottom: 36px; font-size: 1.05rem; }
+
+    /* Fade up */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .videos-grid { grid-template-columns: repeat(2, 1fr); }
+      .written-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .videos-grid { grid-template-columns: repeat(2, 1fr); }
+      .written-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .videos-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<!-- HERO -->
+<section class="dep-hero">
+  <div class="container">
+    <div class="dep-hero-content">
+      <div class="hero-badge fade-up">
+        <span></span>
+        Avaliações Reais
+      </div>
+      <h1 class="fade-up">O que nossos <span>clientes</span> dizem</h1>
+      <p class="hero-sub fade-up">
+        Mais de 1.000 empresas confiam na Worknet para seus eventos. Veja os depoimentos de quem viveu a experiência em primeira mão.
+      </p>
+      <div class="stars-display fade-up">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>4.9/5 — Baseado em +300 avaliações</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VÍDEOS -->
+<section class="videos-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Depoimentos em Vídeo</h2>
+    </div>
+    <p class="section-sub fade-up">Clientes reais compartilhando suas experiências com a Worknet Eventos</p>
+    <div class="videos-grid">
+
+      <div class="video-card fade-up">
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/ZA5lekCotiQ"
+            title="Xavier – Casa Moda"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="video-info">
+          <h4>Xavier</h4>
+          <span>Casa Moda</span>
+          <div class="video-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card fade-up">
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/Fetg9L429mI"
+            title="Raquel – Dash Eventos"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="video-info">
+          <h4>Raquel</h4>
+          <span>Dash Eventos</span>
+          <div class="video-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card fade-up">
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/arES65_vq0E"
+            title="Helo – Plataforma Eduzz"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="video-info">
+          <h4>Helo</h4>
+          <span>Plataforma Eduzz</span>
+          <div class="video-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card fade-up">
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/Gpjq6T0jwnE"
+            title="Jéssica Pacheco – Bold Eventos"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="video-info">
+          <h4>Jéssica Pacheco</h4>
+          <span>Bold Eventos</span>
+          <div class="video-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS ESCRITOS -->
+<section class="written-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Depoimentos Escritos</h2>
+    </div>
+    <p class="section-sub fade-up">A satisfação dos nossos clientes em suas próprias palavras</p>
+    <div class="written-grid">
+
+      <div class="written-card fade-up">
+        <div class="written-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="written-text">
+          "A Worknet transformou completamente o nosso processo de credenciamento. Antes levávamos horas para credenciar os participantes, agora fazemos isso em minutos. A tecnologia deles é realmente de outro nível."
+        </p>
+        <div class="written-author">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Ana Paula Ferreira" loading="lazy" />
+          <div class="written-author-info">
+            <h5>Ana Paula Ferreira</h5>
+            <span>Diretora de Eventos — Grupo ABC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="written-card fade-up">
+        <div class="written-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="written-text">
+          "Realizamos o nosso congresso com mais de 8.000 participantes e tudo correu perfeitamente. O suporte da Worknet foi excepcional, sempre presentes e com solução rápida para qualquer imprevisto. Recomendo sem hesitar."
+        </p>
+        <div class="written-author">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Carlos Rodrigues" loading="lazy" />
+          <div class="written-author-info">
+            <h5>Carlos Rodrigues</h5>
+            <span>Presidente — Associação Médica Brasileira</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="written-card fade-up">
+        <div class="written-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="written-text">
+          "O sistema de venda online deles aumentou nossas inscrições em 40%. A plataforma é intuitiva, segura e integrada com tudo que precisávamos. Melhor decisão que tomamos para o nosso evento."
+        </p>
+        <div class="written-author">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Fernanda Lima" loading="lazy" />
+          <div class="written-author-info">
+            <h5>Fernanda Lima</h5>
+            <span>CEO — Expo Varejo Brasil</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="written-card fade-up">
+        <div class="written-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="written-text">
+          "Usamos a biometria facial da Worknet no nosso festival e ficamos impressionados com a velocidade. Zero fila, zero problema. A equipe deles chegou antes de todo mundo e saiu depois de todo mundo. Profissionalismo total."
+        </p>
+        <div class="written-author">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Bruno Oliveira" loading="lazy" />
+          <div class="written-author-info">
+            <h5>Bruno Oliveira</h5>
+            <span>Produtor — Festival Cultura Livre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="written-card fade-up">
+        <div class="written-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="written-text">
+          "Parceria de anos e cada evento melhor que o anterior. O coletor de leads deles é fantástico — nossos expositores saem satisfeitos sempre. A Worknet entende o mercado de feiras como ninguém."
+        </p>
+        <div class="written-author">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=80" alt="Mariana Santos" loading="lazy" />
+          <div class="written-author-info">
+            <h5>Mariana Santos</h5>
+            <span>Gerente de Eventos — Reed Exhibitions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="written-card fade-up">
+        <div class="written-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="written-text">
+          "Nossa convenção anual com 3.000 colaboradores foi um sucesso absoluto graças à Worknet. Do planejamento à execução, eles foram parceiros em tudo. O totem de autoatendimento foi um diferencial enorme."
+        </p>
+        <div class="written-author">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&q=80" alt="Roberto Alves" loading="lazy" />
+          <div class="written-author-info">
+            <h5>Roberto Alves</h5>
+            <span>VP de RH — Grupo Votorantim</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS CLIENTES -->
+<section class="clients-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h3>Empresas que confiam na Worknet</h3>
+    </div>
+    <div class="clients-track-wrap">
+      <div class="clients-track">
+        <div class="client-logo-item">Grupo ABC</div>
+        <div class="client-logo-item">Reed Exhibitions</div>
+        <div class="client-logo-item">Informa Markets</div>
+        <div class="client-logo-item">Expo Center Norte</div>
+        <div class="client-logo-item">AMB — Assoc. Médica</div>
+        <div class="client-logo-item">CFM</div>
+        <div class="client-logo-item">FIESP</div>
+        <div class="client-logo-item">Sebrae</div>
+        <div class="client-logo-item">Bold Eventos</div>
+        <div class="client-logo-item">Dash Eventos</div>
+        <div class="client-logo-item">Plataforma Eduzz</div>
+        <div class="client-logo-item">Casa Moda</div>
+        <!-- Repeat for smooth loop -->
+        <div class="client-logo-item">Grupo ABC</div>
+        <div class="client-logo-item">Reed Exhibitions</div>
+        <div class="client-logo-item">Informa Markets</div>
+        <div class="client-logo-item">Expo Center Norte</div>
+        <div class="client-logo-item">AMB — Assoc. Médica</div>
+        <div class="client-logo-item">CFM</div>
+        <div class="client-logo-item">FIESP</div>
+        <div class="client-logo-item">Sebrae</div>
+        <div class="client-logo-item">Bold Eventos</div>
+        <div class="client-logo-item">Dash Eventos</div>
+        <div class="client-logo-item">Plataforma Eduzz</div>
+        <div class="client-logo-item">Casa Moda</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-up">Faça parte dessas histórias de sucesso</h2>
+    <p class="fade-up">Entre em contato e descubra como a Worknet pode transformar seu próximo evento.</p>
+    <div class="fade-up">
+      <a href="https://wa.me/5511967792549" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.522 5.84L.057 23.452a.5.5 0 0 0 .599.578l5.782-1.456A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.685-.51-5.22-1.396l-.374-.22-3.877.977.997-3.778-.243-.388A9.948 9.948 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Falar com a Equipe
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // Intersection Observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

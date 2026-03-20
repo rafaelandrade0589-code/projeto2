@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venda Online | Worknet Eventos</title>
+  <meta name="description" content="Plataforma completa de venda de ingressos online com checkout otimizado, múltiplas formas de pagamento e analytics de vendas." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:24px; }
+    .benefit-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: all var(--transition); }
+    .benefit-card:hover { border-color: rgba(91,163,217,.35); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+    .benefit-icon { font-size: 2rem; margin-bottom: 14px; }
+    .benefit-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .benefit-card p { font-size: .88rem; color: var(--silver); }
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: flex; gap: 24px; padding-bottom: 40px; position: relative; }
+    .step:last-child { padding-bottom: 0; }
+    .step::after { content:''; position:absolute; left:22px; top:52px; bottom:0; width:2px; background: linear-gradient(var(--blue), transparent); }
+    .step:last-child::after { display:none; }
+    .step-num { min-width:46px; height:46px; background:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-weight:800; color:#fff; position:relative; z-index:1; box-shadow:0 4px 15px rgba(46,110,166,.5); }
+    .step-content h3 { margin-bottom:6px; }
+    .step-content p { color:var(--silver); font-size:.95rem; }
+    .cta-service { background: linear-gradient(135deg, #1a3a5c, #0d2640); padding: 80px 0; text-align: center; position:relative; overflow:hidden; }
+    .cta-service::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(91,163,217,.1), transparent); }
+    .cta-service > .container { position:relative; z-index:1; }
+    @media(max-width:768px){ .hero-service .btn-group { flex-direction:column; } }
+  </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero-service">
+  <div class="grid-lines"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="badge">Venda Online</div>
+    <h1 class="fade-up">Venda de Ingressos Online — Maximize a receita do seu evento</h1>
+    <p class="lead fade-up fade-up-delay-1">Plataforma completa de e-commerce para venda de ingressos, pacotes VIP, workshops e muito mais com alta conversão.</p>
+    <div class="btn-group fade-up fade-up-delay-2">
+      <a href="https://wa.me/5511967792549" class="btn btn-primary btn-lg" target="_blank" rel="noopener">💬 Solicitar Orçamento</a>
+      <a href="contato.html" class="btn btn-outline btn-lg">Falar com especialista</a>
+    </div>
+  </div>
+</section>
+
+<!-- DESCRIÇÃO -->
+<section class="section" style="background:var(--navy-light)">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto;text-align:center">
+      <div class="section-tag">Sobre o Serviço</div>
+      <h2 class="section-title fade-up">Vendas online que convertem</h2>
+      <p class="fade-up fade-up-delay-1" style="color:var(--silver);font-size:1.05rem;line-height:1.8">Nossa solução de venda online combina uma experiência de compra otimizada com ferramentas de marketing integradas. Checkout simplificado, múltiplas formas de pagamento, cupons de desconto, upsell de produtos e relatórios detalhados de vendas. Integração com redes sociais e remarketing para maximizar suas conversões.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-tag">Benefícios</div>
+      <h2 class="section-title fade-up">Por que escolher este serviço</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">💰</div>
+        <h3>Checkout otimizado</h3>
+        <p>Menos etapas no processo de compra para reduzir abandono de carrinho e aumentar a taxa de conversão.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-1">
+        <div class="benefit-icon">🎯</div>
+        <h3>Cupons e promoções</h3>
+        <p>Crie cupons de desconto, promoções por tempo limitado e códigos de parceiros para impulsionar as vendas.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-2">
+        <div class="benefit-icon">📱</div>
+        <h3>Mobile-first</h3>
+        <p>Experiência perfeita no celular com layout responsivo otimizado para compra em dispositivos móveis.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-3">
+        <div class="benefit-icon">🔐</div>
+        <h3>Pagamentos seguros</h3>
+        <p>Conformidade PCI DSS com criptografia de ponta a ponta para proteção total dos dados de pagamento.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-4">
+        <div class="benefit-icon">📈</div>
+        <h3>Analytics de vendas</h3>
+        <p>Relatórios detalhados de conversão, receita por período e comportamento de compra dos participantes.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🚀</div>
+        <h3>Integração com marketing</h3>
+        <p>Pixels de rastreamento para Facebook Ads, Google Ads e remarketing automático para visitantes que não compraram.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section" style="background:var(--navy-light)">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+      <div>
+        <div class="section-tag">Como Funciona</div>
+        <h2 class="section-title fade-up">Processo simples e eficiente</h2>
+        <div class="steps fade-up fade-up-delay-1">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>Configuração da loja</h3>
+              <p>Configuramos sua loja virtual com identidade visual do evento e métodos de pagamento ativados.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>Cadastro de produtos/ingressos</h3>
+              <p>Inserimos todos os tipos de ingressos, pacotes VIP, workshops e produtos disponíveis para venda.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>Publicação e divulgação</h3>
+              <p>Publicamos a loja e disponibilizamos os materiais de divulgação para suas campanhas de marketing.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h3>Gestão de vendas e financeiro</h3>
+              <p>Acompanhe vendas em tempo real e receba repasses automáticos conforme o calendário financeiro.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-2">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Venda de ingressos online para eventos" style="border-radius:var(--radius-lg);width:100%;aspect-ratio:4/3;object-fit:cover" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-service">
+  <div class="container">
+    <div class="section-tag" style="margin:0 auto 16px">Pronto para começar?</div>
+    <h2 style="margin-bottom:16px">Solicite um orçamento agora</h2>
+    <p style="color:var(--silver);max-width:480px;margin:0 auto 32px">Entre em contato e receba uma proposta personalizada para o seu evento.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/5511967792549" class="btn btn-white btn-lg" target="_blank" rel="noopener">💬 Falar no WhatsApp</a>
+      <a href="contato.html" class="btn btn-outline btn-lg">Formulário de contato</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

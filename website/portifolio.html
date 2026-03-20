@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio | Worknet Eventos</title>
+  <meta name="description" content="Mais de 3.500 eventos realizados em todo o Brasil. Congressos, feiras, festivais e eventos corporativos. Conheça o portfólio da Worknet Eventos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ---- PORTFÓLIO STYLES ---- */
+
+    /* Hero */
+    .pf-hero {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #080f18 0%, #0d1b2a 50%, #0f2238 100%);
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+    .pf-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(46,110,166,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,110,166,.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .pf-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 800px 500px at 60% 50%, rgba(46,110,166,.18), transparent 70%);
+    }
+    .pf-hero-content {
+      position: relative; z-index: 1;
+      max-width: 700px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(46,110,166,.2);
+      border: 1px solid rgba(91,163,217,.35);
+      color: #5ba3d9;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: #5ba3d9; border-radius: 50%; animation: blink 1.5s infinite; display: inline-block; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+    .pf-hero h1 { margin-bottom: 22px; font-size: clamp(2rem, 4vw, 3.2rem); }
+    .pf-hero h1 span { color: #5ba3d9; }
+    .pf-hero .hero-sub {
+      color: #c0cdd8;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      background: rgba(46,110,166,.12);
+      border-top: 1px solid rgba(91,163,217,.2);
+      border-bottom: 1px solid rgba(91,163,217,.2);
+      padding: 24px 0;
+    }
+    .stats-bar-inner {
+      display: flex;
+      justify-content: center;
+      gap: 56px;
+      flex-wrap: wrap;
+    }
+    .stats-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .stats-bar-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #5ba3d9;
+    }
+    .stats-bar-label {
+      color: #c0cdd8;
+      font-size: .9rem;
+    }
+
+    /* Filtros */
+    .filters-section {
+      padding: 48px 0 32px;
+      background: #0d1b2a;
+    }
+    .filters-label {
+      color: #c0cdd8;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .filters-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 10px 22px;
+      border-radius: 50px;
+      border: 1px solid rgba(91,163,217,.25);
+      background: rgba(46,110,166,.08);
+      color: #c0cdd8;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(46,110,166,.3);
+      border-color: #5ba3d9;
+      color: #fff;
+    }
+    .filter-btn.active {
+      background: #2e6ea6;
+      color: #fff;
+    }
+
+    /* Portfolio Grid */
+    .portfolio-section {
+      padding: 40px 0 80px;
+      background: #0d1b2a;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .portfolio-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #080f18;
+      border: 1px solid rgba(91,163,217,.12);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      cursor: pointer;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(91,163,217,.4);
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    }
+    .portfolio-card:nth-child(4n+1) { grid-row: span 1; }
+
+    .portfolio-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 220px;
+    }
+    .portfolio-card:nth-child(4n) .portfolio-img-wrap {
+      height: 280px;
+    }
+    .portfolio-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .portfolio-card:hover .portfolio-img {
+      transform: scale(1.06);
+    }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,15,24,.95) 0%, rgba(8,15,24,.3) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+    .portfolio-card:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    .portfolio-overlay-text {
+      color: #fff;
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+    .portfolio-overlay-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      color: #5ba3d9;
+      font-weight: 600;
+      font-size: .85rem;
+    }
+
+    .portfolio-tag {
+      position: absolute;
+      top: 14px; left: 14px;
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .tag-congresso { background: rgba(46,110,166,.85); color: #fff; }
+    .tag-feira     { background: rgba(16,140,98,.85);  color: #fff; }
+    .tag-festival  { background: rgba(148,53,200,.85); color: #fff; }
+    .tag-corp      { background: rgba(195,120,20,.85); color: #fff; }
+    .tag-exposicao { background: rgba(180,40,80,.85);  color: #fff; }
+
+    .portfolio-info {
+      padding: 20px;
+    }
+    .portfolio-info h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .portfolio-info p {
+      color: #c0cdd8;
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 80px 0;
+      background: #080f18;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(46,110,166,.12), transparent 70%);
+    }
+    .cta-section .container { position: relative; z-index: 1; }
+    .cta-section h2 { margin-bottom: 16px; font-size: clamp(1.6rem, 2.5vw, 2.4rem); }
+    .cta-section p { color: #c0cdd8; margin-bottom: 36px; font-size: 1.05rem; }
+
+    /* Fade up */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .stats-bar-inner { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<!-- HERO -->
+<section class="pf-hero">
+  <div class="container">
+    <div class="pf-hero-content">
+      <div class="hero-badge fade-up">
+        <span></span>
+        Nosso Trabalho
+      </div>
+      <h1 class="fade-up">Nosso portfólio de <span>eventos</span></h1>
+      <p class="hero-sub fade-up">
+        Mais de 3.500 eventos realizados em todo o Brasil. Congressos internacionais, feiras de negócios, festivais culturais e eventos corporativos de alto impacto.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-bar-inner">
+      <div class="stats-bar-item">
+        <span class="stats-bar-value">3.500+</span>
+        <span class="stats-bar-label">Eventos realizados</span>
+      </div>
+      <div class="stats-bar-item">
+        <span class="stats-bar-value">2M+</span>
+        <span class="stats-bar-label">Participantes credenciados</span>
+      </div>
+      <div class="stats-bar-item">
+        <span class="stats-bar-value">1.000+</span>
+        <span class="stats-bar-label">Clientes atendidos</span>
+      </div>
+      <div class="stats-bar-item">
+        <span class="stats-bar-value">20+</span>
+        <span class="stats-bar-label">Estados cobertos</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTROS -->
+<section class="filters-section">
+  <div class="container">
+    <p class="filters-label">Filtrar por categoria</p>
+    <div class="filters-row">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="congresso">Congressos</button>
+      <button class="filter-btn" data-filter="feira">Feiras</button>
+      <button class="filter-btn" data-filter="festival">Festivais</button>
+      <button class="filter-btn" data-filter="corp">Corporativo</button>
+      <button class="filter-btn" data-filter="exposicao">Exposições</button>
+    </div>
+  </div>
+</section>
+
+<!-- GRID PORTFÓLIO -->
+<section class="portfolio-section">
+  <div class="container">
+    <div class="portfolio-grid">
+
+      <!-- Card 1 -->
+      <div class="portfolio-card fade-up" data-category="congresso">
+        <span class="portfolio-tag tag-congresso">Congresso</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Congresso Internacional de Tecnologia" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Credenciamento de 12.000 participantes em 3 dias
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Congresso Internacional de Tecnologia</h3>
+          <p>São Paulo, SP — 12.000 participantes</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="portfolio-card fade-up" data-category="feira">
+        <span class="portfolio-tag tag-feira">Feira</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80" alt="Feira de Negócios e Inovação" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Controle de acesso e coletor de leads para 400 expositores
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Feira de Negócios e Inovação</h3>
+          <p>Rio de Janeiro, RJ — 8.500 visitantes</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="portfolio-card fade-up" data-category="festival">
+        <span class="portfolio-tag tag-festival">Festival</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80" alt="Festival Cultural Nacional" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Biometria facial e controle de acesso em tempo real
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Festival Cultural Nacional</h3>
+          <p>Belo Horizonte, MG — 35.000 participantes</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="portfolio-card fade-up" data-category="corp">
+        <span class="portfolio-tag tag-corp">Corporativo</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80" alt="Convenção Nacional de Vendas" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              App do evento e certificado digital para todos os participantes
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Convenção Nacional de Vendas</h3>
+          <p>São Paulo, SP — 2.800 colaboradores</p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="portfolio-card fade-up" data-category="congresso">
+        <span class="portfolio-tag tag-congresso">Congresso</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80" alt="Congresso Médico Brasileiro" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Sistema de inscrição e emissão de certificados com horas CME
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Congresso Médico Brasileiro</h3>
+          <p>Brasília, DF — 5.200 médicos</p>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="portfolio-card fade-up" data-category="feira">
+        <span class="portfolio-tag tag-feira">Feira</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1559223607-a43c990c692c?w=800&q=80" alt="Expo Agronegócio Sul" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Totem de autoatendimento e venda online de ingressos
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Expo Agronegócio Sul</h3>
+          <p>Curitiba, PR — 18.000 visitantes</p>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="portfolio-card fade-up" data-category="corp">
+        <span class="portfolio-tag tag-corp">Corporativo</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80" alt="Summit de Liderança" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Manual do expositor digital e gestão completa de credenciais
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Summit de Liderança Empresarial</h3>
+          <p>São Paulo, SP — 1.400 executivos</p>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="portfolio-card fade-up" data-category="congresso">
+        <span class="portfolio-tag tag-congresso">Congresso</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80" alt="Congresso de Educação e Tecnologia" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Plataforma de inscrição com 6 categorias de acesso diferenciado
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Congresso de Educação e Tecnologia</h3>
+          <p>Recife, PE — 9.000 educadores</p>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="portfolio-card fade-up" data-category="corp">
+        <span class="portfolio-tag tag-corp">Corporativo</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80" alt="Hackathon Nacional" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              App dedicado com agenda, networking e gamificação
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Hackathon Nacional de Inovação</h3>
+          <p>São Paulo, SP — 3.000 desenvolvedores</p>
+        </div>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="portfolio-card fade-up" data-category="exposicao">
+        <span class="portfolio-tag tag-exposicao">Exposição</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1560523159-4a9692d222ef?w=800&q=80" alt="Exposição de Arte Contemporânea" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Catracas e detector de metal para segurança máxima
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Exposição de Arte Contemporânea</h3>
+          <p>São Paulo, SP — 22.000 visitantes</p>
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="portfolio-card fade-up" data-category="feira">
+        <span class="portfolio-tag tag-feira">Feira</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1591115765373-5207764f72e4?w=800&q=80" alt="Feira de Saúde e Bem-Estar" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              CAEX completo com 250 expositores e coleta de leads
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Feira de Saúde e Bem-Estar</h3>
+          <p>Porto Alegre, RS — 14.000 visitantes</p>
+        </div>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="portfolio-card fade-up" data-category="congresso">
+        <span class="portfolio-tag tag-congresso">Congresso</span>
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-img" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80" alt="Fórum Internacional de Sustentabilidade" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-text">
+              Credenciamento sustentável com crachás 100% ecológicos
+              <div class="portfolio-overlay-cta">Saiba mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Fórum Internacional de Sustentabilidade</h3>
+          <p>Florianópolis, SC — 6.800 participantes</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-up">Seu evento pode ser o próximo</h2>
+    <p class="fade-up">Fale com a nossa equipe e receba uma proposta personalizada para o seu evento.</p>
+    <div class="fade-up">
+      <a href="https://wa.me/5511967792549" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.522 5.84L.057 23.452a.5.5 0 0 0 .599.578l5.782-1.456A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.685-.51-5.22-1.396l-.374-.22-3.877.977.997-3.778-.243-.388A9.948 9.948 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Solicitar Orçamento
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // Filter buttons
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.portfolio-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'todos' || card.dataset.category === filter) {
+          card.style.display = '';
+          setTimeout(() => card.style.opacity = '1', 10);
+        } else {
+          card.style.opacity = '0';
+          setTimeout(() => card.style.display = 'none', 250);
+        }
+      });
+    });
+  });
+
+  // Intersection Observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

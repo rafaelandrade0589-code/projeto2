@@ -328,18 +328,23 @@
       100% { transform: translateX(-50%); }
     }
     .client-logo {
-      height: 40px;
-      min-width: 100px;
-      display: flex; align-items: center;
-      filter: grayscale(1) opacity(.65);
-      transition: filter var(--transition);
+      display: flex; align-items: center; justify-content: center;
+      padding: 10px 22px;
+      border: 1px solid rgba(91,163,217,.18);
+      border-radius: 8px;
+      background: rgba(255,255,255,.03);
+      color: rgba(192,205,216,.55);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: all var(--transition);
     }
-    .client-logo:hover { filter: grayscale(0) opacity(1); }
-    .client-logo img {
-      height: 40px;
-      width: auto;
-      max-width: 140px;
-      object-fit: contain;
+    .client-logo:hover {
+      color: var(--white);
+      border-color: rgba(91,163,217,.5);
+      background: rgba(46,110,166,.15);
     }
 
     /* Portfolio */
@@ -761,21 +766,21 @@
   </div>
   <div class="clients-track-wrap" style="margin-top:40px">
     <div class="clients-track" id="clientsTrack">
-      <!-- logos will be duplicated by JS for infinite loop -->
-      <div class="client-logo"><img src="https://logo.brandfetch.io/sebrae.com.br" alt="Sebrae" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/itau.com.br" alt="Itaú" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/bb.com.br" alt="Banco do Brasil" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/samsung.com" alt="Samsung" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/santander.com.br" alt="Santander" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/cna.com.br" alt="CNA" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/tagima.com.br" alt="Tagima" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/jovempan.com.br" alt="Jovem Pan" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/eduzz.com" alt="Eduzz" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/leroymerlin.com.br" alt="Leroy Merlin" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/brasilgameshow.com.br" alt="BGS" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/ahoraph.com.br" alt="A Hora H" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/feminino-moderno.com.br" alt="Feminino Moderno" /></div>
-      <div class="client-logo"><img src="https://logo.brandfetch.io/casadecriadores.com.br" alt="Casa de Criadores" /></div>
+      <!-- logos duplicated by JS for infinite scroll -->
+      <div class="client-logo">Sebrae</div>
+      <div class="client-logo">Itaú</div>
+      <div class="client-logo">Banco do Brasil</div>
+      <div class="client-logo">Samsung</div>
+      <div class="client-logo">Santander</div>
+      <div class="client-logo">CNA</div>
+      <div class="client-logo">Tagima</div>
+      <div class="client-logo">Jovem Pan</div>
+      <div class="client-logo">Eduzz</div>
+      <div class="client-logo">Leroy Merlin</div>
+      <div class="client-logo">Brasil Game Show</div>
+      <div class="client-logo">A Hora H</div>
+      <div class="client-logo">Feminino Moderno</div>
+      <div class="client-logo">Casa de Criadores</div>
     </div>
   </div>
 </section>

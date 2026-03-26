@@ -216,7 +216,7 @@
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid rgba(91,163,217,.15);
-      height: 200px;
+      height: 400px;
     }
     .map-wrap iframe {
       width: 100%;
@@ -487,8 +487,10 @@
 
         <div class="map-wrap">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0976957696483!2d-46.6584789!3d-23.5647716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1640000000000!5m2!1spt-BR!2sbr"
-            title="Localização Worknet Eventos — São Paulo"
+            src="https://maps.google.com/maps?q=Av.+Queiroz+Filho,+1700,+Vila+Hamburguesa,+São+Paulo,+SP,+05319-000&output=embed"
+            title="Localização Worknet Eventos — Vila Hamburguesa, São Paulo"
+            width="100%"
+            height="400"
             allowfullscreen
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -498,9 +500,9 @@
         <div class="legal-card">
           <p>
             <strong>Worknet Soluções em Tecnologia para Eventos Ltda.</strong><br />
-            CNPJ: 12.345.678/0001-99<br />
-            Av. Paulista, 1000 — Bela Vista, São Paulo – SP<br />
-            CEP 01310-100 — Brasil
+            Condomínio Villa Lobos Office Park<br />
+            Av. Queiroz Filho, 1700 — Vila Hamburguesa<br />
+            São Paulo – SP, CEP 05319-000 — Brasil
           </p>
         </div>
 
@@ -617,37 +619,36 @@
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const nome   = document.getElementById('nome').value.trim();
-    const email  = document.getElementById('email').value.trim();
-    const tel    = document.getElementById('telefone').value.trim();
-    const emp    = document.getElementById('empresa').value.trim();
-    const tipo   = document.getElementById('tipo-evento').value;
-    const qtd    = document.getElementById('qtd-participantes').value;
-    const msg    = document.getElementById('mensagem').value.trim();
+    const nome     = document.getElementById('nome').value.trim();
+    const empresa  = document.getElementById('empresa').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const tipo     = document.getElementById('tipo-evento').value;
+    const qtd      = document.getElementById('qtd-participantes').value;
+    const mensagem = document.getElementById('mensagem').value.trim();
 
     if (!nome) {
       alert('Por favor, preencha seu nome completo.');
       document.getElementById('nome').focus();
       return;
     }
-    if (!email) {
-      alert('Por favor, preencha seu e-mail.');
-      document.getElementById('email').focus();
+    if (!telefone) {
+      alert('Por favor, preencha seu telefone/WhatsApp.');
+      document.getElementById('telefone').focus();
       return;
     }
 
-    const tipoTexto = tipo || 'não informado';
-    const qtdTexto  = qtd  || 'não informada';
-    const empTexto  = emp  || 'não informada';
-    const msgTexto  = msg  || 'Sem mensagem adicional.';
+    const texto =
+      '🎯 *Solicitação de Orçamento — Worknet*\n\n' +
+      '👤 *Nome:* ' + nome + '\n' +
+      '🏢 *Empresa:* ' + (empresa || 'não informada') + '\n' +
+      '📧 *E-mail:* ' + (email || 'não informado') + '\n' +
+      '📱 *Telefone:* ' + telefone + '\n' +
+      '🎪 *Tipo de evento:* ' + (tipo || 'não informado') + '\n' +
+      '👥 *Participantes:* ' + (qtd || 'não informada') + '\n' +
+      '💬 *Mensagem:* ' + (mensagem || 'Sem mensagem adicional.');
 
-    const texto = `Olá! Sou ${nome} da empresa ${empTexto}.
-Quero solicitar orçamento para um ${tipoTexto} com ${qtdTexto}.
-${msgTexto}
-Meu email: ${email}${tel ? '\nMeu telefone: ' + tel : ''}`;
-
-    const encoded = encodeURIComponent(texto);
-    window.open(`https://wa.me/5511967792549?text=${encoded}`, '_blank');
+    window.open('https://wa.me/5511967792549?text=' + encodeURIComponent(texto), '_blank');
   });
 
   // FAQ accordion

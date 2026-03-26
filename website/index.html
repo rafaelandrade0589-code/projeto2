@@ -329,18 +329,23 @@
       100% { transform: translateX(-50%); }
     }
     .client-logo {
-      display: flex; align-items: center;
+      display: flex; align-items: center; justify-content: center;
+      padding: 10px 22px;
+      border: 1px solid rgba(91,163,217,.18);
+      border-radius: 8px;
+      background: rgba(255,255,255,.03);
+      color: rgba(192,205,216,.55);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: all var(--transition);
     }
-    .client-logo img {
-      height: 36px;
-      width: auto;
-      max-width: 160px;
-      object-fit: contain;
-      filter: brightness(0) invert(1) opacity(0.7);
-      transition: filter var(--transition);
-    }
-    .client-logo:hover img {
-      filter: brightness(0) invert(1) opacity(1);
+    .client-logo:hover {
+      color: var(--white);
+      border-color: rgba(91,163,217,.5);
+      background: rgba(46,110,166,.15);
     }
     .clients-eyebrow {
       text-align: center;
@@ -771,20 +776,20 @@
   <div class="clients-track-wrap">
     <div class="clients-track" id="clientsTrack">
       <!-- logos duplicated by JS for infinite scroll -->
-      <div class="client-logo"><img src="https://img.logo.dev/sebrae.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Sebrae" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/itau.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Itaú" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/bb.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Banco do Brasil" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/samsung.com?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Samsung" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/santander.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Santander" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/cna.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="CNA" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/tagima.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Tagima" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/jovempan.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Jovem Pan" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/eduzz.com?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Eduzz" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/leroymerlin.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Leroy Merlin" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/brasilgameshow.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Brasil Game Show" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/ahoraph.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="A Hora H" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/feminino-moderno.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Feminino Moderno" /></div>
-      <div class="client-logo"><img src="https://img.logo.dev/casadecriadores.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Casa de Criadores" /></div>
+      <div class="client-logo">Sebrae</div>
+      <div class="client-logo">Itaú</div>
+      <div class="client-logo">Banco do Brasil</div>
+      <div class="client-logo">Samsung</div>
+      <div class="client-logo">Santander</div>
+      <div class="client-logo">CNA</div>
+      <div class="client-logo">Tagima</div>
+      <div class="client-logo">Jovem Pan</div>
+      <div class="client-logo">Eduzz</div>
+      <div class="client-logo">Leroy Merlin</div>
+      <div class="client-logo">Brasil Game Show</div>
+      <div class="client-logo">A Hora H</div>
+      <div class="client-logo">Feminino Moderno</div>
+      <div class="client-logo">Casa de Criadores</div>
     </div>
   </div>
   <div class="container">

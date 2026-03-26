@@ -29,10 +29,31 @@
         radial-gradient(ellipse 900px 700px at 80% 40%, rgba(46,110,166,.18), transparent 70%),
         radial-gradient(ellipse 400px 400px at 15% 80%, rgba(91,163,217,.08), transparent 60%);
     }
+    /* Hero two-column layout */
+    .hero-row {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
     .hero-content {
       position: relative; z-index: 1;
-      max-width: 640px;
+      flex: 1;
+      min-width: 0;
     }
+    .hero-video {
+      flex: 0 0 280px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+      border: 1px solid var(--border);
+    }
+    .hero-video iframe {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border: none;
+      display: block;
+    }
+    @media(max-width:1100px){ .hero-video { display: none; } }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(46,110,166,.2);
@@ -377,6 +398,43 @@
     .cta-section > * { position: relative; z-index: 1; }
     .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
 
+    /* FAQ */
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    .faq-item[open] { border-color: rgba(91,163,217,.4); }
+    .faq-question {
+      padding: 20px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-question::-webkit-details-marker { display: none; }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--blue-light);
+      flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+    .faq-item[open] .faq-question::after { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 24px 20px;
+      color: var(--silver);
+      font-size: .92rem;
+      line-height: 1.75;
+    }
+
     /* Responsive home */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -407,10 +465,10 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="grid-lines"></div>
-  <div class="container" style="position:relative;z-index:1">
+  <div class="container hero-row" style="position:relative;z-index:1">
     <div class="hero-content fade-up">
       <div class="hero-badge"><span></span> 20 Anos de Experiência</div>
-      <h1>Tecnologia que <span>transforma</span> eventos em experiências</h1>
+      <h1>Eventos e feiras que <span>funcionam.</span> Do credenciamento ao controle de acesso.</h1>
       <p class="hero-sub">Soluções completas em credenciamento, controle de acesso e tecnologia para eventos corporativos em todo o Brasil.</p>
       <div class="hero-buttons">
         <a href="https://wa.me/5511967792549" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
@@ -438,56 +496,11 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- Hero visual card -->
-  <div class="hero-visual fade-up fade-up-delay-2" style="right:60px">
-    <div class="hero-visual-title">📊 Painel de Resultados em Tempo Real</div>
-    <div class="metric-row">
-      <div class="icon">🎫</div>
-      <div class="info"><strong>Credenciamentos hoje</strong><span>Evento Tech Summit 2025</span></div>
-      <div class="val">4.872</div>
-    </div>
-    <div class="metric-row">
-      <div class="icon">⚡</div>
-      <div class="info"><strong>Tempo médio</strong><span>Por participante</span></div>
-      <div class="val">8s</div>
-    </div>
-    <div class="metric-row">
-      <div class="icon">📱</div>
-      <div class="info"><strong>Check-ins mobile</strong><span>Via QR Code</span></div>
-      <div class="val">68%</div>
-    </div>
-    <div class="metric-row">
-      <div class="icon">🔒</div>
-      <div class="info"><strong>Controle de acesso</strong><span>Zonas restritas</span></div>
-      <div class="val">100%</div>
+    <div class="hero-video fade-up fade-up-delay-2">
+      <iframe src="https://www.youtube.com/embed/EkQO8S-LMYQ" title="Worknet Eventos — veja como funciona" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
-
-<!-- ===== STATS STRIP ===== -->
-<div class="stats-strip">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item fade-up">
-        <div class="stat-num"><span data-target="97">0</span>%</div>
-        <div class="stat-label">Índice de satisfação</div>
-      </div>
-      <div class="stat-item fade-up fade-up-delay-1">
-        <div class="stat-num">+<span data-target="1000">0</span></div>
-        <div class="stat-label">Empresas atendidas</div>
-      </div>
-      <div class="stat-item fade-up fade-up-delay-2">
-        <div class="stat-num">+<span data-target="3500">0</span></div>
-        <div class="stat-label">Eventos realizados</div>
-      </div>
-      <div class="stat-item fade-up fade-up-delay-3">
-        <div class="stat-num">2M<sup>+</sup></div>
-        <div class="stat-label">Pessoas credenciadas</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ===== QUEM SOMOS (snippet) ===== -->
 <section class="section" style="background: var(--navy-light);">
@@ -819,6 +832,55 @@
     </div>
     <div class="text-center" style="margin-top:36px">
       <a href="portifolio.html" class="btn btn-primary">Ver portfólio completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" style="background:var(--navy-light)">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-tag">Dúvidas Frequentes</div>
+      <h2 class="section-title">Perguntas que a gente responde todo dia</h2>
+      <p class="section-subtitle">Tudo que você precisa saber antes de contratar a Worknet.</p>
+    </div>
+    <div style="max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px">
+
+      <details class="faq-item fade-up" open>
+        <summary class="faq-question">Como funciona o credenciamento para grandes eventos?</summary>
+        <div class="faq-answer">
+          <p>Nosso sistema de credenciamento é integrado do início ao fim: do cadastro online até a impressão do crachá no local. Utilizamos QR Code, biometria facial e leitores de código de barras para garantir agilidade — credenciando participantes em menos de 8 segundos. Para eventos com mais de 10.000 pessoas, montamos múltiplos pontos simultâneos com equipe treinada e equipamentos redundantes.</p>
+        </div>
+      </details>
+
+      <details class="faq-item fade-up fade-up-delay-1">
+        <summary class="faq-question">Quais tipos de controle de acesso vocês oferecem?</summary>
+        <div class="faq-answer">
+          <p>Trabalhamos com catracas eletrônicas, portais detectores de metal, biometria facial, leitura de QR Code e RFID. Cada acesso pode ser configurado por perfil (VIP, expositor, visitante), por área do evento e por horário — tudo com monitoramento em tempo real no dashboard.</p>
+        </div>
+      </details>
+
+      <details class="faq-item fade-up fade-up-delay-2">
+        <summary class="faq-question">Vocês atendem eventos em todo o Brasil?</summary>
+        <div class="faq-answer">
+          <p>Sim. Atendemos em qualquer estado do Brasil. Temos equipes próprias e parceiros logísticos que garantem a entrega e operação dos equipamentos no local do evento, com suporte técnico presencial durante toda a realização.</p>
+        </div>
+      </details>
+
+      <details class="faq-item fade-up fade-up-delay-3">
+        <summary class="faq-question">Com quanto tempo de antecedência devo contratar a Worknet?</summary>
+        <div class="faq-answer">
+          <p>Para eventos de médio porte (até 2.000 pessoas), recomendamos ao menos 30 dias de antecedência. Para grandes eventos (acima de 5.000 pessoas), o ideal é 60 a 90 dias para personalizar o sistema de inscrição, configurar integrações e realizar testes. Mas entre em contato — avaliamos cada caso com urgência.</p>
+        </div>
+      </details>
+
+      <details class="faq-item fade-up fade-up-delay-3">
+        <summary class="faq-question">Há suporte técnico durante o evento?</summary>
+        <div class="faq-answer">
+          <p>Sim. Disponibilizamos equipe técnica presencial durante toda a operação do evento, com suporte remoto 24/7 como backup. Nossos equipamentos possuem redundância — em caso de falha de um terminal, os demais assumem automaticamente sem interrupção do fluxo de credenciamento.</p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>

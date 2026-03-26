@@ -303,10 +303,10 @@
     /* Clients carousel */
     .clients-section {
       background: var(--navy-light);
-      padding: 70px 0;
+      padding: 80px 0;
       overflow: hidden;
     }
-    .clients-track-wrap { overflow: hidden; position: relative; margin-top: 40px; }
+    .clients-track-wrap { overflow: hidden; position: relative; margin-top: 48px; }
     .clients-track-wrap::before,
     .clients-track-wrap::after {
       content: '';
@@ -318,7 +318,8 @@
     .clients-track-wrap::after  { right: 0; background: linear-gradient(to left, var(--navy-light), transparent); }
     .clients-track {
       display: flex;
-      gap: 48px;
+      align-items: center;
+      gap: 60px;
       animation: scroll-logos 30s linear infinite;
       width: max-content;
     }
@@ -328,16 +329,26 @@
       100% { transform: translateX(-50%); }
     }
     .client-logo {
-      height: 80px;
-      min-width: 100px;
       display: flex; align-items: center;
     }
     .client-logo img {
-      height: 80px;
+      height: 36px;
       width: auto;
-      max-width: 180px;
+      max-width: 160px;
       object-fit: contain;
-      filter: none !important;
+      filter: brightness(0) invert(1) opacity(0.7);
+      transition: filter var(--transition);
+    }
+    .client-logo:hover img {
+      filter: brightness(0) invert(1) opacity(1);
+    }
+    .clients-eyebrow {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
     /* Portfolio */
@@ -757,7 +768,7 @@
       <p class="section-subtitle fade-up fade-up-delay-1" style="margin:12px auto 0">Mais de 570 empresas já escolheram a Worknet para seus eventos</p>
     </div>
   </div>
-  <div class="clients-track-wrap" style="margin-top:40px">
+  <div class="clients-track-wrap">
     <div class="clients-track" id="clientsTrack">
       <!-- logos duplicated by JS for infinite scroll -->
       <div class="client-logo"><img src="https://img.logo.dev/sebrae.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Sebrae" /></div>
@@ -775,6 +786,9 @@
       <div class="client-logo"><img src="https://img.logo.dev/feminino-moderno.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Feminino Moderno" /></div>
       <div class="client-logo"><img src="https://img.logo.dev/casadecriadores.com.br?token=pk_KfaBvh0ATcyai4dDROM35w" alt="Casa de Criadores" /></div>
     </div>
+  </div>
+  <div class="container">
+    <p class="clients-eyebrow">Empresas que já confiam na Worknet</p>
   </div>
 </section>
 

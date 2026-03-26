@@ -219,31 +219,25 @@
 
     /* Logos Clientes */
     .clients-section {
-      padding: 60px 0;
-      background: #0d1b2a;
-      border-top: 1px solid rgba(91,163,217,.1);
-      border-bottom: 1px solid rgba(91,163,217,.1);
-    }
-    .clients-section .section-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .clients-section h3 {
-      font-size: 1rem;
-      color: #c0cdd8;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .clients-track-wrap {
+      background: var(--navy-light);
+      padding: 80px 0;
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
+    .clients-track-wrap { overflow: hidden; position: relative; margin-top: 48px; }
+    .clients-track-wrap::before,
+    .clients-track-wrap::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+    }
+    .clients-track-wrap::before { left: 0; background: linear-gradient(to right, var(--navy-light), transparent); }
+    .clients-track-wrap::after  { right: 0; background: linear-gradient(to left, var(--navy-light), transparent); }
     .clients-track {
       display: flex;
-      gap: 48px;
-      animation: scroll-logos 22s linear infinite;
+      align-items: center;
+      gap: 64px;
+      animation: scroll-logos 30s linear infinite;
       width: max-content;
     }
     .clients-track:hover { animation-play-state: paused; }
@@ -251,26 +245,26 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .client-logo-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(46,110,166,.1);
-      border: 1px solid rgba(91,163,217,.15);
-      border-radius: 10px;
-      padding: 14px 28px;
-      min-width: 140px;
-      white-space: nowrap;
-      color: #c0cdd8;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: .85rem;
-      letter-spacing: .05em;
-      transition: border-color .3s, color .3s;
+    .client-logo {
+      display: flex; align-items: center; justify-content: center;
     }
-    .client-logo-item:hover {
-      border-color: rgba(91,163,217,.4);
-      color: #fff;
+    .client-logo img {
+      height: 36px;
+      width: auto;
+      filter: brightness(0) invert(1) opacity(0.75);
+      transition: opacity .3s ease;
+    }
+    .client-logo:hover img {
+      filter: brightness(0) invert(1) opacity(1);
+    }
+    .clients-eyebrow {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      opacity: .5;
+      color: var(--text);
     }
 
     /* CTA */
@@ -584,38 +578,35 @@
 <!-- LOGOS CLIENTES -->
 <section class="clients-section">
   <div class="container">
-    <div class="section-header fade-up">
-      <h3>Empresas que confiam na Worknet</h3>
+    <div class="text-center">
+      <h2 class="section-title fade-up">Empresas que confiam na Worknet</h2>
+      <p class="section-subtitle fade-up fade-up-delay-1" style="margin:12px auto 0">Mais de 570 empresas já escolheram a Worknet para seus eventos</p>
     </div>
-    <div class="clients-track-wrap">
-      <div class="clients-track">
-        <div class="client-logo-item">Grupo ABC</div>
-        <div class="client-logo-item">Reed Exhibitions</div>
-        <div class="client-logo-item">Informa Markets</div>
-        <div class="client-logo-item">Expo Center Norte</div>
-        <div class="client-logo-item">AMB — Assoc. Médica</div>
-        <div class="client-logo-item">CFM</div>
-        <div class="client-logo-item">FIESP</div>
-        <div class="client-logo-item">Sebrae</div>
-        <div class="client-logo-item">Bold Eventos</div>
-        <div class="client-logo-item">Dash Eventos</div>
-        <div class="client-logo-item">Plataforma Eduzz</div>
-        <div class="client-logo-item">Casa Moda</div>
-        <!-- Repeat for smooth loop -->
-        <div class="client-logo-item">Grupo ABC</div>
-        <div class="client-logo-item">Reed Exhibitions</div>
-        <div class="client-logo-item">Informa Markets</div>
-        <div class="client-logo-item">Expo Center Norte</div>
-        <div class="client-logo-item">AMB — Assoc. Médica</div>
-        <div class="client-logo-item">CFM</div>
-        <div class="client-logo-item">FIESP</div>
-        <div class="client-logo-item">Sebrae</div>
-        <div class="client-logo-item">Bold Eventos</div>
-        <div class="client-logo-item">Dash Eventos</div>
-        <div class="client-logo-item">Plataforma Eduzz</div>
-        <div class="client-logo-item">Casa Moda</div>
-      </div>
+  </div>
+  <div class="clients-track-wrap">
+    <div class="clients-track" id="clientsTrack">
+      <!-- logos duplicated by JS for infinite scroll -->
+      <div class="client-logo"><img src="assets/logos/sebrae.png" alt="Sebrae" /></div>
+      <div class="client-logo"><img src="assets/logos/itau.png" alt="Itaú" /></div>
+      <div class="client-logo"><img src="assets/logos/bb.png" alt="Banco do Brasil" /></div>
+      <div class="client-logo"><img src="assets/logos/samsung.png" alt="Samsung" /></div>
+      <div class="client-logo"><img src="assets/logos/santander.png" alt="Santander" /></div>
+      <div class="client-logo"><img src="assets/logos/cna.png" alt="CNA" /></div>
+      <div class="client-logo"><img src="assets/logos/tagima.png" alt="Tagima" /></div>
+      <div class="client-logo"><img src="assets/logos/jovem-pan.png" alt="Jovem Pan" /></div>
+      <div class="client-logo"><img src="assets/logos/eduzz.png" alt="Eduzz" /></div>
+      <div class="client-logo"><img src="assets/logos/leroy-merlin.png" alt="Leroy Merlin" /></div>
+      <div class="client-logo"><img src="assets/logos/bgs.png" alt="Brasil Game Show" /></div>
+      <div class="client-logo"><img src="assets/logos/a-hora-h.png" alt="A Hora H" /></div>
+      <div class="client-logo"><img src="assets/logos/petrobras.png" alt="Petrobras" /></div>
+      <div class="client-logo"><img src="assets/logos/sodimac.png" alt="Sodimac" /></div>
+      <div class="client-logo"><img src="assets/logos/influence-br.png" alt="Influence BR" /></div>
+      <div class="client-logo"><img src="assets/logos/mulher-brilhante.png" alt="Mulher Brilhante" /></div>
+      <div class="client-logo"><img src="assets/logos/salao-casa-moda.png" alt="Salão Casa Moda" /></div>
     </div>
+  </div>
+  <div class="container">
+    <p class="clients-eyebrow">Empresas que já confiam na Worknet</p>
   </div>
 </section>
 
@@ -637,6 +628,10 @@
 
 <script src="assets/js/components.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+  const track = document.getElementById('clientsTrack');
+  if (track) { track.innerHTML += track.innerHTML; }
+</script>
 <script>
   // Intersection Observer for fade-up
   const observer = new IntersectionObserver((entries) => {

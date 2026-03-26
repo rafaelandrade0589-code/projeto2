@@ -254,63 +254,45 @@
       margin-bottom: 52px;
     }
     .faq-list {
-      max-width: 820px;
+      max-width: 780px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
     }
     .faq-item {
-      background: rgba(46,110,166,.07);
-      border: 1px solid rgba(91,163,217,.15);
-      border-radius: 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       overflow: hidden;
-      transition: border-color .3s;
+      transition: border-color var(--transition);
     }
-    .faq-item.open { border-color: rgba(91,163,217,.4); }
+    .faq-item[open] { border-color: rgba(91,163,217,.4); }
     .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      padding: 22px 28px;
+      padding: 20px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      cursor: pointer;
-      text-align: left;
-      color: #fff;
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: color .2s;
+      gap: 12px;
     }
-    .faq-item.open .faq-question { color: #5ba3d9; }
-    .faq-icon {
-      width: 28px; height: 28px;
-      background: rgba(46,110,166,.2);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+    .faq-question::-webkit-details-marker { display: none; }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--blue-light);
       flex-shrink: 0;
-      transition: transform .3s, background .3s;
+      transition: transform var(--transition);
     }
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      background: rgba(46,110,166,.4);
-    }
-    .faq-icon svg { width: 14px; height: 14px; fill: #5ba3d9; }
+    .faq-item[open] .faq-question::after { transform: rotate(45deg); }
     .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .4s ease, padding .3s;
-    }
-    .faq-item.open .faq-answer {
-      max-height: 300px;
-    }
-    .faq-answer-inner {
-      padding: 0 28px 22px;
-      color: #c0cdd8;
-      font-size: .95rem;
+      padding: 0 24px 20px;
+      color: var(--silver);
+      font-size: .92rem;
       line-height: 1.75;
     }
 
@@ -441,7 +423,7 @@
             <textarea id="mensagem" class="form-control" placeholder="Conte mais sobre seu evento: data, local, necessidades específicas..."></textarea>
           </div>
 
-          <button type="submit" class="btn-submit">
+          <button type="button" id="btn-whatsapp" class="btn-submit">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.522 5.84L.057 23.452a.5.5 0 0 0 .599.578l5.782-1.456A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.685-.51-5.22-1.396l-.374-.22-3.877.977.997-3.778-.243-.388A9.948 9.948 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Enviar via WhatsApp
           </button>
@@ -521,75 +503,40 @@
 
     <div class="faq-list">
 
-      <div class="faq-item fade-up">
-        <button class="faq-question" aria-expanded="false">
-          Com quanto tempo de antecedência devo contratar a Worknet?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-          </span>
-        </button>
+      <details class="faq-item fade-up" open>
+        <summary class="faq-question">Com quanto tempo de antecedência devo contratar a Worknet?</summary>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Recomendamos entrar em contato com pelo menos 30 dias de antecedência para eventos de pequeno e médio porte. Para grandes eventos (acima de 5.000 participantes), o ideal é iniciarmos o planejamento com 60 a 90 dias de antecedência. Porém, também atendemos demandas urgentes — entre em contato e avaliaremos juntos.
-          </div>
+          <p>Recomendamos entrar em contato com pelo menos 30 dias de antecedência para eventos de pequeno e médio porte. Para grandes eventos (acima de 5.000 participantes), o ideal é iniciarmos o planejamento com 60 a 90 dias de antecedência. Porém, também atendemos demandas urgentes — entre em contato e avaliaremos juntos.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="faq-item fade-up">
-        <button class="faq-question" aria-expanded="false">
-          Vocês atendem eventos fora de São Paulo?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-          </span>
-        </button>
+      <details class="faq-item fade-up">
+        <summary class="faq-question">Vocês atendem eventos fora de São Paulo?</summary>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Sim! Atendemos eventos em todo o Brasil. Temos experiência em capitais e interior, com logística própria para transporte de equipamentos e deslocamento de equipe. Já realizamos eventos em mais de 20 estados, de Manaus a Porto Alegre.
-          </div>
+          <p>Sim! Atendemos eventos em todo o Brasil. Temos experiência em capitais e interior, com logística própria para transporte de equipamentos e deslocamento de equipe. Já realizamos eventos em mais de 20 estados, de Manaus a Porto Alegre.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="faq-item fade-up">
-        <button class="faq-question" aria-expanded="false">
-          Como funciona o processo de orçamento?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-          </span>
-        </button>
+      <details class="faq-item fade-up">
+        <summary class="faq-question">Como funciona o processo de orçamento?</summary>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Após receber seu contato via formulário ou WhatsApp, nossa equipe comercial entra em contato em até 2 horas úteis para entender melhor seu evento. Com base nas informações (tipo de evento, quantidade de participantes, serviços desejados, data e local), preparamos uma proposta personalizada e detalhada em até 24 horas.
-          </div>
+          <p>Após receber seu contato via formulário ou WhatsApp, nossa equipe comercial entra em contato em até 2 horas úteis para entender melhor seu evento. Com base nas informações (tipo de evento, quantidade de participantes, serviços desejados, data e local), preparamos uma proposta personalizada e detalhada em até 24 horas.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="faq-item fade-up">
-        <button class="faq-question" aria-expanded="false">
-          A Worknet oferece suporte técnico durante o evento?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-          </span>
-        </button>
+      <details class="faq-item fade-up">
+        <summary class="faq-question">A Worknet oferece suporte técnico durante o evento?</summary>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Absolutamente! Nossa equipe técnica estará presencialmente no evento durante toda a operação. Fazemos o setup completo antes do início, acompanhamos todo o credenciamento e permanecemos até o encerramento. Também temos suporte remoto 24/7 para qualquer eventualidade.
-          </div>
+          <p>Absolutamente! Nossa equipe técnica estará presencialmente no evento durante toda a operação. Fazemos o setup completo antes do início, acompanhamos todo o credenciamento e permanecemos até o encerramento. Também temos suporte remoto 24/7 para qualquer eventualidade.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="faq-item fade-up">
-        <button class="faq-question" aria-expanded="false">
-          É possível contratar apenas um serviço específico?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-          </span>
-        </button>
+      <details class="faq-item fade-up">
+        <summary class="faq-question">É possível contratar apenas um serviço específico?</summary>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Sim! Nossos serviços podem ser contratados de forma modular — você contrata exatamente o que precisa. Seja apenas o sistema de credenciamento, somente a venda online de ingressos, ou apenas a locação de equipamentos. Também oferecemos pacotes completos com desconto. A flexibilidade é uma das nossas características.
-          </div>
+          <p>Sim! Nossos serviços podem ser contratados de forma modular — você contrata exatamente o que precisa. Seja apenas o sistema de credenciamento, somente a venda online de ingressos, ou apenas a locação de equipamentos. Também oferecemos pacotes completos com desconto.</p>
         </div>
-      </div>
+      </details>
 
     </div>
   </div>
@@ -616,8 +563,7 @@
 <script src="assets/js/main.js"></script>
 <script>
   // WhatsApp form submission
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+  document.getElementById('btn-whatsapp').addEventListener('click', function() {
 
     const nome     = document.getElementById('nome').value.trim();
     const empresa  = document.getElementById('empresa').value.trim();
@@ -649,26 +595,6 @@
       '💬 *Mensagem:* ' + (mensagem || 'Sem mensagem adicional.');
 
     window.open('https://wa.me/5511967792549?text=' + encodeURIComponent(texto), '_blank');
-  });
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-
-      // Close all
-      document.querySelectorAll('.faq-item').forEach(i => {
-        i.classList.remove('open');
-        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-      });
-
-      // Toggle clicked
-      if (!isOpen) {
-        item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
   });
 
   // Intersection Observer for fade-up

@@ -521,7 +521,7 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
     display: none;
   }
   .navbar-nav > li:hover .mega-menu { display: block; }
-  .navbar-nav.open .mega-menu { display: block; }
+  .navbar-nav.open li.open .mega-menu { display: block; }
   .mega-menu-grid { grid-template-columns: 1fr; }
   .navbar-toggle { display: flex; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }

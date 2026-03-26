@@ -319,7 +319,7 @@
     .clients-track {
       display: flex;
       align-items: center;
-      gap: 60px;
+      gap: 64px;
       animation: scroll-logos 30s linear infinite;
       width: max-content;
     }
@@ -330,30 +330,24 @@
     }
     .client-logo {
       display: flex; align-items: center; justify-content: center;
-      padding: 10px 22px;
-      border: 1px solid rgba(91,163,217,.18);
-      border-radius: 8px;
-      background: rgba(255,255,255,.03);
-      color: rgba(192,205,216,.55);
-      font-size: .82rem;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      transition: all var(--transition);
     }
-    .client-logo:hover {
-      color: var(--white);
-      border-color: rgba(91,163,217,.5);
-      background: rgba(46,110,166,.15);
+    .client-logo img {
+      height: 36px;
+      width: auto;
+      filter: brightness(0) invert(1) opacity(0.75);
+      transition: opacity .3s ease;
+    }
+    .client-logo:hover img {
+      filter: brightness(0) invert(1) opacity(1);
     }
     .clients-eyebrow {
       text-align: center;
       margin-top: 48px;
       font-size: 11px;
-      letter-spacing: .2em;
+      letter-spacing: .15em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      opacity: .5;
+      color: var(--text);
     }
 
     /* Portfolio */
@@ -776,20 +770,23 @@
   <div class="clients-track-wrap">
     <div class="clients-track" id="clientsTrack">
       <!-- logos duplicated by JS for infinite scroll -->
-      <div class="client-logo">Sebrae</div>
-      <div class="client-logo">Itaú</div>
-      <div class="client-logo">Banco do Brasil</div>
-      <div class="client-logo">Samsung</div>
-      <div class="client-logo">Santander</div>
-      <div class="client-logo">CNA</div>
-      <div class="client-logo">Tagima</div>
-      <div class="client-logo">Jovem Pan</div>
-      <div class="client-logo">Eduzz</div>
-      <div class="client-logo">Leroy Merlin</div>
-      <div class="client-logo">Brasil Game Show</div>
-      <div class="client-logo">A Hora H</div>
-      <div class="client-logo">Feminino Moderno</div>
-      <div class="client-logo">Casa de Criadores</div>
+      <div class="client-logo"><img src="assets/logos/sebrae.svg" alt="Sebrae" /></div>
+      <div class="client-logo"><img src="assets/logos/itau.svg" alt="Itaú" /></div>
+      <div class="client-logo"><img src="assets/logos/bb.svg" alt="Banco do Brasil" /></div>
+      <div class="client-logo"><img src="assets/logos/samsung.svg" alt="Samsung" /></div>
+      <div class="client-logo"><img src="assets/logos/santander.svg" alt="Santander" /></div>
+      <div class="client-logo"><img src="assets/logos/cna.svg" alt="CNA" /></div>
+      <div class="client-logo"><img src="assets/logos/tagima.svg" alt="Tagima" /></div>
+      <div class="client-logo"><img src="assets/logos/jovem-pan.svg" alt="Jovem Pan" /></div>
+      <div class="client-logo"><img src="assets/logos/eduzz.svg" alt="Eduzz" /></div>
+      <div class="client-logo"><img src="assets/logos/leroy-merlin.svg" alt="Leroy Merlin" /></div>
+      <div class="client-logo"><img src="assets/logos/bgs.svg" alt="Brasil Game Show" /></div>
+      <div class="client-logo"><img src="assets/logos/a-hora-h.svg" alt="A Hora H" /></div>
+      <div class="client-logo"><img src="assets/logos/petrobras.svg" alt="Petrobras" /></div>
+      <div class="client-logo"><img src="assets/logos/sodimac.svg" alt="Sodimac" /></div>
+      <div class="client-logo"><img src="assets/logos/influence-br.svg" alt="Influence BR" /></div>
+      <div class="client-logo"><img src="assets/logos/mulher-brilhante.svg" alt="Mulher Brilhante" /></div>
+      <div class="client-logo"><img src="assets/logos/salao-casa-moda.svg" alt="Salão Casa Moda" /></div>
     </div>
   </div>
   <div class="container">

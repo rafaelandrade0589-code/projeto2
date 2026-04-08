@@ -13,10 +13,10 @@ const SERVICES = [
   { href: 'venda-online.html',         icon: '🛒', name: 'Venda Online' },
   { href: 'manual-expositor.html',     icon: '📖', name: 'Manual do Expositor' },
   { href: 'caex.html',                 icon: '🗂️', name: 'CAEX' },
-  { href: 'certificado.html',          icon: '🏆', name: 'Certificado Digital' },
+  { href: 'biometria-facial.html',     icon: '🤳', name: 'Biometria Facial' },
   { href: 'controle-acesso.html',      icon: '🚪', name: 'Controle de Acesso' },
   { href: 'coletor-leads.html',        icon: '📊', name: 'Coletor de Leads' },
-  { href: 'biometria-facial.html',     icon: '🤳', name: 'Biometria Facial' },
+  { href: 'certificado.html',          icon: '🏆', name: 'Certificado Digital' },
   { href: 'aplicativos-eventos.html',  icon: '📱', name: 'Aplicativos para Eventos' },
   { href: 'totem-autoatendimento.html',icon: '🖥️', name: 'Totem de Autoatendimento' },
   { href: 'locacao-equipamentos.html', icon: '🔧', name: 'Locação de Equipamentos' },
@@ -75,7 +75,7 @@ function renderNavbar(activePage = '') {
         <li><a href="portifolio.html">Portfólio</a></li>
         <li><a href="depoimentos.html">Depoimentos</a></li>
         <li><a href="contato.html">Contato</a></li>
-        <li><a href="${WHATSAPP_LINK}" class="btn-nav-cta" target="_blank" rel="noopener">Solicitar Orçamento</a></li>
+        <li><a href="${WHATSAPP_LINK}" class="btn-nav-cta" style="background:#25D366!important;color:#fff!important" target="_blank" rel="noopener">Orçamento em 2 horas</a></li>
       </ul>
     </div>
   </nav>`;
@@ -116,7 +116,7 @@ function renderFooter() {
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Contato</h4>
+          <h4>Contato para Orçamento</h4>
           <div class="footer-contact-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="min-width:16px;color:var(--blue-light)"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <a href="mailto:${EMAIL}">${EMAIL}</a>

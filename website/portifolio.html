@@ -99,43 +99,6 @@
       padding: 48px 0 32px;
       background: #0d1b2a;
     }
-    .filters-label {
-      color: #c0cdd8;
-      font-size: .85rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .filters-row {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .filter-btn {
-      padding: 10px 22px;
-      border-radius: 50px;
-      border: 1px solid rgba(91,163,217,.25);
-      background: rgba(46,110,166,.08);
-      color: #c0cdd8;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all .25s;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: rgba(46,110,166,.3);
-      border-color: #5ba3d9;
-      color: #fff;
-    }
-    .filter-btn.active {
-      background: #2e6ea6;
-      color: #fff;
-    }
-
     /* Portfolio Grid */
     .portfolio-section {
       padding: 40px 0 80px;
@@ -299,21 +262,6 @@
   </div>
 </section>
 
-<!-- FILTROS -->
-<section class="filters-section">
-  <div class="container">
-    <p class="filters-label">Filtrar por categoria</p>
-    <div class="filters-row">
-      <button class="filter-btn active" data-filter="todos">Todos</button>
-      <button class="filter-btn" data-filter="congresso">Congressos</button>
-      <button class="filter-btn" data-filter="feira">Feiras</button>
-      <button class="filter-btn" data-filter="festival">Festivais</button>
-      <button class="filter-btn" data-filter="corp">Corporativo</button>
-      <button class="filter-btn" data-filter="exposicao">Exposições</button>
-    </div>
-  </div>
-</section>
-
 <!-- GRID PORTFÓLIO -->
 <section class="portfolio-section">
   <div class="container">
@@ -323,7 +271,7 @@
       <div class="portfolio-card fade-up" data-category="feira">
         <span class="portfolio-tag tag-feira">Feira</span>
         <div class="portfolio-img-wrap">
-          <img class="portfolio-img" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80" alt="BGS Brasil Game Show" loading="lazy" />
+          <img class="portfolio-img" src="assets/images/portfolio/bgs.png" alt="BGS Brasil Game Show" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="portfolio-overlay-text">
               Credenciamento de grande escala com biometria e QR Code
@@ -341,7 +289,7 @@
       <div class="portfolio-card fade-up" data-category="festival">
         <span class="portfolio-tag tag-festival">Festival</span>
         <div class="portfolio-img-wrap">
-          <img class="portfolio-img" src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80" alt="Oktoberfest SP" loading="lazy" />
+          <img class="portfolio-img" src="assets/images/portfolio/oktoberfest.png" alt="Oktoberfest SP" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="portfolio-overlay-text">
               Controle de acesso com catracas e leitura de QR Code
@@ -359,7 +307,7 @@
       <div class="portfolio-card fade-up" data-category="exposicao">
         <span class="portfolio-tag tag-exposicao">Exposição</span>
         <div class="portfolio-img-wrap">
-          <img class="portfolio-img" src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=800&q=80" alt="Bike Expo" loading="lazy" />
+          <img class="portfolio-img" src="assets/images/portfolio/bike-expo.png" alt="Bike Expo" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="portfolio-overlay-text">
               Gestão de credenciais e controle de acesso ao pavilhão
@@ -377,7 +325,7 @@
       <div class="portfolio-card fade-up" data-category="corp">
         <span class="portfolio-tag tag-corp">Corporativo</span>
         <div class="portfolio-img-wrap">
-          <img class="portfolio-img" src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80" alt="Seven Summit" loading="lazy" />
+          <img class="portfolio-img" src="assets/images/portfolio/seven-summit.png" alt="Seven Summit" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="portfolio-overlay-text">
               Credenciamento VIP e totem de autoatendimento
@@ -395,7 +343,7 @@
       <div class="portfolio-card fade-up" data-category="corp">
         <span class="portfolio-tag tag-corp">Corporativo</span>
         <div class="portfolio-img-wrap">
-          <img class="portfolio-img" src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80" alt="CREA Colégio de Inspetores" loading="lazy" />
+          <img class="portfolio-img" src="assets/images/portfolio/crea.png" alt="CREA Colégio de Inspetores" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="portfolio-overlay-text">
               Sistema de inscrição e emissão de certificados digitais
@@ -413,7 +361,7 @@
       <div class="portfolio-card fade-up" data-category="feira">
         <span class="portfolio-tag tag-feira">Feira</span>
         <div class="portfolio-img-wrap">
-          <img class="portfolio-img" src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80" alt="CAGRO" loading="lazy" />
+          <img class="portfolio-img" src="assets/images/portfolio/cagro.png" alt="CAGRO" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="portfolio-overlay-text">
               Credenciamento e controle de acesso para expositores e visitantes
@@ -450,28 +398,6 @@
 <script src="assets/js/components.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-  // Filter buttons
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.portfolio-card');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        if (filter === 'todos' || card.dataset.category === filter) {
-          card.style.display = '';
-          setTimeout(() => card.style.opacity = '1', 10);
-        } else {
-          card.style.opacity = '0';
-          setTimeout(() => card.style.display = 'none', 250);
-        }
-      });
-    });
-  });
-
   // Intersection Observer for fade-up
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

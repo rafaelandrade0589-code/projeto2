@@ -241,16 +241,20 @@
       line-height: 1.7;
     }
     .team-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 32px;
+      flex-wrap: wrap;
     }
     .team-card {
+      width: 280px;
       background: rgba(46,110,166,.08);
       border: 1px solid rgba(91,163,217,.15);
       border-radius: 20px;
       overflow: hidden;
       transition: transform .3s, border-color .3s;
+      text-align: center;
     }
     .team-card:hover {
       transform: translateY(-6px);
@@ -261,7 +265,7 @@
       height: auto;
       aspect-ratio: 4 / 5;
       object-fit: cover;
-      object-position: center;
+      object-position: top center;
       display: block;
     }
     .team-card-info {

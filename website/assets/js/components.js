@@ -8,6 +8,7 @@ const PHONE = '(11) 96779-2549';
 const INSTAGRAM = 'https://www.instagram.com/worknet_eventos/';
 
 const SERVICES = [
+  { href: 'feiras.html',               icon: '🏟️', name: 'Feiras e Exposições' },
   { href: 'credenciamento.html',       icon: '🎫', name: 'Credenciamento' },
   { href: 'sistema-inscricao.html',    icon: '📋', name: 'Sistema de Inscrição' },
   { href: 'venda-online.html',         icon: '🛒', name: 'Venda Online' },

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Credenciamento para Feiras | Worknet Eventos</title>
+  <meta name="description" content="Credenciamento especializado para feiras e exposições. 20 anos de experiência, tecnologia de ponta, equipe dedicada. Solicite proposta agora." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ==========================================
+       FEIRAS LP — Green Authority Palette
+       ==========================================
+       Primary:    #0F4C3A  (Verde-floresta)
+       Accent:     #E8960C  (Âmbar/dourado)
+       Background: #F5F3EE  (Off-white creme)
+       Dark:       #1C1C1C  (Grafite)
+       Light:      #D4EDDA  (Verde-menta suave)
+       ========================================== */
+
+    :root {
+      --f-primary:     #0F4C3A;
+      --f-primary-dark:#093328;
+      --f-primary-light:#1a6b52;
+      --f-accent:      #E8960C;
+      --f-accent-dark: #c47b0a;
+      --f-bg:          #F5F3EE;
+      --f-bg-alt:      #ECEAE3;
+      --f-dark:        #1C1C1C;
+      --f-gray:        #555;
+      --f-gray-light:  #888;
+      --f-mint:        #D4EDDA;
+      --f-white:       #ffffff;
+      --f-border:      rgba(15,76,58,.15);
+      --f-shadow:      0 8px 40px rgba(15,76,58,.12);
+    }
+
+    /* Reset do body para este contexto */
+    body.feiras-page {
+      background: var(--f-bg);
+      color: var(--f-dark);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ===== HERO ===== */
+    .feiras-hero {
+      background: var(--f-primary);
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 100px;
+    }
+
+    .feiras-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(232,150,12,.12), transparent),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(212,237,218,.07), transparent);
+      pointer-events: none;
+    }
+
+    .feiras-hero .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .feiras-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .feiras-hero .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,150,12,.2);
+      border: 1px solid rgba(232,150,12,.4);
+      color: var(--f-accent);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .feiras-hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--f-white);
+      line-height: 1.15;
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .feiras-hero h1 em {
+      font-style: normal;
+      color: var(--f-accent);
+    }
+
+    .feiras-hero .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.78);
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .feiras-hero .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-feira-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--f-accent);
+      color: var(--f-dark);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .btn-feira-primary:hover {
+      background: var(--f-accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,150,12,.35);
+    }
+
+    .btn-feira-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--f-white);
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,.35);
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-feira-outline:hover {
+      border-color: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.08);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stat strong {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--f-accent);
+      line-height: 1;
+    }
+
+    .hero-stat span {
+      font-size: .82rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 4px;
+    }
+
+    /* ===== SEÇÃO GENÉRICA ===== */
+    .f-section {
+      padding: 96px 0;
+    }
+
+    .f-section-alt {
+      background: var(--f-bg-alt);
+    }
+
+    .f-section-dark {
+      background: var(--f-primary-dark);
+      color: var(--f-white);
+    }
+
+    .f-section-mint {
+      background: var(--f-mint);
+    }
+
+    .f-tag {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--f-primary);
+      background: rgba(15,76,58,.1);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .f-section-dark .f-tag {
+      color: var(--f-accent);
+      background: rgba(232,150,12,.15);
+    }
+
+    .f-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--f-dark);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .f-section-dark .f-title {
+      color: var(--f-white);
+    }
+
+    .f-title em {
+      font-style: normal;
+      color: var(--f-primary);
+    }
+
+    .f-section-dark .f-title em {
+      color: var(--f-accent);
+    }
+
+    .f-subtitle {
+      font-size: 1.05rem;
+      color: var(--f-gray);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .f-section-dark .f-subtitle {
+      color: rgba(255,255,255,.7);
+    }
+
+    .f-center { text-align: center; }
+    .f-center .f-subtitle { margin: 0 auto; }
+
+    /* ===== DOR ===== */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .pain-card {
+      background: var(--f-white);
+      border: 1px solid var(--f-border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--f-accent);
+      transform: scaleX(0);
+      transition: transform .25s;
+    }
+
+    .pain-card:hover { transform: translateY(-6px); box-shadow: var(--f-shadow); }
+    .pain-card:hover::before { transform: scaleX(1); }
+
+    .pain-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .pain-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--f-dark);
+      margin-bottom: 10px;
+    }
+
+    .pain-card p {
+      font-size: .9rem;
+      color: var(--f-gray);
+      line-height: 1.65;
+    }
+
+    /* ===== SOLUÇÃO — 4 PILARES ===== */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .pillar-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all .25s;
+    }
+
+    .pillar-card:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(232,150,12,.3);
+      transform: translateY(-4px);
+    }
+
+    .pillar-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .75rem;
+      font-weight: 800;
+      color: var(--f-accent);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .pillar-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .pillar-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--f-white);
+      margin-bottom: 10px;
+    }
+
+    .pillar-card p {
+      font-size: .88rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.65;
+    }
+
+    /* ===== NÚMEROS ===== */
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .number-card {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--f-white);
+      border-radius: 16px;
+      border: 1px solid var(--f-border);
+      transition: all .25s;
+    }
+
+    .number-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--f-shadow);
+      border-color: rgba(15,76,58,.3);
+    }
+
+    .number-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--f-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .number-val span {
+      color: var(--f-accent);
+    }
+
+    .number-label {
+      font-size: .85rem;
+      color: var(--f-gray);
+      line-height: 1.4;
+    }
+
+    /* ===== COMO FUNCIONA ===== */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 720px;
+      margin: 56px auto 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 28px;
+      padding-bottom: 48px;
+      position: relative;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 52px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(var(--f-primary), transparent);
+    }
+
+    .timeline-item:last-child::after { display: none; }
+
+    .timeline-num {
+      min-width: 48px;
+      height: 48px;
+      background: var(--f-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: .9rem;
+      color: var(--f-white);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 16px rgba(15,76,58,.35);
+      flex-shrink: 0;
+    }
+
+    .timeline-content {
+      padding-top: 10px;
+    }
+
+    .timeline-content h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--f-dark);
+      margin-bottom: 8px;
+    }
+
+    .timeline-content p {
+      font-size: .9rem;
+      color: var(--f-gray);
+      line-height: 1.65;
+    }
+
+    /* ===== DIFERENCIAIS ===== */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 56px;
+    }
+
+    @media (max-width: 640px) { .diff-grid { grid-template-columns: 1fr; } }
+
+    .diff-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--f-white);
+      border: 1px solid var(--f-border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all .2s;
+    }
+
+    .diff-item:hover {
+      border-color: rgba(15,76,58,.3);
+      box-shadow: 0 4px 20px rgba(15,76,58,.08);
+    }
+
+    .diff-check {
+      min-width: 32px;
+      height: 32px;
+      background: var(--f-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--f-white);
+      font-size: .85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .diff-text h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--f-dark);
+      margin-bottom: 4px;
+    }
+
+    .diff-text p {
+      font-size: .83rem;
+      color: var(--f-gray);
+      line-height: 1.5;
+    }
+
+    /* ===== DEPOIMENTO / CASES ===== */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .testimonial-card {
+      background: var(--f-white);
+      border: 1px solid var(--f-border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      font-size: 5rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: var(--f-accent);
+      opacity: .25;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-size: .95rem;
+      color: var(--f-gray);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--f-primary), var(--f-primary-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--f-white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+    }
+
+    .author-info strong {
+      display: block;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--f-dark);
+    }
+
+    .author-info span {
+      font-size: .8rem;
+      color: var(--f-gray-light);
+    }
+
+    /* ===== CTA FINAL ===== */
+    .cta-feiras {
+      background: var(--f-primary);
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0;
+    }
+
+    .cta-feiras::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,150,12,.15), transparent),
+        radial-gradient(ellipse 40% 60% at 10% 20%, rgba(255,255,255,.05), transparent);
+    }
+
+    .cta-feiras .container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .cta-feiras .container { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    .cta-left h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      color: var(--f-white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .cta-left h2 em {
+      font-style: normal;
+      color: var(--f-accent);
+    }
+
+    .cta-left p {
+      font-size: 1rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.7;
+    }
+
+    .cta-form {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 20px;
+      padding: 36px;
+      backdrop-filter: blur(10px);
+    }
+
+    .cta-form h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--f-white);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 6px;
+      letter-spacing: .04em;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: .9rem;
+      color: var(--f-white);
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color .2s;
+      box-sizing: border-box;
+    }
+
+    .form-group input::placeholder { color: rgba(255,255,255,.4); }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--f-accent);
+    }
+
+    .form-group select {
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: var(--f-primary-dark);
+      color: var(--f-white);
+    }
+
+    .btn-form-submit {
+      width: 100%;
+      background: var(--f-accent);
+      color: var(--f-dark);
+      border: none;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: .95rem;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 8px;
+    }
+
+    .btn-form-submit:hover {
+      background: var(--f-accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,150,12,.4);
+    }
+
+    .form-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      font-size: .82rem;
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .form-whatsapp:hover { color: #25D366; }
+
+    /* ===== CONTAINER GLOBAL ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-delay-1 { transition-delay: .1s; }
+    .fade-up-delay-2 { transition-delay: .2s; }
+    .fade-up-delay-3 { transition-delay: .3s; }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 768px) {
+      .feiras-hero { padding: 90px 0 70px; }
+      .hero-stats { gap: 24px; margin-top: 48px; }
+      .f-section { padding: 72px 0; }
+      .pain-grid, .pillars-grid, .numbers-grid, .testimonial-grid { gap: 16px; }
+      .cta-feiras { padding: 72px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .feiras-hero h1 { font-size: 1.8rem; }
+      .hero-btns { flex-direction: column; }
+      .btn-feira-primary, .btn-feira-outline { justify-content: center; }
+    }
+  </style>
+</head>
+
+<body class="feiras-page">
+<div id="navbar-placeholder"></div>
+
+<!-- ===== HERO ===== -->
+<section class="feiras-hero">
+  <div class="grid-overlay"></div>
+  <div class="container">
+
+    <div class="hero-badge fade-up">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Especialistas em Credenciamento para Feiras
+    </div>
+
+    <h1 class="fade-up fade-up-delay-1">
+      Sua feira começa na entrada.<br>
+      Nós garantimos que ela<br>
+      <em>começa certo.</em>
+    </h1>
+
+    <p class="hero-sub fade-up fade-up-delay-2">
+      20 anos de experiência em credenciamento. Tecnologia de ponta, equipe especializada e foco total em feiras e exposições — do pequeno stand ao grande pavilhão.
+    </p>
+
+    <div class="hero-btns fade-up fade-up-delay-3">
+      <a href="https://wa.me/5511967792549?text=Olá!%20Gostaria%20de%20solicitar%20proposta%20de%20credenciamento%20para%20feira." class="btn-feira-primary" target="_blank" rel="noopener">
+        💬 Solicitar proposta para minha feira
+      </a>
+      <a href="#como-funciona" class="btn-feira-outline">
+        ▶ Ver como funciona
+      </a>
+    </div>
+
+    <div class="hero-stats fade-up fade-up-delay-3">
+      <div class="hero-stat">
+        <strong>20<span>+</span></strong>
+        <span>anos de mercado</span>
+      </div>
+      <div class="hero-stat">
+        <strong>60<span>mil+</span></strong>
+        <span>participantes por evento</span>
+      </div>
+      <div class="hero-stat">
+        <strong>98<span>%</span></strong>
+        <span>de satisfação dos clientes</span>
+      </div>
+      <div class="hero-stat">
+        <strong>500<span>+</span></strong>
+        <span>eventos realizados</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== DOR ===== -->
+<section class="f-section">
+  <div class="container">
+    <div class="f-center">
+      <div class="f-tag">O Problema Real</div>
+      <h2 class="f-title fade-up">Todo organizador de feira já passou por <em>isso</em></h2>
+      <p class="f-subtitle fade-up fade-up-delay-1">Feiras têm dinâmica própria. Fluxo imprevisível, picos de acesso, múltiplos perfis de visitante — e qualquer falha na entrada contamina toda a experiência.</p>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card fade-up">
+        <div class="pain-icon">🐌</div>
+        <h3>Filas que destroem a primeira impressão</h3>
+        <p>Visitantes esperando 30, 40 minutos antes mesmo de entrar. Estandes lotados antes de abrir. A imagem do evento prejudicada logo de largada.</p>
+      </div>
+      <div class="pain-card fade-up fade-up-delay-1">
+        <div class="pain-icon">📋</div>
+        <h3>Dados imprecisos e leads perdidos</h3>
+        <p>Cadastros incompletos, planilhas bagunçadas, visitantes sem identificação correta. Expositores reclamam. Oportunidades de negócio escapam.</p>
+      </div>
+      <div class="pain-card fade-up fade-up-delay-2">
+        <div class="pain-icon">🔓</div>
+        <h3>Controle de acesso sem segurança</h3>
+        <p>Pessoas circulando em áreas restritas, credenciais falsificadas, sem rastreabilidade real de quem entrou, saiu e quando.</p>
+      </div>
+      <div class="pain-card fade-up fade-up-delay-3">
+        <div class="pain-icon">📵</div>
+        <h3>Equipe despreparada para o volume</h3>
+        <p>Sistema trava, equipe sem treinamento, suporte que some no momento crítico. O organizador apaga incêndio em vez de gerir a feira.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUÇÃO ===== -->
+<section class="f-section f-section-dark">
+  <div class="container">
+    <div class="f-center">
+      <div class="f-tag">Nossa Solução</div>
+      <h2 class="f-title fade-up">Worknet para Feiras:<br><em>tecnologia que acompanha o ritmo das exposições</em></h2>
+      <p class="f-subtitle fade-up fade-up-delay-1">Desenvolvemos cada detalhe pensando no ambiente acelerado e exigente das feiras. Não é credenciamento genérico — é credenciamento feito para feiras.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card fade-up">
+        <div class="pillar-num">Pilar 01</div>
+        <div class="pillar-icon">⚡</div>
+        <h3>Credenciamento Ágil</h3>
+        <p>Totem de autoatendimento, QR Code, biometria facial e impressão instantânea de crachás. Média de 8 segundos por participante.</p>
+      </div>
+      <div class="pillar-card fade-up fade-up-delay-1">
+        <div class="pillar-num">Pilar 02</div>
+        <div class="pillar-icon">🔒</div>
+        <h3>Controle de Acesso Total</h3>
+        <p>Catracas eletrônicas, leitores de QR, detector de metal integrado. Defina zonas de acesso, horários e perfis — tudo controlado em tempo real.</p>
+      </div>
+      <div class="pillar-card fade-up fade-up-delay-2">
+        <div class="pillar-num">Pilar 03</div>
+        <div class="pillar-icon">📊</div>
+        <h3>Relatórios em Tempo Real</h3>
+        <p>Dashboard ao vivo com fluxo de entrada, picos de acesso, dados demográficos dos visitantes e relatório completo pós-feira para seus expositores.</p>
+      </div>
+      <div class="pillar-card fade-up fade-up-delay-3">
+        <div class="pillar-num">Pilar 04</div>
+        <div class="pillar-icon">🤝</div>
+        <h3>Equipe Especializada</h3>
+        <p>Equipe treinada exclusivamente para feiras. Estamos presentes do briefing ao encerramento — com suporte presencial e remoto durante todo o evento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NÚMEROS ===== -->
+<section class="f-section f-section-alt">
+  <div class="container">
+    <div class="f-center">
+      <div class="f-tag">Worknet em Números</div>
+      <h2 class="f-title fade-up">Resultados que <em>falam por si</em></h2>
+      <p class="f-subtitle fade-up fade-up-delay-1">Duas décadas construindo a reputação de quem faz o credenciamento funcionar, mesmo nos eventos mais desafiadores.</p>
+    </div>
+
+    <div class="numbers-grid">
+      <div class="number-card fade-up">
+        <div class="number-val">20<span>+</span></div>
+        <div class="number-label">Anos de experiência em credenciamento</div>
+      </div>
+      <div class="number-card fade-up fade-up-delay-1">
+        <div class="number-val">500<span>+</span></div>
+        <div class="number-label">Eventos de todos os portes realizados</div>
+      </div>
+      <div class="number-card fade-up fade-up-delay-2">
+        <div class="number-val">60<span>mil</span></div>
+        <div class="number-label">Participantes credenciados em um único evento</div>
+      </div>
+      <div class="number-card fade-up fade-up-delay-3">
+        <div class="number-val">8<span>s</span></div>
+        <div class="number-label">Tempo médio de credenciamento por pessoa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMO FUNCIONA ===== -->
+<section class="f-section" id="como-funciona">
+  <div class="container">
+    <div class="f-center">
+      <div class="f-tag">Processo</div>
+      <h2 class="f-title fade-up">Como funciona <em>na prática</em></h2>
+      <p class="f-subtitle fade-up fade-up-delay-1">Do briefing inicial ao relatório pós-feira — um processo estruturado para que você não precise se preocupar com nada.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item fade-up">
+        <div class="timeline-num">01</div>
+        <div class="timeline-content">
+          <h3>Briefing & Planejamento</h3>
+          <p>Entendemos sua feira: perfil do público, número estimado de visitantes, zonas de acesso, expositores, necessidades específicas. Montamos a estratégia certa para o seu evento.</p>
+        </div>
+      </div>
+      <div class="timeline-item fade-up fade-up-delay-1">
+        <div class="timeline-num">02</div>
+        <div class="timeline-content">
+          <h3>Configuração e Customização</h3>
+          <p>Configuramos todo o sistema com a identidade da sua feira — crachás personalizados, landing de inscrição, fluxos de acesso por categoria de visitante e expositor.</p>
+        </div>
+      </div>
+      <div class="timeline-item fade-up fade-up-delay-2">
+        <div class="timeline-num">03</div>
+        <div class="timeline-content">
+          <h3>Pré-cadastro Online</h3>
+          <p>Sistema de pré-inscrição com QR Code enviado por e-mail. Seus visitantes chegam já credenciados — eliminamos até 70% das filas na chegada.</p>
+        </div>
+      </div>
+      <div class="timeline-item fade-up fade-up-delay-3">
+        <div class="timeline-num">04</div>
+        <div class="timeline-content">
+          <h3>Operação no Dia do Evento</h3>
+          <p>Nossa equipe assume o credenciamento com totens, catracas e pontos de atendimento. Monitoramento em tempo real com suporte completo durante toda a feira.</p>
+        </div>
+      </div>
+      <div class="timeline-item fade-up fade-up-delay-3">
+        <div class="timeline-num">05</div>
+        <div class="timeline-content">
+          <h3>Relatório Pós-Feira</h3>
+          <p>Entregamos relatório completo com dados de fluxo, perfil de visitantes, horários de pico, dados dos leads por expositor — tudo que você precisa para a próxima edição.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIFERENCIAIS ===== -->
+<section class="f-section f-section-alt">
+  <div class="container">
+    <div class="f-center">
+      <div class="f-tag">Por que Worknet?</div>
+      <h2 class="f-title fade-up">Tudo que sua feira <em>precisa</em>, num único parceiro</h2>
+      <p class="f-subtitle fade-up fade-up-delay-1">Enquanto outros oferecem credenciamento genérico, nós somos especialistas no ambiente e nas exigências específicas de feiras.</p>
+    </div>
+
+    <div class="diff-grid">
+      <div class="diff-item fade-up">
+        <div class="diff-check">✓</div>
+        <div class="diff-text">
+          <h4>Especialização em feiras e exposições</h4>
+          <p>Não atendemos qualquer evento — temos foco. Isso significa processos otimizados para a realidade das feiras.</p>
+        </div>
+      </div>
+      <div class="diff-item fade-up fade-up-delay-1">
+        <div class="diff-check">✓</div>
+        <div class="diff-text">
+          <h4>Tecnologia própria, sem dependência de terceiros</h4>
+          <p>Sistema desenvolvido internamente — sem travamentos, sem cobranças surpresa, com suporte direto.</p>
+        </div>
+      </div>
+      <div class="diff-item fade-up fade-up-delay-2">
+        <div class="diff-check">✓</div>
+        <div class="diff-text">
+          <h4>Equipe presente do início ao fim</h4>
+          <p>Não terceirizamos operação. Nossa equipe treinada fica no evento — do primeiro ao último credenciado.</p>
+        </div>
+      </div>
+      <div class="diff-item fade-up fade-up-delay-3">
+        <div class="diff-check">✓</div>
+        <div class="diff-text">
+          <h4>Coletor de leads para expositores</h4>
+          <p>Diferencial competitivo para seus expositores: app para captura de leads com dados completos dos visitantes.</p>
+        </div>
+      </div>
+      <div class="diff-item fade-up">
+        <div class="diff-check">✓</div>
+        <div class="diff-text">
+          <h4>Biometria facial e acesso sem contato</h4>
+          <p>Reconhecimento facial para acesso sem filas. Tecnologia que transmite modernidade e eleva a experiência.</p>
+        </div>
+      </div>
+      <div class="diff-item fade-up fade-up-delay-1">
+        <div class="diff-check">✓</div>
+        <div class="diff-text">
+          <h4>Escalável: de 500 a 60.000 participantes</h4>
+          <p>Infraestrutura que escala sem perder performance. Feiras regionais ou nacionais — mesma qualidade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEPOIMENTOS ===== -->
+<section class="f-section">
+  <div class="container">
+    <div class="f-center">
+      <div class="f-tag">Depoimentos</div>
+      <h2 class="f-title fade-up">Quem já usou, <em>recomenda</em></h2>
+      <p class="f-subtitle fade-up fade-up-delay-1">Organizadores de feiras de todo o Brasil confiam na Worknet para a operação de credenciamento.</p>
+    </div>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card fade-up">
+        <p class="testimonial-text">
+          "A Worknet transformou nossa operação de entrada. Com mais de 15 mil visitantes por dia, precisávamos de zero margem de erro. Eles entregaram exatamente isso — sem filas, sem problemas."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MR</div>
+          <div class="author-info">
+            <strong>Marcelo Rodrigues</strong>
+            <span>Diretor de Operações — Feira Industrial SP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up fade-up-delay-1">
+        <p class="testimonial-text">
+          "O sistema de pré-cadastro reduziu as filas em 80% já na primeira edição. Os expositores adoraram o coletor de leads. Com certeza renovamos para o próximo ano."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">CF</div>
+          <div class="author-info">
+            <strong>Carolina Figueiredo</strong>
+            <span>Organizadora — Expo Construção & Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up fade-up-delay-2">
+        <p class="testimonial-text">
+          "Profissionalismo do início ao fim. A equipe da Worknet domina o ambiente de feiras como nenhuma outra empresa que já contratamos. O relatório pós-evento foi um diferencial incrível."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">PA</div>
+          <div class="author-info">
+            <strong>Paulo Almeida</strong>
+            <span>CEO — Grupo Feiras do Brasil</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-feiras">
+  <div class="container">
+    <div class="cta-left fade-up">
+      <h2>Pronto para a sua <em>próxima feira?</em></h2>
+      <p>
+        Solicite uma proposta agora. Nossa equipe retorna em até 2 horas com uma solução personalizada para o porte e perfil da sua feira.
+      </p>
+      <div style="margin-top:32px;display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.75);font-size:.9rem;">
+          <span style="color:var(--f-accent);font-size:1.1rem;">✓</span>
+          Proposta sem compromisso em 2 horas
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.75);font-size:.9rem;">
+          <span style="color:var(--f-accent);font-size:1.1rem;">✓</span>
+          Atendemos feiras de todos os portes
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.75);font-size:.9rem;">
+          <span style="color:var(--f-accent);font-size:1.1rem;">✓</span>
+          CNPJ 17.964.274/0001-01 — Empresa estabelecida
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.75);font-size:.9rem;">
+          <span style="color:var(--f-accent);font-size:1.1rem;">✓</span>
+          20 anos credenciando eventos no Brasil
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-form fade-up fade-up-delay-1">
+      <h3>Solicite sua proposta</h3>
+      <form action="https://wa.me/5511967792549" method="get" target="_blank" id="feiraForm">
+        <div class="form-group">
+          <label>Seu nome</label>
+          <input type="text" id="nome" placeholder="João Silva" required />
+        </div>
+        <div class="form-group">
+          <label>Empresa / Organização</label>
+          <input type="text" id="empresa" placeholder="Nome da empresa" required />
+        </div>
+        <div class="form-group">
+          <label>Tipo de feira</label>
+          <select id="tipo">
+            <option value="">Selecione o tipo</option>
+            <option>Feira de negócios B2B</option>
+            <option>Feira de varejo / B2C</option>
+            <option>Exposição industrial</option>
+            <option>Feira de tecnologia</option>
+            <option>Feira agropecuária</option>
+            <option>Outro tipo de feira</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Número estimado de visitantes</label>
+          <select id="visitantes">
+            <option value="">Selecione o porte</option>
+            <option>Até 1.000 visitantes</option>
+            <option>1.000 a 5.000 visitantes</option>
+            <option>5.000 a 20.000 visitantes</option>
+            <option>20.000 a 60.000 visitantes</option>
+            <option>Mais de 60.000 visitantes</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-form-submit" onclick="enviarWhatsApp(event)">
+          Solicitar proposta agora →
+        </button>
+      </form>
+      <a href="https://wa.me/5511967792549" class="form-whatsapp" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.522 5.84L.057 23.452a.5.5 0 0 0 .599.578l5.782-1.456A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.685-.51-5.22-1.396l-.374-.22-3.877.977.997-3.778-.243-.388A9.948 9.948 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Prefere falar direto? Clique aqui para o WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+  // Formulário → WhatsApp com dados preenchidos
+  function enviarWhatsApp(e) {
+    e.preventDefault();
+    const nome      = document.getElementById('nome').value || 'não informado';
+    const empresa   = document.getElementById('empresa').value || 'não informada';
+    const tipo      = document.getElementById('tipo').value || 'não informado';
+    const visitantes = document.getElementById('visitantes').value || 'não informado';
+
+    const msg = encodeURIComponent(
+      `Olá! Vim pelo site da Worknet e gostaria de solicitar uma proposta para credenciamento de feira.\n\n` +
+      `*Nome:* ${nome}\n` +
+      `*Empresa:* ${empresa}\n` +
+      `*Tipo de feira:* ${tipo}\n` +
+      `*Visitantes estimados:* ${visitantes}`
+    );
+
+    window.open(`https://wa.me/5511967792549?text=${msg}`, '_blank');
+  }
+</script>
+</body>
+</html>

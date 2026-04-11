@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-03-20T00:00:00",
+  "project_name": "projeto2",
+  "system": {
+    "os": "Linux (WSL2)",
+    "architecture": "x86_64",
+    "shell": "bash"
+  },
+  "cli_tools": {
+    "git": { "installed": true, "version": "2.43.0" },
+    "gh": { "installed": true, "version": "2.88.1", "authenticated": true, "account": "rafaelandrade0589-code" },
+    "node": { "installed": true, "version": "24.14.0" },
+    "npm": { "installed": true, "version": "11.9.0" },
+    "supabase": { "installed": true, "version": "2.78.1" },
+    "railway": { "installed": true, "version": "4.32.0" },
+    "docker": { "installed": false },
+    "coderabbit": { "installed": false, "note": "Install URL returned 404 - install manually later" }
+  },
+  "repository": {
+    "initialized": true,
+    "remote_url": "https://github.com/rafaelandrade0589-code/projeto2",
+    "branch": "main",
+    "visibility": "private"
+  },
+  "validation": {
+    "essential_complete": true,
+    "ready_for_development": true
+  }
+}

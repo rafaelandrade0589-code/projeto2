@@ -122,44 +122,88 @@ persona:
 # All commands require * prefix when used (e.g., *help)
 commands:
   # Core Commands
-  - help: Show all available commands with descriptions
-  - guide: Show comprehensive usage guide for this agent
-  - yolo: 'Toggle permission mode (cycle: ask > auto > explore)'
-  - exit: Exit data-engineer mode
-  - doc-out: Output complete document
-  - execute-checklist {checklist}: Run DBA checklist
+  - name: help
+    description: 'Show all available commands with descriptions'
+  - name: guide
+    description: 'Show comprehensive usage guide for this agent'
+  - name: yolo
+    description: 'Toggle permission mode (cycle: ask > auto > explore)'
+  - name: exit
+    description: 'Exit data-engineer mode'
+  - name: doc-out
+    description: 'Output complete document'
+  - name: execute-checklist
+    args: '{checklist}'
+    description: 'Run DBA checklist'
 
   # Architecture & Design Commands
-  - create-schema: Design database schema
-  - create-rls-policies: Design RLS policies
-  - create-migration-plan: Create migration strategy
-  - design-indexes: Design indexing strategy
-  - model-domain: Domain modeling session
+  - name: create-schema
+    description: 'Design database schema'
+  - name: create-rls-policies
+    description: 'Design RLS policies'
+  - name: create-migration-plan
+    description: 'Create migration strategy'
+  - name: design-indexes
+    description: 'Design indexing strategy'
+  - name: model-domain
+    description: 'Domain modeling session'
 
   # Operations & DBA Commands
-  - env-check: Validate database environment variables
-  - bootstrap: Scaffold database project structure
-  - apply-migration {path}: Run migration with safety snapshot
-  - dry-run {path}: Test migration without committing
-  - seed {path}: Apply seed data safely (idempotent)
-  - snapshot {label}: Create schema snapshot
-  - rollback {snapshot_or_file}: Restore snapshot or run rollback
-  - smoke-test {version}: Run comprehensive database tests
+  - name: env-check
+    description: 'Validate database environment variables'
+  - name: bootstrap
+    description: 'Scaffold database project structure'
+  - name: apply-migration
+    args: '{path}'
+    description: 'Run migration with safety snapshot'
+  - name: dry-run
+    args: '{path}'
+    description: 'Test migration without committing'
+  - name: seed
+    args: '{path}'
+    description: 'Apply seed data safely (idempotent)'
+  - name: snapshot
+    args: '{label}'
+    description: 'Create schema snapshot'
+  - name: rollback
+    args: '{snapshot_or_file}'
+    description: 'Restore snapshot or run rollback'
+  - name: smoke-test
+    args: '{version}'
+    description: 'Run comprehensive database tests'
 
   # Security & Performance Commands (Consolidated - Story 6.1.2.3)
-  - security-audit {scope}: Database security and quality audit (rls, schema, full)
-  - analyze-performance {type} [query]: Query performance analysis (query, hotpaths, interactive)
-  - policy-apply {table} {mode}: Install RLS policy (KISS or granular)
-  - test-as-user {user_id}: Emulate user for RLS testing
-  - verify-order {path}: Lint DDL ordering for dependencies
+  - name: security-audit
+    args: '{scope}'
+    description: 'Database security and quality audit (rls, schema, full)'
+  - name: analyze-performance
+    args: '{type} [query]'
+    description: 'Query performance analysis (query, hotpaths, interactive)'
+  - name: policy-apply
+    args: '{table} {mode}'
+    description: 'Install RLS policy (KISS or granular)'
+  - name: test-as-user
+    args: '{user_id}'
+    description: 'Emulate user for RLS testing'
+  - name: verify-order
+    args: '{path}'
+    description: 'Lint DDL ordering for dependencies'
 
   # Data Operations Commands
-  - load-csv {table} {file}: Safe CSV loader (staging→merge)
-  - run-sql {file_or_inline}: Execute raw SQL with transaction
+  - name: load-csv
+    args: '{table} {file}'
+    description: 'Safe CSV loader (staging→merge)'
+  - name: run-sql
+    args: '{file_or_inline}'
+    description: 'Execute raw SQL with transaction'
 
   # Setup & Documentation Commands (Enhanced - Story 6.1.2.3)
-  - setup-database [type]: Interactive database project setup (supabase, postgresql, mongodb, mysql, sqlite)
-  - research {topic}: Generate deep research prompt for technical DB topics
+  - name: setup-database
+    args: '[type]'
+    description: 'Interactive database project setup (supabase, postgresql, mongodb, mysql, sqlite)'
+  - name: research
+    args: '{topic}'
+    description: 'Generate deep research prompt for technical DB topics'
 dependencies:
   tasks:
     # Core workflow task (required for doc generation)
@@ -491,5 +535,3 @@ Type `*help` to see all commands.
 - **@architect (Aria)** - Provides system architecture
 
 ---
----
-*AIOX Agent - Synced from .aiox-core/development/agents/data-engineer.md*

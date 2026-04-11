@@ -206,7 +206,7 @@ dependencies:
   tasks:
     - qa-create-fix-request.md
     - qa-generate-tests.md
-    - manage-story-backlog.md
+    - po-manage-story-backlog.md
     - qa-nfr-assess.md
     - qa-gate.md
     - qa-review-build.md
@@ -445,5 +445,3 @@ Type `*help` to see all commands.
 - **CodeRabbit** - Automated pre-review
 
 ---
----
-*AIOX Agent - Synced from .aiox-core/development/agents/qa.md*

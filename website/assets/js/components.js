@@ -16,6 +16,7 @@ const SERVICES = [
   { href: 'caex.html',                 icon: '🗂️', name: 'CAEX' },
   { href: 'biometria-facial.html',     icon: '🤳', name: 'Biometria Facial' },
   { href: 'controle-acesso.html',      icon: '🚪', name: 'Controle de Acesso' },
+  { href: 'controle-salas.html',       icon: '🏛️', name: 'Controle de Salas' },
   { href: 'coletor-leads.html',        icon: '📊', name: 'Coletor de Leads' },
   { href: 'certificado.html',          icon: '🏆', name: 'Certificado Digital' },
   { href: 'aplicativos-eventos.html',  icon: '📱', name: 'Aplicativos para Eventos' },

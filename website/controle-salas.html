@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controle de Salas | Worknet Eventos</title>
+  <meta name="description" content="Gerencie salas, acessos e certificados com precisão total durante o seu evento. Registro de presença por sala, vinculação ao ingresso e emissão automática de certificados." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:24px; }
+    .benefit-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: all var(--transition); }
+    .benefit-card:hover { border-color: rgba(91,163,217,.35); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+    .benefit-icon { font-size: 2rem; margin-bottom: 14px; }
+    .benefit-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .benefit-card p { font-size: .88rem; color: var(--silver); }
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: flex; gap: 24px; padding-bottom: 40px; position: relative; }
+    .step:last-child { padding-bottom: 0; }
+    .step::after { content:''; position:absolute; left:22px; top:52px; bottom:0; width:2px; background: linear-gradient(var(--blue), transparent); }
+    .step:last-child::after { display:none; }
+    .step-num { min-width:46px; height:46px; background:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-weight:800; color:#fff; position:relative; z-index:1; box-shadow:0 4px 15px rgba(46,110,166,.5); }
+    .step-content h3 { margin-bottom:6px; }
+    .step-content p { color:var(--silver); font-size:.95rem; }
+    .cta-service { background: linear-gradient(135deg, #1a3a5c, #0d2640); padding: 80px 0; text-align: center; position:relative; overflow:hidden; }
+    .cta-service::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(91,163,217,.1), transparent); }
+    .cta-service > .container { position:relative; z-index:1; }
+    @media(max-width:768px){ .hero-service .btn-group { flex-direction:column; } }
+  </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero-service">
+  <div class="grid-lines"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="badge">Controle de Salas</div>
+    <h1 class="fade-up">Controle de Salas — Gerencie salas, acessos e certificados com precisão total durante o seu evento.</h1>
+    <p class="lead fade-up fade-up-delay-1">Registre entradas e saídas por sala, vincule acesso ao tipo de ingresso e gere dados para certificados de forma automática.</p>
+    <div class="btn-group fade-up fade-up-delay-2">
+      <a href="https://wa.me/5511967792549" class="btn btn-primary btn-lg" target="_blank" rel="noopener">💬 Solicitar Orçamento</a>
+      <a href="contato.html" class="btn btn-outline btn-lg">Falar com especialista</a>
+    </div>
+  </div>
+</section>
+
+<!-- DESCRIÇÃO -->
+<section class="section" style="background:var(--navy-light)">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto;text-align:center">
+      <div class="section-tag">Sobre o Serviço</div>
+      <h2 class="section-title fade-up">Presença por sala, certificados automáticos</h2>
+      <p class="fade-up fade-up-delay-1" style="color:var(--silver);font-size:1.05rem;line-height:1.8">Nosso sistema de Controle de Salas permite registrar o horário de entrada e saída de cada participante por sala, gerando automaticamente os dados necessários para emissão de certificados com carga horária validada. O acesso a cada sala é vinculado ao tipo de ingresso adquirido, garantindo que cada participante entre apenas nos espaços autorizados. Ideal para congressos, eventos com trilhas simultâneas e certificações profissionais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-tag">Benefícios</div>
+      <h2 class="section-title fade-up">Por que escolher este serviço</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🕐</div>
+        <h3>Registro de horário automático</h3>
+        <p>Entrada e saída de cada participante por sala registradas com hora exata para validação de certificados.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-1">
+        <div class="benefit-icon">👥</div>
+        <h3>Controle de lotação</h3>
+        <p>Limite de participantes por sala em tempo real, com alerta quando a capacidade máxima for atingida.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-2">
+        <div class="benefit-icon">🎫</div>
+        <h3>Acesso por tipo de ingresso</h3>
+        <p>Cada participante acessa somente as salas vinculadas ao ingresso que adquiriu, sem exceções.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-3">
+        <div class="benefit-icon">📊</div>
+        <h3>Relatórios por sala</h3>
+        <p>Visualize presença, tempo médio e fluxo de cada sala pelo dashboard em tempo real.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🏆</div>
+        <h3>Integração com certificados</h3>
+        <p>Dados de presença alimentam automaticamente o sistema de emissão de certificados.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-1">
+        <div class="benefit-icon">🔗</div>
+        <h3>Integração total</h3>
+        <p>Funciona integrado ao credenciamento, controle de acesso e sistema de inscrição da Worknet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section" style="background:var(--navy-light)">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+      <div>
+        <div class="section-tag">Como Funciona</div>
+        <h2 class="section-title fade-up">Processo simples e eficiente</h2>
+        <div class="steps fade-up fade-up-delay-1">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>Configuração das salas</h3>
+              <p>Cadastro de cada sala com capacidade, horário de funcionamento e tipo de ingresso autorizado para acesso.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>Vinculação ao credenciamento</h3>
+              <p>Cada participante tem seu perfil de acesso definido conforme o ingresso adquirido, integrado ao sistema de credenciamento.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>Controle em tempo real</h3>
+              <p>Leitura de QR Code ou biometria na entrada de cada sala registra presença e horário com precisão.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h3>Geração de relatórios</h3>
+              <p>Ao fim do evento, dados completos de presença por sala disponíveis para emissão de certificados com carga horária validada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-2">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Controle de salas para eventos" style="border-radius:var(--radius-lg);width:100%;aspect-ratio:4/3;object-fit:cover" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-service">
+  <div class="container">
+    <div class="section-tag" style="margin:0 auto 16px">Pronto para começar?</div>
+    <h2 style="margin-bottom:16px">Solicite um orçamento agora</h2>
+    <p style="color:var(--silver);max-width:480px;margin:0 auto 32px">Entre em contato e receba uma proposta personalizada para o seu evento.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/5511967792549" class="btn btn-white btn-lg" target="_blank" rel="noopener">💬 Falar no WhatsApp</a>
+      <a href="contato.html" class="btn btn-outline btn-lg">Formulário de contato</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

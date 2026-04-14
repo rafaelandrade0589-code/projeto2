@@ -76,7 +76,7 @@ function renderNavbar(activePage = '') {
         <li><a href="portifolio.html">Portfólio</a></li>
         <li><a href="depoimentos.html">Depoimentos</a></li>
         <li><a href="contato.html">Contato</a></li>
-        <li><a href="${WHATSAPP_LINK}" class="btn-nav-cta" style="background:#25D366!important;color:#fff!important" target="_blank" rel="noopener">Orçamento em 2 horas</a></li>
+        <li><a href="${WHATSAPP_LINK}" class="btn-nav-cta" style="background:#25D366!important;color:#fff!important" target="_blank" rel="noopener">Orçamento em até 02 horas</a></li>
       </ul>
     </div>
   </nav>`;
@@ -137,7 +137,7 @@ function renderFooter() {
       </div>
       <div class="footer-bottom">
         <p>© ${new Date().getFullYear()} Worknet Sistemas e Locações LTDA — CNPJ 17.964.274/0001-01. Todos os direitos reservados.</p>
-        <p style="color:var(--blue-light)">20 anos credenciando o Brasil 🇧🇷</p>
+        <p style="color:var(--blue-light)">+ de 20 anos credenciando o Brasil 🇧🇷</p>
       </div>
     </div>
   </footer>

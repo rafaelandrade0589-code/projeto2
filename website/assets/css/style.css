@@ -242,16 +242,16 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
   transform: translateY(-2px);
 }
 .btn-gold {
-  background: linear-gradient(135deg, #f5a623, #e8850a);
-  color: #0d1b2a;
+  background: linear-gradient(135deg, #C9A84C, #a8873a);
+  color: #080E1A;
   font-weight: 700;
   border: 2px solid transparent;
-  box-shadow: 0 6px 20px rgba(245,166,35,.45);
+  box-shadow: 0 6px 20px rgba(201,168,76,.45);
 }
 .btn-gold:hover {
-  background: linear-gradient(135deg, #fbb740, #f5a623);
+  background: linear-gradient(135deg, #E2C06A, #C9A84C);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(245,166,35,.55);
+  box-shadow: 0 10px 30px rgba(201,168,76,.55);
 }
 .btn-white {
   background: #fff;

@@ -881,7 +881,15 @@
     body.feiras-page .topbar {
       background: #080E1A;
       border-bottom: 1px solid rgba(201,168,76,.12);
+      font-family: 'Outfit', sans-serif;
     }
+    body.feiras-page .topbar a {
+      color: rgba(232,237,245,.70);
+      font-family: 'Outfit', sans-serif;
+      font-size: .78rem;
+      font-weight: 400;
+    }
+    body.feiras-page .topbar a:hover { color: #C9A84C; opacity: 1; }
     body.feiras-page .navbar {
       background: #080E1A;
       box-shadow: 0 1px 0 rgba(201,168,76,.08), 0 4px 24px rgba(0,0,0,.4);
@@ -890,6 +898,7 @@
       color: rgba(232,237,245,.82);
       font-family: 'Outfit', sans-serif;
       font-weight: 500;
+      font-size: .88rem;
     }
     body.feiras-page .navbar-nav > li > a:hover {
       background: rgba(201,168,76,.08);
@@ -909,25 +918,66 @@
     }
     body.feiras-page .mega-menu-grid li a {
       color: rgba(232,237,245,.65);
+      font-family: 'Outfit', sans-serif;
+      font-size: .84rem;
+      font-weight: 400;
     }
     body.feiras-page .mega-menu-grid li a:hover {
       background: rgba(201,168,76,.08);
       color: #C9A84C;
     }
-    body.feiras-page .menu-icon { opacity: .6; }
+    body.feiras-page .menu-icon {
+      background: rgba(201,168,76,.10);
+      color: #C9A84C;
+    }
     body.feiras-page .navbar-toggle span { background: rgba(232,237,245,.8); }
+    body.feiras-page .btn-nav-cta {
+      background: #C9A84C !important;
+      color: #080E1A !important;
+      font-family: 'Outfit', sans-serif !important;
+      box-shadow: 0 4px 15px rgba(201,168,76,.35) !important;
+    }
+    body.feiras-page .btn-nav-cta:hover {
+      background: #E2C06A !important;
+      box-shadow: 0 6px 20px rgba(201,168,76,.5) !important;
+    }
 
     /* ===== FOOTER OVERRIDE — dark luxury ===== */
     body.feiras-page .footer {
       background: #080E1A;
       border-top: 1px solid rgba(201,168,76,.12);
+      font-family: 'Outfit', sans-serif;
+    }
+    body.feiras-page .footer-desc {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      color: rgba(232,237,245,.55);
+      font-size: .88rem;
     }
     body.feiras-page .footer-col h4 {
+      font-family: 'Outfit', sans-serif;
       color: #C9A84C;
       letter-spacing: .1em;
+      font-size: .72rem;
+    }
+    body.feiras-page .footer-col ul li a {
+      font-family: 'Outfit', sans-serif;
+      color: rgba(232,237,245,.50);
+      font-weight: 300;
+      font-size: .88rem;
     }
     body.feiras-page .footer-col ul li a:hover { color: #C9A84C; }
+    body.feiras-page .footer-contact-item {
+      font-family: 'Outfit', sans-serif;
+      color: rgba(232,237,245,.50);
+      font-weight: 300;
+    }
+    body.feiras-page .footer-contact-item a {
+      color: rgba(232,237,245,.50);
+      font-family: 'Outfit', sans-serif;
+    }
     body.feiras-page .footer-contact-item a:hover { color: #C9A84C; }
+    body.feiras-page .footer-contact-item svg { color: rgba(201,168,76,.70); }
     body.feiras-page .footer-social a:hover {
       background: rgba(201,168,76,.12);
       border-color: rgba(201,168,76,.35);
@@ -936,10 +986,18 @@
     body.feiras-page .footer-bottom {
       border-top-color: rgba(255,255,255,.06);
     }
+    body.feiras-page .footer-bottom p {
+      font-family: 'Outfit', sans-serif;
+      color: rgba(232,237,245,.35);
+      font-weight: 300;
+      font-size: .78rem;
+    }
     body.feiras-page .footer .btn-primary {
       background: #C9A84C;
       color: #080E1A;
       border-color: #C9A84C;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
     }
     body.feiras-page .footer .btn-primary:hover {
       background: #E2C06A;
@@ -1341,14 +1399,6 @@
 
 <script src="assets/js/components.js"></script>
 <script src="assets/js/main.js"></script>
-
-<script>
-  // Logo dourado — exclusivo página feiras
-  document.addEventListener('DOMContentLoaded', function() {
-    var logo = document.querySelector('.navbar-logo img');
-    if (logo) logo.src = 'assets/logo_dourado.png';
-  });
-</script>
 
 <script>
   // Formulário → WhatsApp com dados preenchidos

@@ -8,22 +8,38 @@ const PHONE = '(11) 96779-2549';
 const INSTAGRAM = 'https://www.instagram.com/worknet_eventos/';
 
 const SERVICES = [
-  { href: 'feiras.html',               icon: '🏟️', name: 'Feiras e Exposições' },
-  { href: 'credenciamento.html',       icon: '🎫', name: 'Credenciamento' },
-  { href: 'sistema-inscricao.html',    icon: '📋', name: 'Sistema de Inscrição' },
-  { href: 'venda-online.html',         icon: '🛒', name: 'Venda Online' },
-  { href: 'manual-expositor.html',     icon: '📖', name: 'Manual do Expositor' },
-  { href: 'caex.html',                 icon: '🗂️', name: 'CAEX' },
-  { href: 'biometria-facial.html',     icon: '🤳', name: 'Biometria Facial' },
-  { href: 'controle-acesso.html',      icon: '🚪', name: 'Controle de Acesso' },
-  { href: 'controle-salas.html',       icon: '🏛️', name: 'Controle de Salas' },
-  { href: 'coletor-leads.html',        icon: '📊', name: 'Coletor de Leads' },
-  { href: 'certificado.html',          icon: '🏆', name: 'Certificado Digital' },
-  { href: 'aplicativos-eventos.html',  icon: '📱', name: 'Aplicativos para Eventos' },
-  { href: 'totem-autoatendimento.html',icon: '🖥️', name: 'Totem de Autoatendimento' },
-  { href: 'locacao-equipamentos.html', icon: '🔧', name: 'Locação de Equipamentos' },
-  { href: 'catracas-eventos.html',     icon: '🔒', name: 'Catracas para Eventos' },
-  { href: 'detector-metal.html',       icon: '🔍', name: 'Detector de Metal' },
+  { href: 'feiras.html', name: 'Feiras e Exposições',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>` },
+  { href: 'credenciamento.html', name: 'Credenciamento',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></svg>` },
+  { href: 'sistema-inscricao.html', name: 'Sistema de Inscrição',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg>` },
+  { href: 'venda-online.html', name: 'Venda Online',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>` },
+  { href: 'manual-expositor.html', name: 'Manual do Expositor',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>` },
+  { href: 'caex.html', name: 'CAEX',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>` },
+  { href: 'biometria-facial.html', name: 'Biometria Facial',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4"/><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/><path d="M15 21h4a2 2 0 0 0 2-2v-4"/><circle cx="12" cy="12" r="3"/></svg>` },
+  { href: 'controle-acesso.html', name: 'Controle de Acesso',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>` },
+  { href: 'controle-salas.html', name: 'Controle de Salas',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>` },
+  { href: 'coletor-leads.html', name: 'Coletor de Leads',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>` },
+  { href: 'certificado.html', name: 'Certificado Digital',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>` },
+  { href: 'aplicativos-eventos.html', name: 'Aplicativos para Eventos',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>` },
+  { href: 'totem-autoatendimento.html', name: 'Totem de Autoatendimento',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>` },
+  { href: 'locacao-equipamentos.html', name: 'Locação de Equipamentos',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>` },
+  { href: 'catracas-eventos.html', name: 'Catracas para Eventos',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>` },
+  { href: 'detector-metal.html', name: 'Detector de Metal',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>` },
 ];
 
 function renderNavbar(activePage = '') {
@@ -35,6 +51,8 @@ function renderNavbar(activePage = '') {
   `).join('');
 
   const base = document.body.dataset.base || '';
+  const isFeiras = document.body.classList.contains('feiras-page');
+  const logoSrc = `${base}assets/${isFeiras ? 'logo_dourado.png' : 'logo.png'}`;
 
   document.getElementById('navbar-placeholder').innerHTML = `
   <div class="topbar">
@@ -60,7 +78,7 @@ function renderNavbar(activePage = '') {
   <nav class="navbar">
     <div class="container">
       <a class="navbar-logo" href="index.html">
-        <img src="${base}assets/logo.png" alt="Worknet Eventos" />
+        <img src="${logoSrc}" alt="Worknet Eventos" />
       </a>
       <button class="navbar-toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -88,12 +106,15 @@ function renderFooter() {
     `<li><a href="${s.href}">${s.name}</a></li>`
   ).join('');
 
+  const isFeiras = document.body.classList.contains('feiras-page');
+  const footerLogoSrc = isFeiras ? 'assets/logo_dourado.png' : 'assets/logo.png';
+
   document.getElementById('footer-placeholder').innerHTML = `
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <img src="assets/logo.png" alt="Worknet Eventos" class="footer-logo" />
+          <img src="${footerLogoSrc}" alt="Worknet Eventos" class="footer-logo" />
           <p class="footer-desc">Há mais de 20 anos conectando pessoas a eventos inesquecíveis com tecnologia, eficiência e inovação. Atendemos todo o Brasil.</p>
           <div class="footer-social">
             <a href="${INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram">

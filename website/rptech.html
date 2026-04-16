@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RP Tech — Tecnologia para Eventos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --c: #00D4F0;        /* cyan primário */
+  --c2: #0099BB;       /* cyan escuro */
+  --c3: rgba(0,212,240,0.12);
+  --v: #7C3AED;        /* violeta acento */
+  --v2: rgba(124,58,237,0.15);
+  --bg: #060B14;       /* fundo principal */
+  --bg2: #0B1220;      /* fundo cards */
+  --bg3: #111927;      /* fundo hover */
+  --border: rgba(255,255,255,0.07);
+  --border-c: rgba(0,212,240,0.3);
+  --text: #EEF3FF;
+  --muted: #6B7FA8;
+  --white: #ffffff;
+  --f1: 'Inter', sans-serif;
+  --f2: 'Space Grotesk', sans-serif;
+  --r: 14px;
+  --r2: 20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f1);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════════════════ */
+#progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--c), var(--v)); z-index: 9999; width: 0%; transition: width .1s; }
+
+/* ═══════════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════════ */
+.topbar {
+  background: rgba(6,11,20,0.95);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  font-size: 12px;
+}
+.topbar-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.topbar a {
+  color: var(--muted); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color .2s;
+}
+.topbar a:hover { color: var(--c); }
+.topbar-links { display: flex; gap: 24px; }
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: sticky; top: 0; z-index: 500;
+  background: rgba(6,11,20,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background .3s;
+}
+nav.solid { background: rgba(6,11,20,0.97); }
+.nav-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 66px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--c), var(--v));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f2); font-size: 14px; font-weight: 800;
+  color: #fff; letter-spacing: -1px;
+  flex-shrink: 0;
+}
+.logo-name { font-family: var(--f2); font-size: 18px; font-weight: 700; color: var(--text); }
+.logo-name span { color: var(--c); }
+.logo-sub { font-size: 10px; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; display: block; margin-top: -1px; }
+
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links > li { position: relative; }
+.nav-links > li > a {
+  color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500;
+  padding: 8px 14px; border-radius: 8px; transition: all .2s;
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-links > li > a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+/* dropdown */
+.dropdown {
+  position: absolute; top: calc(100% + 10px); left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 8px;
+  min-width: 560px;
+  opacity: 0; pointer-events: none;
+  transition: all .22s;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;
+}
+.nav-links > li:hover .dropdown {
+  opacity: 1; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown a {
+  color: var(--muted); text-decoration: none; font-size: 13px;
+  padding: 8px 12px; border-radius: 8px;
+  transition: all .15s;
+  display: flex; align-items: center; gap: 8px;
+  white-space: nowrap;
+}
+.dropdown a:hover { background: rgba(0,212,240,0.08); color: var(--c); }
+.d-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--c); opacity: .5; flex-shrink: 0; }
+
+.nav-cta {
+  background: var(--c) !important;
+  color: #060B14 !important;
+  font-weight: 700 !important;
+  padding: 9px 20px !important;
+  border-radius: 50px !important;
+  font-size: 13px !important;
+  box-shadow: 0 0 20px rgba(0,212,240,0.25);
+  transition: all .2s !important;
+}
+.nav-cta:hover {
+  background: #fff !important;
+  box-shadow: 0 0 32px rgba(0,212,240,0.4) !important;
+  transform: translateY(-1px) !important;
+}
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  min-height: 92vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 80px 0 60px;
+}
+/* orbs */
+.hero::before {
+  content: '';
+  position: absolute; top: -20%; left: -10%;
+  width: 70vw; height: 70vw; max-width: 900px; max-height: 900px;
+  background: radial-gradient(circle, rgba(0,212,240,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -20%; right: -10%;
+  width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
+  background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+/* grid pattern */
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+.hero-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: 1fr 480px; gap: 60px; align-items: center;
+  position: relative; z-index: 1;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,212,240,0.08);
+  border: 1px solid rgba(0,212,240,0.2);
+  color: var(--c); font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 50px;
+  letter-spacing: .5px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--c); animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
+.hero h1 {
+  font-family: var(--f2);
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 800; line-height: 1.08;
+  letter-spacing: -2px;
+  margin-bottom: 22px;
+}
+.hero h1 .gr {
+  background: linear-gradient(135deg, var(--c) 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 17px; color: var(--muted); line-height: 1.75;
+  max-width: 500px; margin-bottom: 38px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--c); color: #060B14;
+  padding: 14px 28px; border-radius: 50px;
+  font-size: 15px; font-weight: 700; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 0 32px rgba(0,212,240,0.3);
+  transition: all .2s;
+}
+.btn-primary:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 0 48px rgba(0,212,240,0.4); }
+.btn-secondary {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--text); padding: 14px 28px; border-radius: 50px;
+  font-size: 15px; font-weight: 600; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all .2s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(0,212,240,0.3); }
+
+/* hero visual */
+.hero-visual { position: relative; }
+.hero-panel {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+  position: relative;
+}
+.hero-panel::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--c), var(--v));
+}
+.panel-top {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.panel-dots { display: flex; gap: 5px; }
+.panel-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.panel-dots span:nth-child(1) { background: #FF5F57; }
+.panel-dots span:nth-child(2) { background: #FFBD2E; }
+.panel-dots span:nth-child(3) { background: #28C840; }
+.panel-title { font-size: 12px; color: var(--muted); margin-left: 6px; font-family: var(--f2); }
+.panel-body { padding: 20px; }
+.panel-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+.pstat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px;
+  text-align: center;
+}
+.pstat-num {
+  font-family: var(--f2); font-size: 24px; font-weight: 700;
+  color: var(--c); display: block; line-height: 1;
+}
+.pstat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.panel-bar-label { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); margin-bottom: 5px; }
+.panel-bar-label span:last-child { color: var(--c); font-weight: 600; }
+.panel-bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+.panel-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--c), var(--v)); animation: fill 1.8s ease-out forwards; }
+@keyframes fill { from { width: 0 } }
+.panel-activity {
+  border-top: 1px solid var(--border); padding-top: 14px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.act-row { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--muted); }
+.act-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.act-dot.green { background: #10B981; box-shadow: 0 0 6px #10B981; }
+.act-dot.cyan { background: var(--c); box-shadow: 0 0 6px var(--c); }
+.act-dot.violet { background: var(--v); box-shadow: 0 0 6px var(--v); }
+.act-time { margin-left: auto; font-size: 11px; color: rgba(255,255,255,0.2); }
+
+/* floating badge */
+.hero-float {
+  position: absolute; bottom: -16px; left: -20px;
+  background: var(--bg2);
+  border: 1px solid var(--border-c);
+  border-radius: 14px; padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.hero-float-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: rgba(0,212,240,0.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-float strong { font-size: 15px; font-weight: 700; display: block; color: var(--text); }
+.hero-float span { font-size: 11px; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   NUMBERS BAND
+═══════════════════════════════════════════ */
+.numbers {
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+.numbers-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr);
+}
+.num-item {
+  padding: 40px 24px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background .2s;
+}
+.num-item:last-child { border-right: none; }
+.num-item:hover { background: rgba(0,212,240,0.03); }
+.num-val {
+  font-family: var(--f2); font-size: 44px; font-weight: 800;
+  color: var(--c); line-height: 1; display: block;
+  letter-spacing: -2px;
+}
+.num-label { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+/* ═══════════════════════════════════════════
+   SECTION COMMONS
+═══════════════════════════════════════════ */
+.stag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; color: var(--c);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.stag::before { content: ''; width: 20px; height: 1.5px; background: var(--c); }
+.stitle {
+  font-family: var(--f2);
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 700; letter-spacing: -1px;
+  line-height: 1.15; margin-bottom: 16px; color: var(--text);
+}
+.ssub { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 560px; }
+
+/* ═══════════════════════════════════════════
+   PROCESS ("COMO FUNCIONA")
+═══════════════════════════════════════════ */
+.process { padding: 110px 0; }
+.process-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.process-head { text-align: center; margin-bottom: 64px; }
+.process-head .ssub { margin: 0 auto; }
+.process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.process-steps::before {
+  content: '';
+  position: absolute; top: 36px; left: 12.5%; right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-c), transparent);
+}
+.pstep { padding: 0 24px; text-align: center; position: relative; }
+.pstep-num {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f2); font-size: 20px; font-weight: 700; color: var(--c);
+  margin: 0 auto 20px;
+  position: relative; z-index: 1;
+  transition: all .25s;
+}
+.pstep:hover .pstep-num {
+  background: rgba(0,212,240,0.1);
+  border-color: var(--border-c);
+  box-shadow: 0 0 24px rgba(0,212,240,0.2);
+}
+.pstep h3 { font-family: var(--f2); font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.pstep p { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════ */
+.services {
+  padding: 110px 0;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.services-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.services-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+}
+.services-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.svc-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 22px 18px;
+  cursor: pointer;
+  transition: all .25s;
+  position: relative;
+  overflow: hidden;
+  group: true;
+}
+.svc-card:hover {
+  border-color: var(--border-c);
+  background: rgba(0,212,240,0.04);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,212,240,0.15);
+}
+.svc-icon {
+  width: 44px; height: 44px;
+  background: rgba(0,212,240,0.08);
+  border: 1px solid rgba(0,212,240,0.15);
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+  transition: all .25s;
+}
+.svc-card:hover .svc-icon {
+  background: rgba(0,212,240,0.15);
+  border-color: rgba(0,212,240,0.4);
+}
+.svc-icon svg { width: 20px; height: 20px; color: var(--c); }
+.svc-name { font-family: var(--f2); font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.svc-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.svc-arr {
+  display: inline-flex; align-items: center; gap: 3px;
+  color: var(--c); font-size: 12px; font-weight: 600;
+  margin-top: 10px; opacity: 0; transform: translateX(-4px);
+  transition: all .2s;
+}
+.svc-card:hover .svc-arr { opacity: 1; transform: translateX(0); }
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+.about { padding: 110px 0; }
+.about-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.about-img-wrap { position: relative; border-radius: var(--r2); overflow: hidden; }
+.about-img-wrap img {
+  width: 100%; height: 480px; object-fit: cover; display: block;
+  filter: brightness(.85) saturate(1.1);
+}
+.about-img-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,240,0.12), rgba(124,58,237,0.08));
+}
+.about-badge {
+  position: absolute; bottom: 20px; left: 20px; z-index: 2;
+  background: rgba(11,18,32,0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-c);
+  border-radius: 14px; padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.about-badge-icon {
+  width: 42px; height: 42px;
+  background: rgba(0,212,240,0.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.about-badge strong { font-family: var(--f2); font-size: 20px; font-weight: 700; color: var(--c); display: block; }
+.about-badge span { font-size: 11px; color: var(--muted); }
+.about-perks { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+.perk {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r); padding: 16px 18px;
+  transition: all .2s;
+}
+.perk:hover { border-color: var(--border-c); }
+.perk-icon {
+  width: 38px; height: 38px;
+  background: rgba(0,212,240,0.08);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.perk-icon svg { width: 16px; height: 16px; color: var(--c); }
+.perk strong { font-size: 14px; font-weight: 600; display: block; margin-bottom: 2px; color: var(--text); }
+.perk span { font-size: 12.5px; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   WHY
+═══════════════════════════════════════════ */
+.why {
+  padding: 110px 0;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.why-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.why-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+.wfeat {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 22px;
+  transition: all .2s;
+}
+.wfeat:hover { border-color: var(--border-c); transform: translateY(-2px); }
+.wfeat-n {
+  font-family: var(--f2); font-size: 36px; font-weight: 800;
+  color: rgba(0,212,240,0.15); line-height: 1; margin-bottom: 10px;
+  letter-spacing: -2px;
+}
+.wfeat strong { font-size: 14px; font-weight: 600; color: var(--text); display: block; margin-bottom: 5px; }
+.wfeat p { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+.why-visual { position: relative; }
+.why-img-wrap { border-radius: var(--r2); overflow: hidden; }
+.why-img-wrap img {
+  width: 100%; height: 460px; object-fit: cover; display: block;
+  filter: brightness(.8) saturate(1.2);
+}
+.why-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,240,0.15), rgba(124,58,237,0.1));
+  border-radius: var(--r2);
+}
+.why-checklist {
+  position: absolute; top: 20px; right: -16px;
+  background: rgba(11,18,32,0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-c);
+  border-radius: var(--r); padding: 16px 20px;
+  min-width: 170px;
+}
+.why-checklist ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.why-checklist ul li {
+  font-size: 12.5px; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+.why-checklist ul li::before {
+  content: '✓'; color: var(--bg); background: var(--c);
+  border-radius: 50%; width: 16px; height: 16px;
+  font-size: 9px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   CASES
+═══════════════════════════════════════════ */
+.cases { padding: 110px 0; }
+.cases-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.cases-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+}
+.cases-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.case-card {
+  border-radius: var(--r2); overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border);
+  aspect-ratio: 4/3;
+}
+.case-card:first-child { grid-column: span 2; aspect-ratio: 16/7; }
+.case-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .6s;
+  filter: brightness(.7) saturate(1.1);
+}
+.case-card:hover img { transform: scale(1.04); }
+.case-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,11,20,0.9) 0%, transparent 55%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+}
+.case-badge {
+  display: inline-block; background: var(--c); color: #060B14;
+  font-size: 11px; font-weight: 700; padding: 4px 10px;
+  border-radius: 20px; margin-bottom: 8px; width: fit-content;
+}
+.case-name { font-family: var(--f2); font-size: 17px; font-weight: 600; color: #fff; }
+.case-info { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 3px; }
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+.testimonials {
+  padding: 110px 0;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.testimonials-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.testi-head { text-align: center; margin-bottom: 52px; }
+.testi-head .stag { justify-content: center; }
+.testi-head .stag::before { display: none; }
+.testi-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+.testi-featured {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 36px;
+  position: relative; overflow: hidden;
+  transition: border-color .25s;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.testi-featured:hover { border-color: var(--border-c); }
+.testi-featured::before {
+  content: '"';
+  font-family: Georgia, serif; font-size: 120px;
+  color: rgba(0,212,240,0.06);
+  position: absolute; top: -10px; right: 24px; line-height: 1;
+}
+.testi-right { display: flex; flex-direction: column; gap: 14px; }
+.testi-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 24px;
+  position: relative; transition: all .25s; flex: 1;
+}
+.testi-card:hover { border-color: var(--border-c); transform: translateY(-2px); }
+.testi-card::before {
+  content: '"';
+  font-family: Georgia, serif; font-size: 60px;
+  color: rgba(0,212,240,0.06);
+  position: absolute; top: 5px; right: 16px; line-height: 1;
+}
+.testi-stars { display: flex; gap: 3px; margin-bottom: 14px; color: var(--c); }
+.testi-stars svg { width: 13px; height: 13px; fill: currentColor; }
+.testi-text { font-size: 15px; color: var(--muted); line-height: 1.75; font-style: italic; flex: 1; }
+.testi-card .testi-text { font-size: 13px; }
+.testi-person { display: flex; align-items: center; gap: 10px; margin-top: 24px; }
+.testi-card .testi-person { margin-top: 16px; }
+.testi-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--c), var(--v));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f2); font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.testi-card .testi-avatar { width: 36px; height: 36px; font-size: 12px; }
+.testi-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.testi-co { font-size: 12px; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   CLIENTS MARQUEE
+═══════════════════════════════════════════ */
+.clients {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.clients-label {
+  text-align: center; font-size: 12px; font-weight: 600;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 32px;
+}
+.marquee-wrap { position: relative; overflow: hidden; }
+.marquee-wrap::before, .marquee-wrap::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+}
+.marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.marquee-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+.marquee-track { display: flex; gap: 16px; animation: marquee 24s linear infinite; width: max-content; }
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.mlogo {
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px 28px; background: var(--bg2);
+  border: 1px solid var(--border); border-radius: 10px;
+  min-width: 130px; height: 60px;
+  transition: border-color .2s;
+  flex-shrink: 0;
+}
+.mlogo:hover { border-color: var(--border-c); }
+.mlogo span { font-family: var(--f2); font-size: 13px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+
+/* ═══════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════ */
+.faq { padding: 110px 0; }
+.faq-inner { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.faq-head { text-align: center; margin-bottom: 48px; }
+.faq-head .stag { justify-content: center; }
+.faq-head .stag::before { display: none; }
+.faq-item {
+  border: 1px solid var(--border); border-radius: var(--r);
+  margin-bottom: 8px; overflow: hidden; transition: border-color .2s;
+}
+.faq-item:hover { border-color: var(--border-c); }
+.faq-item.open { border-color: var(--border-c); }
+.faq-q {
+  padding: 18px 22px; font-size: 15px; font-weight: 600;
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  color: var(--text); user-select: none;
+}
+.faq-q::after {
+  content: '+'; font-size: 22px; font-weight: 300;
+  color: var(--c); transition: transform .3s; flex-shrink: 0;
+}
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  padding: 0 22px; max-height: 0; overflow: hidden;
+  transition: all .3s; font-size: 14.5px; color: var(--muted); line-height: 1.75;
+}
+.faq-item.open .faq-a { max-height: 250px; padding: 0 22px 20px; }
+
+/* ═══════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════ */
+.cta-band {
+  padding: 100px 0;
+  position: relative; overflow: hidden;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+.cta-band::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 20% 50%, rgba(0,212,240,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(124,58,237,0.07) 0%, transparent 60%);
+}
+.cta-inner {
+  max-width: 680px; margin: 0 auto; padding: 0 24px;
+  text-align: center; position: relative; z-index: 1;
+}
+.cta-inner .stag { justify-content: center; }
+.cta-inner .stag::before { display: none; }
+.cta-inner h2 {
+  font-family: var(--f2); font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800; color: var(--text); letter-spacing: -1.5px; margin-bottom: 14px;
+}
+.cta-inner p { font-size: 16px; color: var(--muted); margin-bottom: 36px; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-outline {
+  background: transparent; color: var(--text);
+  padding: 14px 28px; border-radius: 50px;
+  font-size: 15px; font-weight: 600; text-decoration: none;
+  border: 1px solid var(--border); transition: all .2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { border-color: var(--border-c); color: var(--c); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: rgba(4,8,16,0.8);
+  border-top: 1px solid var(--border);
+  padding: 72px 0 32px;
+}
+.footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 40px; margin-bottom: 52px; }
+.footer-brand { font-family: var(--f2); font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.footer-brand span { color: var(--c); }
+.footer-tag { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+.footer-about { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.footer-social { display: flex; gap: 8px; }
+.soc-btn {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; color: var(--muted); transition: all .2s;
+}
+.soc-btn:hover { background: rgba(0,212,240,0.1); border-color: var(--border-c); color: var(--c); }
+.footer-col h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.25); margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-col ul a {
+  color: var(--muted); text-decoration: none; font-size: 13px;
+  transition: color .2s; display: flex; align-items: center; gap: 6px;
+}
+.footer-col ul a:hover { color: var(--c); }
+.footer-col ul a::before { content: '→'; opacity: 0; transition: opacity .2s; font-size: 11px; color: var(--c); }
+.footer-col ul a:hover::before { opacity: 1; }
+.footer-contact { display: flex; flex-direction: column; gap: 11px; }
+.citem { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 13px; }
+.citem svg { width: 14px; height: 14px; color: var(--c); flex-shrink: 0; }
+.citem a { color: var(--muted); text-decoration: none; transition: color .2s; }
+.citem a:hover { color: var(--c); }
+.footer-bottom {
+  border-top: 1px solid var(--border); padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.2); }
+.footer-bl { display: flex; gap: 20px; }
+.footer-bl a { font-size: 12px; color: rgba(255,255,255,0.2); text-decoration: none; transition: color .2s; }
+.footer-bl a:hover { color: var(--c); }
+
+/* ═══════════════════════════════════════════
+   WHATSAPP FLOAT
+═══════════════════════════════════════════ */
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 28px rgba(37,211,102,0.4); text-decoration: none;
+  transition: transform .2s;
+  animation: waPulse 3s ease-in-out infinite;
+}
+.wa-float:hover { transform: scale(1.1); }
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+@keyframes waPulse {
+  0%,100%{box-shadow:0 6px 28px rgba(37,211,102,0.4)}
+  50%{box-shadow:0 6px 40px rgba(37,211,102,0.6)}
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1100px){
+  .services-grid{grid-template-columns:repeat(4,1fr)}
+  .hero-inner{grid-template-columns:1fr 420px}
+}
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr} .hero-visual{display:none}
+  .about-inner,.why-inner{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr;gap:32px}
+  .process-steps::before{display:none}
+  .services-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .nav-links,.topbar-links{display:none} .hamburger{display:flex}
+  .numbers-inner{grid-template-columns:repeat(2,1fr)}
+  .num-item:nth-child(2){border-right:none}
+  .num-item:nth-child(3){border-right:1px solid var(--border)}
+  .cases-grid{grid-template-columns:1fr}
+  .case-card:first-child{grid-column:span 1; aspect-ratio:4/3}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .why-feats{grid-template-columns:1fr}
+  .why-checklist{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div id="progress"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-links">
+      <a href="mailto:contato@rptech.com.br">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contato@rptech.com.br
+      </a>
+      <a href="https://wa.me/5511999999999" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13"/></svg>
+        (11) 9 8888-7777
+      </a>
+    </div>
+    <div class="topbar-links">
+      <a href="#">Área do Cliente</a>
+      <a href="#">Suporte 24/7</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-mark">RP</div>
+      <div>
+        <span class="logo-name">RP <span>Tech</span></span>
+        <span class="logo-sub">Tecnologia para eventos</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Início</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li>
+        <a href="#solucoes">Soluções ▾</a>
+        <div class="dropdown">
+          <a href="#"><span class="d-dot"></span>Credenciamento</a>
+          <a href="#"><span class="d-dot"></span>Sistema de Inscrição</a>
+          <a href="#"><span class="d-dot"></span>Venda Online</a>
+          <a href="#"><span class="d-dot"></span>Manual do Expositor</a>
+          <a href="#"><span class="d-dot"></span>CAEX</a>
+          <a href="#"><span class="d-dot"></span>Controle de Salas</a>
+          <a href="#"><span class="d-dot"></span>Controle de Acesso</a>
+          <a href="#"><span class="d-dot"></span>Coletor de Leads</a>
+          <a href="#"><span class="d-dot"></span>Biometria Facial</a>
+          <a href="#"><span class="d-dot"></span>App para Eventos</a>
+          <a href="#"><span class="d-dot"></span>Totem Autoatendimento</a>
+          <a href="#"><span class="d-dot"></span>Locação de Equipamentos</a>
+          <a href="#"><span class="d-dot"></span>Catracas para Eventos</a>
+          <a href="#"><span class="d-dot"></span>Certificado Digital</a>
+          <a href="#"><span class="d-dot"></span>Detector de Metal</a>
+        </div>
+      </li>
+      <li><a href="#cases">Cases</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://wa.me/5511999999999" target="_blank" class="nav-cta">Orçamento Grátis</a></li>
+    </ul>
+    <button class="hamburger" id="hambtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <!-- copy -->
+    <div>
+      <div class="hero-badge">Tecnologia de ponta para eventos</div>
+      <h1>Seu evento começa<br>no <span class="gr">credenciamento</span></h1>
+      <p>Sistemas inteligentes de credenciamento, controle de acesso e automação para eventos corporativos, feiras e congressos em todo o Brasil.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5511999999999" target="_blank" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Solicitar Orçamento
+        </a>
+        <a href="#solucoes" class="btn-secondary">
+          Ver Soluções
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+    <!-- visual panel -->
+    <div class="hero-visual">
+      <div class="hero-panel">
+        <div class="panel-top">
+          <div class="panel-dots"><span></span><span></span><span></span></div>
+          <div class="panel-title">Painel ao vivo — Evento ativo</div>
+        </div>
+        <div class="panel-body">
+          <div class="panel-stats">
+            <div class="pstat"><span class="pstat-num counter" data-target="98">0</span><span>%</span><div class="pstat-label">Satisfação</div></div>
+            <div class="pstat"><span class="pstat-num counter" data-target="1200">0</span><span>+</span><div class="pstat-label">Clientes</div></div>
+            <div class="pstat"><span class="pstat-num counter" data-target="4000">0</span><span>+</span><div class="pstat-label">Eventos</div></div>
+            <div class="pstat"><span class="pstat-num">5M+</span><div class="pstat-label">Credenciados</div></div>
+          </div>
+          <div class="panel-bar-label"><span>Credenciamento ativo</span><span>94%</span></div>
+          <div class="panel-bar"><div class="panel-fill" style="width:94%"></div></div>
+          <div class="panel-bar-label"><span>Controle de acesso</span><span>100%</span></div>
+          <div class="panel-bar"><div class="panel-fill" style="width:100%"></div></div>
+          <div class="panel-bar-label"><span>Satisfação geral</span><span>98%</span></div>
+          <div class="panel-bar"><div class="panel-fill" style="width:98%"></div></div>
+          <div class="panel-activity">
+            <div class="act-row"><span class="act-dot green"></span> Credenciamento ativo<span class="act-time">agora</span></div>
+            <div class="act-row"><span class="act-dot cyan"></span> Catraca A integrada<span class="act-time">1min</span></div>
+            <div class="act-row"><span class="act-dot violet"></span> 247 acessos/hora<span class="act-time">tempo real</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float">
+        <div class="hero-float-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00D4F0" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <strong>+15 anos</strong>
+          <span>no mercado de eventos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div class="numbers">
+  <div class="numbers-inner">
+    <div class="num-item fade-up">
+      <span class="num-val counter" data-target="98">0</span><span style="font-family:var(--f2);font-size:28px;font-weight:800;color:var(--c)">%</span>
+      <div class="num-label">Clientes Satisfeitos</div>
+    </div>
+    <div class="num-item fade-up d1">
+      <span class="num-val counter" data-target="1200">0</span><span style="font-family:var(--f2);font-size:28px;font-weight:800;color:var(--c)">+</span>
+      <div class="num-label">Empresas Atendidas</div>
+    </div>
+    <div class="num-item fade-up d2">
+      <span class="num-val counter" data-target="4000">0</span><span style="font-family:var(--f2);font-size:28px;font-weight:800;color:var(--c)">+</span>
+      <div class="num-label">Eventos Realizados</div>
+    </div>
+    <div class="num-item fade-up d3">
+      <span class="num-val">5M+</span>
+      <div class="num-label">Pessoas Credenciadas</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<section class="process">
+  <div class="process-inner">
+    <div class="process-head fade-up">
+      <div class="stag">Como funciona</div>
+      <h2 class="stitle">Do cadastro ao crachá<br>em segundos</h2>
+      <p class="ssub">Um fluxo completo e integrado para que nenhum participante espere na fila.</p>
+    </div>
+    <div class="process-steps">
+      <div class="pstep fade-up">
+        <div class="pstep-num">01</div>
+        <h3>Inscrição Online</h3>
+        <p>Hotsite personalizado com múltiplos lotes, pagamento integrado e confirmação automática por e-mail e WhatsApp.</p>
+      </div>
+      <div class="pstep fade-up d1">
+        <div class="pstep-num">02</div>
+        <h3>QR Code Enviado</h3>
+        <p>Participante recebe credencial digital via e-mail e WhatsApp com QR Code único e rastreável.</p>
+      </div>
+      <div class="pstep fade-up d2">
+        <div class="pstep-num">03</div>
+        <h3>Check-in Express</h3>
+        <p>Leitura de QR Code, biometria facial ou RFID. Impressão de crachá personalizado em até 6 segundos.</p>
+      </div>
+      <div class="pstep fade-up d3">
+        <div class="pstep-num">04</div>
+        <h3>Dashboard em Tempo Real</h3>
+        <p>Relatórios ao vivo com gráficos de acesso, presença por sala e satisfação para decisões imediatas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÕES -->
+<section class="services" id="solucoes">
+  <div class="services-inner">
+    <div class="services-head">
+      <div>
+        <div class="stag">Nossas Soluções</div>
+        <h2 class="stitle">15 soluções integradas<br>para o seu evento</h2>
+      </div>
+      <a href="https://wa.me/5511999999999" target="_blank" class="btn-secondary" style="border-radius:50px">Falar com especialista</a>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="svc-name">Credenciamento</div>
+        <div class="svc-desc">QR Code, biometria e crachá em 6 segundos.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg></div>
+        <div class="svc-name">Sistema de Inscrição</div>
+        <div class="svc-desc">Hotsite com múltiplos lotes e pagamento integrado.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <div class="svc-name">Venda Online</div>
+        <div class="svc-desc">Ingressos integrados ao credenciamento.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d3">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="svc-name">Manual do Expositor</div>
+        <div class="svc-desc">Digital, interativo e com gestão de pendências.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="svc-name">CAEX</div>
+        <div class="svc-desc">Central de atendimento ao expositor.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <div class="svc-name">Controle de Salas</div>
+        <div class="svc-desc">Acesso por sala vinculado ao tipo de ingresso.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="svc-name">Controle de Acesso</div>
+        <div class="svc-desc">QR Code, RFID e biometria por área e perfil.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d3">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+        <div class="svc-name">Coletor de Leads</div>
+        <div class="svc-desc">Capture e qualifique contatos com app mobile.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M12 11c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg></div>
+        <div class="svc-name">Biometria Facial</div>
+        <div class="svc-desc">Reconhecimento facial sem contato físico.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" stroke-width="3" stroke-linecap="round"/></svg></div>
+        <div class="svc-name">App para Eventos</div>
+        <div class="svc-desc">Agenda, networking e notificações push.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/></svg></div>
+        <div class="svc-name">Totem Autoatendimento</div>
+        <div class="svc-desc">Credenciamento autônomo com sua identidade visual.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d3">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg></div>
+        <div class="svc-name">Locação de Equipamentos</div>
+        <div class="svc-desc">Notebooks, impressoras, totens e leitores.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg></div>
+        <div class="svc-name">Catracas para Eventos</div>
+        <div class="svc-desc">Tripé, full height e speed gates integradas.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/><polyline points="9 11 12 14 15 11"/></svg></div>
+        <div class="svc-name">Certificado Digital</div>
+        <div class="svc-desc">Emissão automática com carga horária real.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+      <div class="svc-card fade-up d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="4.5" y1="9" x2="19.5" y2="9"/></svg></div>
+        <div class="svc-name">Detector de Metal</div>
+        <div class="svc-desc">Portais e bastões para máxima segurança.</div>
+        <span class="svc-arr">Saiba mais →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="about" id="sobre">
+  <div class="about-inner">
+    <div class="about-img-wrap fade-up">
+      <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80" alt="Evento RP Tech">
+      <div class="about-badge">
+        <div class="about-badge-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D4F0" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div><strong>+15 anos</strong><span>de experiência em eventos</span></div>
+      </div>
+    </div>
+    <div class="fade-up d1">
+      <div class="stag">Quem Somos</div>
+      <h2 class="stitle">Tecnologia que transforma a experiência do participante</h2>
+      <p class="ssub" style="margin-bottom:0">A RP Tech nasceu da paixão por eventos e pela tecnologia. Desenvolvemos soluções próprias, escaláveis e personalizadas para cada tipo de evento — do íntimo ao massivo.</p>
+      <div class="about-perks">
+        <div class="perk">
+          <div class="perk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div><strong>Plataforma 100% própria</strong><span>Software desenvolvido internamente, sem dependências de terceiros.</span></div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><strong>Atendimento em todo o Brasil</strong><span>Equipes regionais em SP, RJ, Brasília, Curitiba e Recife.</span></div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><strong>Dados em tempo real</strong><span>Dashboard ao vivo com métricas de acesso, presença e satisfação.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE NÓS -->
+<section class="why">
+  <div class="why-inner">
+    <div class="fade-up">
+      <div class="stag">Por que a RP Tech</div>
+      <h2 class="stitle">A escolha inteligente para quem leva eventos a sério</h2>
+      <p class="ssub" style="margin-bottom:0">Tecnologia de ponta com atendimento humanizado. Somos parceiros, não apenas fornecedores.</p>
+      <div class="why-feats">
+        <div class="wfeat"><div class="wfeat-n">01</div><strong>Setup em 4 horas</strong><p>Instalação completa no local com equipe própria, sem dependência de terceiros.</p></div>
+        <div class="wfeat"><div class="wfeat-n">02</div><strong>Dashboard ao vivo</strong><p>Relatórios em tempo real com gráficos para tomada de decisão imediata.</p></div>
+        <div class="wfeat"><div class="wfeat-n">03</div><strong>Integração total</strong><p>APIs com Sympla, Hotmart, Eduzz, Kiwify e plataformas do cliente.</p></div>
+        <div class="wfeat"><div class="wfeat-n">04</div><strong>LGPD & Segurança</strong><p>Dados criptografados e total conformidade com a legislação.</p></div>
+      </div>
+    </div>
+    <div class="why-visual fade-up d2">
+      <div class="why-img-wrap">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Credenciamento RP Tech">
+        <div class="why-overlay"></div>
+      </div>
+      <div class="why-checklist">
+        <ul>
+          <li>Suporte 24/7</li>
+          <li>Atende todo Brasil</li>
+          <li>E-crachá via WhatsApp</li>
+          <li>Sistema de sorteio</li>
+          <li>Redundância total</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases" id="cases">
+  <div class="cases-inner">
+    <div class="cases-head fade-up">
+      <div>
+        <div class="stag">Cases de Sucesso</div>
+        <h2 class="stitle">Eventos que fizemos acontecer</h2>
+      </div>
+      <a href="#" class="btn-secondary" style="border-radius:50px">Ver todos os cases</a>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card fade-up">
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&q=80" alt="BGS">
+        <div class="case-overlay">
+          <span class="case-badge">Feira Gamer</span>
+          <div class="case-name">Brasil Game Show (BGS)</div>
+          <div class="case-info">São Paulo, SP — +210.000 participantes credenciados</div>
+        </div>
+      </div>
+      <div class="case-card fade-up d1">
+        <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=80" alt="Oktoberfest">
+        <div class="case-overlay">
+          <span class="case-badge">Festival</span>
+          <div class="case-name">Oktoberfest SP</div>
+          <div class="case-info">São Paulo, SP — +60.000 participantes</div>
+        </div>
+      </div>
+      <div class="case-card fade-up d2">
+        <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&q=80" alt="Summit">
+        <div class="case-overlay">
+          <span class="case-badge">Corporativo</span>
+          <div class="case-name">Seven Summit</div>
+          <div class="case-info">Sorocaba, SP — +6.000 participantes</div>
+        </div>
+      </div>
+      <div class="case-card fade-up">
+        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600&q=80" alt="CAGRO">
+        <div class="case-overlay">
+          <span class="case-badge">Agro</span>
+          <div class="case-name">CCAGRO</div>
+          <div class="case-info">Campinas, SP — +4.000 participantes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="testi-head fade-up">
+      <div class="stag">Depoimentos</div>
+      <h2 class="stitle">O que nossos clientes falam</h2>
+      <p class="ssub" style="margin:0 auto">Resultados reais de quem confiou na RP Tech para seus eventos.</p>
+    </div>
+    <div class="testi-grid">
+      <!-- featured -->
+      <div class="testi-featured fade-up">
+        <div>
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">Credenciamos 35.000 pessoas no Oktoberfest SP sem nenhuma intercorrência. O sistema de catracas integrado com biometria facial foi surpreendente em velocidade e segurança. Nossa equipe ficou impressionada com o suporte técnico presencial durante todo o evento — zero estresse, resultado perfeito.</p>
+        </div>
+        <div class="testi-person">
+          <div class="testi-avatar">RS</div>
+          <div>
+            <div class="testi-name">Ricardo Salles</div>
+            <div class="testi-co">Produtor Executivo — Oktoberfest SP</div>
+          </div>
+        </div>
+      </div>
+      <!-- stack -->
+      <div class="testi-right">
+        <div class="testi-card fade-up d1">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">A RP Tech transformou nosso processo de credenciamento. Zero filas, sistema rápido e suporte impecável. Resultado acima do esperado.</p>
+          <div class="testi-person">
+            <div class="testi-avatar">MF</div>
+            <div>
+              <div class="testi-name">Marcos Fontes</div>
+              <div class="testi-co">Diretor — TechCorp Brasil</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card fade-up d2">
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testi-text">Integração dos certificados com controle de salas foi perfeita — cada participante saiu com carga horária validada automaticamente.</p>
+          <div class="testi-person">
+            <div class="testi-avatar">AC</div>
+            <div>
+              <div class="testi-name">Ana Carolina Braga</div>
+              <div class="testi-co">Coordenadora — Congresso Nacional de Medicina</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTES MARQUEE -->
+<div class="clients">
+  <p class="clients-label">Empresas que confiam na RP Tech</p>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="mlogo"><span>Sebrae</span></div>
+      <div class="mlogo"><span>Samsung</span></div>
+      <div class="mlogo"><span>Itaú</span></div>
+      <div class="mlogo"><span>Santander</span></div>
+      <div class="mlogo"><span>Jovem Pan</span></div>
+      <div class="mlogo"><span>Eduzz</span></div>
+      <div class="mlogo"><span>Leroy Merlin</span></div>
+      <div class="mlogo"><span>BGS</span></div>
+      <div class="mlogo"><span>Banco do Brasil</span></div>
+      <div class="mlogo"><span>CNA</span></div>
+      <div class="mlogo"><span>Tagima</span></div>
+      <div class="mlogo"><span>Casa Moda</span></div>
+      <!-- duplicar para loop contínuo -->
+      <div class="mlogo"><span>Sebrae</span></div>
+      <div class="mlogo"><span>Samsung</span></div>
+      <div class="mlogo"><span>Itaú</span></div>
+      <div class="mlogo"><span>Santander</span></div>
+      <div class="mlogo"><span>Jovem Pan</span></div>
+      <div class="mlogo"><span>Eduzz</span></div>
+      <div class="mlogo"><span>Leroy Merlin</span></div>
+      <div class="mlogo"><span>BGS</span></div>
+      <div class="mlogo"><span>Banco do Brasil</span></div>
+      <div class="mlogo"><span>CNA</span></div>
+      <div class="mlogo"><span>Tagima</span></div>
+      <div class="mlogo"><span>Casa Moda</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-head fade-up">
+      <div class="stag">FAQ</div>
+      <h2 class="stitle">Perguntas frequentes</h2>
+      <p class="ssub" style="margin:0 auto">Respondemos as principais dúvidas antes mesmo de você perguntar.</p>
+    </div>
+    <div class="fade-up">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Como funciona o credenciamento para grandes eventos?</div>
+        <div class="faq-a">Nosso sistema integra do cadastro online até a impressão do crachá no local. QR Code, biometria e leitores credenciam em menos de 6 segundos. Para mais de 10.000 pessoas, múltiplos pontos simultâneos com equipamentos redundantes.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Vocês integram com outras plataformas de venda?</div>
+        <div class="faq-a">Sim. Temos APIs com Sympla, Eduzz, Hotmart, Kiwify e plataformas próprias do cliente. Integração bidirecional — dados de inscrição alimentam o credenciamento automaticamente.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">O que é o Controle de Salas e como funciona?</div>
+        <div class="faq-a">Módulo que gerencia acesso a salas individualmente. Registro de entrada/saída, controle de lotação e certificados automáticos com carga horária real de cada participante.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Vocês atendem eventos fora de São Paulo?</div>
+        <div class="faq-a">Sim, em todo o Brasil. Temos equipes em São Paulo, Rio de Janeiro, Brasília, Curitiba e Recife, mais parceiros logísticos em todo o território nacional.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Há suporte técnico presencial durante o evento?</div>
+        <div class="faq-a">Sempre. Equipe técnica presencial durante toda a operação + suporte remoto 24/7 como backup. Equipamentos com redundância total — nenhum terminal em falta compromete o evento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-inner fade-up">
+    <div class="stag">Vamos começar</div>
+    <h2>Pronto para elevar seu próximo evento?</h2>
+    <p>Orçamento personalizado em até 2 horas. Nossa equipe está online agora.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/5511999999999" target="_blank" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a href="mailto:contato@rptech.com.br" class="btn-outline">Enviar E-mail</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">RP <span>Tech</span></div>
+        <div class="footer-tag">Tecnologia para eventos</div>
+        <p class="footer-about">+15 anos levando tecnologia e agilidade no credenciamento para eventos em todo o Brasil.</p>
+        <div class="footer-social">
+          <a href="#" class="soc-btn" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3" stroke-linecap="round"/></svg>
+          </a>
+          <a href="https://wa.me/5511999999999" target="_blank" class="soc-btn" aria-label="WhatsApp">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Soluções</h4>
+        <ul>
+          <li><a href="#">Credenciamento</a></li>
+          <li><a href="#">Sistema de Inscrição</a></li>
+          <li><a href="#">Controle de Salas</a></li>
+          <li><a href="#">Biometria Facial</a></li>
+          <li><a href="#">Coletor de Leads</a></li>
+          <li><a href="#">Totem Autoatendimento</a></li>
+          <li><a href="#">Catracas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre a RP Tech</a></li>
+          <li><a href="#">Cases de Sucesso</a></li>
+          <li><a href="#">Depoimentos</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Trabalhe Conosco</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <div class="footer-contact">
+          <div class="citem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg>
+            <a href="https://wa.me/5511999999999" target="_blank">(11) 9 8888-7777</a>
+          </div>
+          <div class="citem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:contato@rptech.com.br">contato@rptech.com.br</a>
+          </div>
+          <div class="citem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Av. Paulista, 1636 — São Paulo, SP</span>
+          </div>
+          <div class="citem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            <span>CNPJ: 45.678.901/0001-23</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 RP Tech — Tecnologia para Eventos. Todos os direitos reservados.</p>
+      <div class="footer-bl">
+        <a href="#">Termos de Uso</a>
+        <a href="#">Privacidade</a>
+        <a href="#">LGPD</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5511999999999" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ── Scroll progress bar
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  progress.style.width = scrolled + '%';
+});
+
+// ── Nav solid on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 60);
+});
+
+// ── Fade-up observer
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── Counter animation
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1800;
+  const step = target / (duration / 16);
+  let current = 0;
+  const timer = setInterval(() => {
+    current += step;
+    if(current >= target) { current = target; clearInterval(timer); }
+    el.textContent = Math.floor(current).toLocaleString('pt-BR');
+  }, 16);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting && !e.target.dataset.counted) {
+      e.target.dataset.counted = '1';
+      animateCounter(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+// ── FAQ toggle
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  document.querySelectorAll('.faq-item.open').forEach(i => { if(i !== item) i.classList.remove('open'); });
+  item.classList.toggle('open');
+}
+
+// ── Mobile menu
+const hambtn = document.getElementById('hambtn');
+hambtn.addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  const open = links.style.display === 'flex';
+  if(open) {
+    links.style.display = '';
+  } else {
+    Object.assign(links.style, {
+      display: 'flex', flexDirection: 'column',
+      position: 'fixed', top: '105px', left: '0', right: '0',
+      background: 'rgba(6,11,20,0.97)', backdropFilter: 'blur(20px)',
+      padding: '20px', gap: '4px', zIndex: '400',
+      borderBottom: '1px solid rgba(255,255,255,0.07)',
+      boxShadow: '0 12px 40px rgba(0,0,0,0.5)'
+    });
+  }
+});
+</script>
+</body>
+</html>

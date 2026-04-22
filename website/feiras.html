@@ -26,22 +26,22 @@
        ========================================== */
 
     :root {
-      --f-bg:           #080E1A;
-      --f-surface:      #0F1A2E;
-      --f-surface-alt:  #132035;
-      --f-blue:         #1B3A6B;
-      --f-blue-light:   #234d8a;
-      --f-gold:         #C9A84C;
-      --f-gold-light:   #E2C06A;
-      --f-gold-dim:     rgba(201,168,76,.15);
-      --f-gold-border:  rgba(201,168,76,.30);
-      --f-text:         #E8EDF5;
-      --f-text-muted:   rgba(232,237,245,.92);
-      --f-text-faint:   rgba(232,237,245,.78);
-      --f-border:       rgba(255,255,255,.08);
-      --f-border-gold:  rgba(201,168,76,.25);
-      --f-shadow-gold:  0 8px 40px rgba(201,168,76,.18);
-      --f-shadow-blue:  0 8px 40px rgba(11,22,48,.60);
+      --f-bg:           #ffffff;
+      --f-surface:      #f4f7fa;
+      --f-surface-alt:  #e8f0f8;
+      --f-blue:         #2e6ea6;
+      --f-blue-light:   #5ba3d9;
+      --f-gold:         #2e6ea6;
+      --f-gold-light:   #5ba3d9;
+      --f-gold-dim:     rgba(46,110,166,.10);
+      --f-gold-border:  rgba(46,110,166,.25);
+      --f-text:         #0d1b2a;
+      --f-text-muted:   #4a5568;
+      --f-text-faint:   #718096;
+      --f-border:       rgba(0,0,0,.10);
+      --f-border-gold:  rgba(46,110,166,.20);
+      --f-shadow-gold:  0 8px 40px rgba(46,110,166,.20);
+      --f-shadow-blue:  0 8px 40px rgba(46,110,166,.12);
     }
 
     /* Reset do body para este contexto */
@@ -64,8 +64,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 65% 70% at 75% 40%, rgba(27,58,107,.55), transparent),
-        radial-gradient(ellipse 45% 60% at 5% 90%, rgba(201,168,76,.07), transparent);
+        radial-gradient(ellipse 65% 70% at 75% 40%, rgba(46,110,166,.08), transparent),
+        radial-gradient(ellipse 45% 60% at 5% 90%, rgba(46,110,166,.05), transparent);
       pointer-events: none;
     }
 
@@ -73,8 +73,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+        linear-gradient(rgba(46,110,166,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,110,166,.06) 1px, transparent 1px);
       background-size: 72px 72px;
       pointer-events: none;
     }
@@ -148,7 +148,7 @@
       align-items: center;
       gap: 10px;
       background: var(--f-gold);
-      color: #080E1A;
+      color: #ffffff;
       padding: 15px 30px;
       border-radius: 6px;
       font-weight: 700;
@@ -244,7 +244,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(27,58,107,.35), transparent);
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(46,110,166,.06), transparent);
       pointer-events: none;
     }
 
@@ -685,8 +685,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 55% 75% at 85% 50%, rgba(201,168,76,.07), transparent),
-        radial-gradient(ellipse 40% 55% at 10% 20%, rgba(27,58,107,.35), transparent);
+        radial-gradient(ellipse 55% 75% at 85% 50%, rgba(46,110,166,.06), transparent),
+        radial-gradient(ellipse 40% 55% at 10% 20%, rgba(46,110,166,.08), transparent);
       pointer-events: none;
     }
 
@@ -789,7 +789,7 @@
     .btn-form-submit {
       width: 100%;
       background: var(--f-gold);
-      color: #080E1A;
+      color: #ffffff;
       border: none;
       border-radius: 6px;
       padding: 14px;
@@ -877,132 +877,7 @@
 
     .diff-check svg { display: block; }
 
-    /* ===== NAVBAR OVERRIDE — dark luxury ===== */
-    body.feiras-page .topbar {
-      background: #080E1A;
-      border-bottom: 1px solid rgba(201,168,76,.12);
-      font-family: 'Poppins', sans-serif;
-    }
-    body.feiras-page .topbar a {
-      color: rgba(232,237,245,.70);
-      font-family: 'Poppins', sans-serif;
-      font-size: .78rem;
-      font-weight: 400;
-    }
-    body.feiras-page .topbar a:hover { color: #C9A84C; opacity: 1; }
-    body.feiras-page .navbar {
-      background: #080E1A;
-      box-shadow: 0 1px 0 rgba(201,168,76,.08), 0 4px 24px rgba(0,0,0,.4);
-    }
-    body.feiras-page .navbar-nav > li > a {
-      color: rgba(232,237,245,.82);
-      font-family: 'Poppins', sans-serif;
-      font-weight: 500;
-      font-size: .88rem;
-    }
-    body.feiras-page .navbar-nav > li > a:hover {
-      background: rgba(201,168,76,.08);
-      color: #C9A84C;
-    }
-    body.feiras-page .navbar-nav > li > a.active { color: #C9A84C; }
-    body.feiras-page .navbar-nav > li > a .arrow {
-      border-color: rgba(232,237,245,.45);
-    }
-    body.feiras-page .navbar-nav > li:hover > a .arrow {
-      border-color: #C9A84C;
-    }
-    body.feiras-page .mega-menu {
-      background: #0A1220;
-      border: 1px solid rgba(201,168,76,.18);
-      box-shadow: 0 20px 60px rgba(0,0,0,.6);
-    }
-    body.feiras-page .mega-menu-grid li a {
-      color: rgba(232,237,245,.65);
-      font-family: 'Poppins', sans-serif;
-      font-size: .84rem;
-      font-weight: 400;
-    }
-    body.feiras-page .mega-menu-grid li a:hover {
-      background: rgba(201,168,76,.08);
-      color: #C9A84C;
-    }
-    body.feiras-page .menu-icon {
-      background: rgba(201,168,76,.10);
-      color: #C9A84C;
-    }
-    body.feiras-page .navbar-toggle span { background: rgba(232,237,245,.8); }
-    body.feiras-page .btn-nav-cta {
-      background: #C9A84C !important;
-      color: #080E1A !important;
-      font-family: 'Poppins', sans-serif !important;
-      box-shadow: 0 4px 15px rgba(201,168,76,.35) !important;
-    }
-    body.feiras-page .btn-nav-cta:hover {
-      background: #E2C06A !important;
-      box-shadow: 0 6px 20px rgba(201,168,76,.5) !important;
-    }
-
-    /* ===== FOOTER OVERRIDE — dark luxury ===== */
-    body.feiras-page .footer {
-      background: #080E1A;
-      border-top: 1px solid rgba(201,168,76,.12);
-      font-family: 'Poppins', sans-serif;
-    }
-    body.feiras-page .footer-desc {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      color: rgba(232,237,245,.55);
-      font-size: .88rem;
-    }
-    body.feiras-page .footer-col h4 {
-      font-family: 'Poppins', sans-serif;
-      color: #C9A84C;
-      letter-spacing: .1em;
-      font-size: .72rem;
-    }
-    body.feiras-page .footer-col ul li a {
-      font-family: 'Poppins', sans-serif;
-      color: rgba(232,237,245,.50);
-      font-weight: 300;
-      font-size: .88rem;
-    }
-    body.feiras-page .footer-col ul li a:hover { color: #C9A84C; }
-    body.feiras-page .footer-contact-item {
-      font-family: 'Poppins', sans-serif;
-      color: rgba(232,237,245,.50);
-      font-weight: 300;
-    }
-    body.feiras-page .footer-contact-item a {
-      color: rgba(232,237,245,.50);
-      font-family: 'Poppins', sans-serif;
-    }
-    body.feiras-page .footer-contact-item a:hover { color: #C9A84C; }
-    body.feiras-page .footer-contact-item svg { color: rgba(201,168,76,.70); }
-    body.feiras-page .footer-social a:hover {
-      background: rgba(201,168,76,.12);
-      border-color: rgba(201,168,76,.35);
-      color: #C9A84C;
-    }
-    body.feiras-page .footer-bottom {
-      border-top-color: rgba(255,255,255,.06);
-    }
-    body.feiras-page .footer-bottom p {
-      font-family: 'Poppins', sans-serif;
-      color: rgba(232,237,245,.35);
-      font-weight: 300;
-      font-size: .78rem;
-    }
-    body.feiras-page .footer .btn-primary {
-      background: #C9A84C;
-      color: #080E1A;
-      border-color: #C9A84C;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-    }
-    body.feiras-page .footer .btn-primary:hover {
-      background: #E2C06A;
-      border-color: #E2C06A;
-    }
+    /* Navbar e footer usam o estilo padrão do site */
   </style>
 </head>
 

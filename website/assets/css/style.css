@@ -551,3 +551,26 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
   .topbar .container { flex-direction: column; text-align: center; }
   .topbar-right { justify-content: center; }
 }
+
+/* ---- MOBILE CTA BAR ---- */
+.mobile-cta-bar {
+  display: none;
+  background: #25D366;
+  padding: 0;
+  width: 100%;
+}
+.mobile-cta-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 16px;
+  color: #fff;
+  font-weight: 700;
+  font-size: .88rem;
+  text-decoration: none;
+  letter-spacing: .01em;
+}
+@media (max-width: 968px) {
+  .mobile-cta-bar { display: block; }
+}

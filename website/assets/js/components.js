@@ -52,7 +52,7 @@ function renderNavbar(activePage = '') {
 
   const base = document.body.dataset.base || '';
   const isFeiras = document.body.classList.contains('feiras-page');
-  const logoSrc = `${base}assets/${isFeiras ? 'logo_dourado2.png' : 'logo.png'}`;
+  const logoSrc = `${base}assets/logo.png`;
 
   document.getElementById('navbar-placeholder').innerHTML = `
   <div class="topbar">
@@ -107,7 +107,7 @@ function renderFooter() {
   ).join('');
 
   const isFeiras = document.body.classList.contains('feiras-page');
-  const footerLogoSrc = isFeiras ? 'assets/logo_dourado2.png' : 'assets/logo.png';
+  const footerLogoSrc = 'assets/logo.png';
 
   document.getElementById('footer-placeholder').innerHTML = `
   <footer class="footer">

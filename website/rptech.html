@@ -39,8 +39,8 @@ body { font-family: var(--f1); background: var(--bg); color: var(--text); overfl
 /* TOPBAR */
 .topbar { background: var(--dark); padding: 7px 0; font-size: 12px; }
 .topbar-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
-.topbar a { color: rgba(255,255,255,0.45); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
-.topbar a:hover { color: var(--c); }
+.topbar a, .topbar .topbar-item { color: #1A6FE8; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
+.topbar a:hover { color: #4D8FF0; }
 .topbar-links { display: flex; gap: 24px; }
 
 /* NAV */
@@ -274,19 +274,21 @@ nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 2px 20px rgba(0
 .testi-name { font-size: 14px; font-weight: 700; color: var(--text); }
 .testi-co { font-size: 12px; color: var(--muted); }
 
-/* CLIENTS */
-.clients-section { padding: 56px 0; border-bottom: 1px solid var(--border); overflow: hidden; background: #fff; }
-.clients-label { text-align: center; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 36px; }
-.marquee-wrap { position: relative; overflow: hidden; }
-.marquee-wrap::before, .marquee-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
-.marquee-wrap::before { left: 0; background: linear-gradient(90deg, #fff, transparent); }
-.marquee-wrap::after { right: 0; background: linear-gradient(-90deg, #fff, transparent); }
-.marquee-track { display: flex; gap: 14px; animation: marquee 24s linear infinite; width: max-content; }
-.marquee-track:hover { animation-play-state: paused; }
-@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-.mlogo { display: flex; align-items: center; justify-content: center; padding: 12px 28px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; min-width: 130px; height: 58px; transition: all .2s; flex-shrink: 0; }
-.mlogo:hover { border-color: var(--border-c); box-shadow: var(--shadow); }
-.mlogo span { font-family: var(--f2); font-size: 13px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+/* CLIENTS — Worknet-style infinite marquee */
+.clients-section { background: #ffffff; padding: 80px 0; overflow: hidden; border-bottom: 1px solid var(--border); }
+.clients-section .stitle, .clients-section .ssub { color: var(--text); }
+.clients-track-wrap { overflow: hidden; position: relative; margin-top: 48px; }
+.clients-track-wrap::before, .clients-track-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
+.clients-track-wrap::before { left: 0; background: linear-gradient(to right, #ffffff, transparent); }
+.clients-track-wrap::after { right: 0; background: linear-gradient(to left, #ffffff, transparent); }
+.clients-track { display: flex; align-items: center; gap: 64px; animation: scroll-logos 30s linear infinite; width: max-content; }
+.clients-track:hover { animation-play-state: paused; }
+@keyframes scroll-logos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.client-logo { display: flex; align-items: center; justify-content: center; width: 160px; height: 160px; padding: 0; background: #fff; border-radius: 12px; border: 1px solid #e8eef4; flex-shrink: 0; }
+.client-logo span { font-family: var(--f2); font-size: 15px; font-weight: 700; color: var(--muted); text-align: center; padding: 0 14px; transition: color .25s; }
+.client-logo:hover { border-color: var(--border-c); }
+.client-logo:hover span { color: var(--c2); }
+.clients-eyebrow { text-align: center; margin-top: 36px; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
 
 /* FAQ */
 .faq-inner { max-width: 760px; margin: 0 auto; padding: 0 24px; }
@@ -404,7 +406,6 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
       </a>
     </div>
     <div class="topbar-links">
-      <a href="#">Área do Cliente</a>
       <a href="#">Suporte 24/7</a>
     </div>
   </div>
@@ -414,11 +415,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
 <nav id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <div class="logo-mark">RP</div>
-      <div>
-        <span class="logo-name">RP <span>Tech</span></span>
-        <span class="logo-sub">Tecnologia para eventos</span>
-      </div>
+      <img src="assets/rptech_logo1fundo.png" alt="RP Tech — Tecnologia para Eventos" style="height:44px;width:auto;display:block">
     </a>
     <ul class="nav-links">
       <li><a href="#">Início</a></li>
@@ -427,12 +424,13 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
         <a href="#solucoes">Soluções ▾</a>
         <div class="dropdown">
           <a href="#"><span class="d-dot"></span>Credenciamento</a>
-          <a href="#"><span class="d-dot"></span>Sistema de Inscrição</a>
+          <a href="sistema-inscricao-rptech.html"><span class="d-dot"></span>Sistema de Inscrição</a>
           <a href="#"><span class="d-dot"></span>Venda Online</a>
           <a href="#"><span class="d-dot"></span>Manual do Expositor</a>
           <a href="#"><span class="d-dot"></span>CAEX</a>
           <a href="#"><span class="d-dot"></span>Controle de Salas</a>
           <a href="#"><span class="d-dot"></span>Controle de Acesso</a>
+          <a href="#"><span class="d-dot"></span>Feiras e Exposições</a>
           <a href="#"><span class="d-dot"></span>Coletor de Leads</a>
           <a href="#"><span class="d-dot"></span>Biometria Facial</a>
           <a href="#"><span class="d-dot"></span>App para Eventos</a>
@@ -445,7 +443,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
       </li>
       <li><a href="#cases">Cases</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="https://wa.me/5511999999999" target="_blank" class="nav-cta">Orçamento Grátis</a></li>
+      <li><a href="https://wa.me/5511999999999" target="_blank" class="nav-cta">Orçamento rápido em até 02 horas</a></li>
     </ul>
     <button class="hamburger" id="hambtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -464,7 +462,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
       <div class="hero-actions">
         <a href="https://wa.me/5511999999999" target="_blank" class="btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Solicitar Orçamento
+          Orçamento rápido em até 02 horas
         </a>
         <a href="#solucoes" class="btn-secondary">
           Ver Soluções
@@ -571,7 +569,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
       <div>
         <div class="stag">Nossas Soluções</div>
         <h2 class="stitle">Ecossistema completo<br>para o seu evento</h2>
-        <p class="ssub" style="margin-top:8px">15 soluções integradas que se conectam em torno de uma plataforma central.</p>
+        <p class="ssub" style="margin-top:8px">16 soluções integradas que se conectam em torno de uma plataforma central.</p>
       </div>
       <a href="https://wa.me/5511999999999" target="_blank" class="btn-secondary" style="border-radius:50px;flex-shrink:0">Falar com especialista</a>
     </div>
@@ -589,10 +587,11 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
               Pré-Evento
             </div>
             <div class="eco-pills">
-              <span class="eco-pill">Sistema de Inscrição</span>
+              <a href="sistema-inscricao-rptech.html" class="eco-pill" style="text-decoration:none">Sistema de Inscrição</a>
               <span class="eco-pill">Venda Online</span>
               <span class="eco-pill">Manual do Expositor</span>
               <span class="eco-pill">CAEX</span>
+              <a href="#" class="eco-pill" style="text-decoration:none">Feiras e Exposições</a>
             </div>
           </div>
           <div class="eco-g violet">
@@ -668,7 +667,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
       </div>
       <div class="eco-g cyan" style="max-width:100%">
         <div class="eco-g-title"><div class="eco-g-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00A8C0" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>Pré-Evento</div>
-        <div class="eco-pills"><span class="eco-pill">Inscrição</span><span class="eco-pill">Venda Online</span><span class="eco-pill">Manual do Expositor</span><span class="eco-pill">CAEX</span></div>
+        <div class="eco-pills"><a href="sistema-inscricao-rptech.html" class="eco-pill" style="text-decoration:none">Inscrição</a><span class="eco-pill">Venda Online</span><span class="eco-pill">Manual do Expositor</span><span class="eco-pill">CAEX</span><a href="#" class="eco-pill" style="text-decoration:none">Feiras</a></div>
       </div>
       <div class="eco-g green" style="max-width:100%">
         <div class="eco-g-title"><div class="eco-g-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>Acesso & Segurança</div>
@@ -767,7 +766,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
     </div>
     <div class="cases-grid">
       <div class="case-card fade-up">
-        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&q=80" alt="BGS">
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80" alt="BGS">
         <div class="case-overlay">
           <span class="case-badge">Feira Gamer</span>
           <div class="case-name">Brasil Game Show (BGS)</div>
@@ -775,7 +774,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
         </div>
       </div>
       <div class="case-card fade-up d1">
-        <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=80" alt="Oktoberfest">
+        <img src="https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=800&q=80" alt="Oktoberfest">
         <div class="case-overlay">
           <span class="case-badge">Festival</span>
           <div class="case-name">Oktoberfest SP</div>
@@ -783,7 +782,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
         </div>
       </div>
       <div class="case-card fade-up d2">
-        <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&q=80" alt="Summit">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Summit">
         <div class="case-overlay">
           <span class="case-badge">Corporativo</span>
           <div class="case-name">Seven Summit</div>
@@ -791,7 +790,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
         </div>
       </div>
       <div class="case-card fade-up">
-        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600&q=80" alt="CAGRO">
+        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80" alt="CAGRO">
         <div class="case-overlay">
           <span class="case-badge">Agro</span>
           <div class="case-name">CCAGRO</div>
@@ -824,7 +823,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
         </div>
         <div class="testi-person">
           <div class="testi-avatar">RS</div>
-          <div><div class="testi-name">Ricardo Salles</div><div class="testi-co">Produtor Executivo — Oktoberfest SP</div></div>
+          <div><div class="testi-name">Ricardo Salles</div><div class="testi-co">Produtor Executivo</div></div>
         </div>
       </div>
       <div class="testi-right">
@@ -839,7 +838,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
           <p class="testi-text">A RP Tech transformou nosso processo de credenciamento. Zero filas, sistema rápido e suporte impecável. Resultado acima do esperado.</p>
           <div class="testi-person">
             <div class="testi-avatar">MF</div>
-            <div><div class="testi-name">Marcos Fontes</div><div class="testi-co">Diretor — TechCorp Brasil</div></div>
+            <div><div class="testi-name">Marcos Fontes</div><div class="testi-co">Diretor</div></div>
           </div>
         </div>
         <div class="testi-card fade-up d2">
@@ -853,7 +852,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
           <p class="testi-text">Integração dos certificados com controle de salas foi perfeita — cada participante saiu com carga horária validada automaticamente.</p>
           <div class="testi-person">
             <div class="testi-avatar">AC</div>
-            <div><div class="testi-name">Ana Carolina Braga</div><div class="testi-co">Coordenadora — Congresso Nacional de Medicina</div></div>
+            <div><div class="testi-name">Ana Carolina Braga</div><div class="testi-co">Coordenadora</div></div>
           </div>
         </div>
       </div>
@@ -861,38 +860,39 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
   </div>
 </section>
 
-<!-- CLIENTES MARQUEE -->
-<div class="clients-section">
-  <p class="clients-label">Empresas que confiam na RP Tech</p>
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <div class="mlogo"><span>Sebrae</span></div>
-      <div class="mlogo"><span>Samsung</span></div>
-      <div class="mlogo"><span>Itaú</span></div>
-      <div class="mlogo"><span>Santander</span></div>
-      <div class="mlogo"><span>Jovem Pan</span></div>
-      <div class="mlogo"><span>Eduzz</span></div>
-      <div class="mlogo"><span>Leroy Merlin</span></div>
-      <div class="mlogo"><span>BGS</span></div>
-      <div class="mlogo"><span>Banco do Brasil</span></div>
-      <div class="mlogo"><span>CNA</span></div>
-      <div class="mlogo"><span>Tagima</span></div>
-      <div class="mlogo"><span>Casa Moda</span></div>
-      <div class="mlogo"><span>Sebrae</span></div>
-      <div class="mlogo"><span>Samsung</span></div>
-      <div class="mlogo"><span>Itaú</span></div>
-      <div class="mlogo"><span>Santander</span></div>
-      <div class="mlogo"><span>Jovem Pan</span></div>
-      <div class="mlogo"><span>Eduzz</span></div>
-      <div class="mlogo"><span>Leroy Merlin</span></div>
-      <div class="mlogo"><span>BGS</span></div>
-      <div class="mlogo"><span>Banco do Brasil</span></div>
-      <div class="mlogo"><span>CNA</span></div>
-      <div class="mlogo"><span>Tagima</span></div>
-      <div class="mlogo"><span>Casa Moda</span></div>
+<!-- CLIENTES — formato Worknet (carrossel infinito com cards) -->
+<section class="clients-section">
+  <div class="inner">
+    <div class="sec-head fade-up" style="margin-bottom:0">
+      <h2 class="stitle">Empresas que confiam na RP Tech</h2>
     </div>
   </div>
-</div>
+  <div class="clients-track-wrap">
+    <div class="clients-track" id="clientsTrack">
+      <div class="client-logo"><span>Sebrae</span></div>
+      <div class="client-logo"><span>Samsung</span></div>
+      <div class="client-logo"><span>Itaú</span></div>
+      <div class="client-logo"><span>Santander</span></div>
+      <div class="client-logo"><span>Jovem Pan</span></div>
+      <div class="client-logo"><span>Eduzz</span></div>
+      <div class="client-logo"><span>Leroy Merlin</span></div>
+      <div class="client-logo"><span>BGS</span></div>
+      <div class="client-logo"><span>Banco do Brasil</span></div>
+      <div class="client-logo"><span>CNA</span></div>
+      <div class="client-logo"><span>Tagima</span></div>
+      <div class="client-logo"><span>Casa Moda</span></div>
+    </div>
+  </div>
+  <div class="inner">
+    <p class="clients-eyebrow">Mais de 1.200 empresas já escolheram a RP Tech</p>
+  </div>
+</section>
+<script>
+  (function(){
+    var track = document.getElementById('clientsTrack');
+    if (track) { track.innerHTML += track.innerHTML; }
+  })();
+</script>
 
 <!-- FAQ -->
 <section class="section" id="faq">
@@ -951,7 +951,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); 
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">RP <span>Tech</span></div>
+        <img src="assets/rptech_logo1fundo.png" alt="RP Tech — Tecnologia para Eventos" style="height:48px;width:auto;display:block;margin-bottom:14px">
         <div class="footer-tag">Tecnologia para eventos</div>
         <p class="footer-about">+15 anos levando tecnologia e agilidade no credenciamento para eventos em todo o Brasil.</p>
         <div class="footer-social">

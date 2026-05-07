@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Inscrição — RP Tech</title>
+<meta name="description" content="Plataforma de inscrição online totalmente personalizável: múltiplos lotes, gateway de pagamento, confirmação automática e integração direta com o credenciamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c: #00D4F0;
+  --c2: #00A8C0;
+  --v: #7C3AED;
+  --v2: #5B21B6;
+  --bg: #F8FAFF;
+  --bg2: #EEF2FF;
+  --card: #FFFFFF;
+  --dark: #0A0F1E;
+  --dark2: #111827;
+  --text: #0D1117;
+  --muted: #64748B;
+  --border: rgba(0,0,60,0.08);
+  --border-c: rgba(0,212,240,0.35);
+  --shadow: 0 4px 24px rgba(0,10,60,0.08);
+  --shadow-lg: 0 16px 56px rgba(0,10,60,0.14);
+  --f1: 'Inter', sans-serif;
+  --f2: 'Space Grotesk', sans-serif;
+  --r: 14px;
+  --r2: 20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--f1); background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+#progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--c), var(--v)); z-index: 9999; width: 0%; transition: width .1s; }
+
+/* TOPBAR */
+.topbar { background: var(--dark); padding: 7px 0; font-size: 12px; }
+.topbar-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+.topbar a { color: #1A6FE8; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
+.topbar a:hover { color: #4D8FF0; }
+.topbar-links { display: flex; gap: 24px; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 500; background: rgba(248,250,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: all .3s; }
+nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 2px 20px rgba(0,10,60,0.07); }
+.nav-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 66px; }
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links > li { position: relative; }
+.nav-links > li > a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: all .2s; display: flex; align-items: center; gap: 4px; }
+.nav-links > li > a:hover { color: var(--text); background: rgba(0,10,60,0.04); }
+.dropdown { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-6px); background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 8px; min-width: 560px; opacity: 0; pointer-events: none; transition: all .22s; box-shadow: var(--shadow-lg); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+.nav-links > li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+.dropdown a { color: var(--muted); text-decoration: none; font-size: 13px; padding: 8px 12px; border-radius: 8px; transition: all .15s; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.dropdown a:hover { background: rgba(0,212,240,0.07); color: var(--c2); }
+.d-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--c); opacity: .5; flex-shrink: 0; }
+.nav-cta { background: linear-gradient(135deg, var(--c), var(--v)) !important; color: #fff !important; font-weight: 700 !important; padding: 9px 20px !important; border-radius: 50px !important; font-size: 13px !important; box-shadow: 0 4px 20px rgba(0,212,240,0.25); transition: all .2s !important; }
+.nav-cta:hover { transform: translateY(-1px) !important; box-shadow: 0 8px 28px rgba(0,212,240,0.35) !important; opacity: .95; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+
+/* HERO */
+.hero { min-height: 70vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 96px 0 72px; background: var(--bg); }
+.hero-grid-bg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(0,10,80,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,10,80,0.04) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse 90% 90% at 50% 40%, black 30%, transparent 100%); }
+.hero-orb1 { position: absolute; top: -10%; left: -5%; width: 60vw; height: 60vw; max-width: 700px; max-height: 700px; background: radial-gradient(circle, rgba(0,212,240,0.1) 0%, transparent 65%); pointer-events: none; }
+.hero-orb2 { position: absolute; bottom: -15%; right: -5%; width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; background: radial-gradient(circle, rgba(124,58,237,0.09) 0%, transparent 65%); pointer-events: none; }
+.hero-inner { max-width: 880px; margin: 0 auto; padding: 0 24px; text-align: center; position: relative; z-index: 1; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(0,212,240,0.1), rgba(124,58,237,0.08)); border: 1px solid rgba(0,212,240,0.25); color: var(--c2); font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 50px; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 24px; }
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)} }
+.hero h1 { font-family: var(--f2); font-size: clamp(34px, 4.6vw, 58px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 18px; color: var(--text); }
+.hero h1 .gr { background: linear-gradient(135deg, var(--c) 0%, var(--v) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero .lead { font-size: 19px; color: var(--text); font-weight: 600; margin-bottom: 14px; }
+.hero p.desc { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 740px; margin: 0 auto 38px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.btn-primary { background: linear-gradient(135deg, var(--c), var(--v)); color: #fff; padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 8px 32px rgba(0,212,240,0.3); transition: all .2s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,212,240,0.4); }
+.btn-secondary { background: #fff; border: 1.5px solid var(--border); color: var(--text); padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; box-shadow: var(--shadow); }
+.btn-secondary:hover { border-color: var(--c); color: var(--c2); transform: translateY(-1px); }
+
+/* SECTION COMMONS */
+.section { padding: 96px 0; }
+.inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.stag { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--c2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+.stag::before { content: ''; width: 20px; height: 2px; background: linear-gradient(90deg, var(--c), var(--v)); border-radius: 1px; }
+.stitle { font-family: var(--f2); font-size: clamp(26px, 3.5vw, 42px); font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; color: var(--text); }
+.ssub { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 640px; }
+.sec-head { text-align: center; margin-bottom: 56px; }
+.sec-head .stag { justify-content: center; }
+.sec-head .stag::before { display: none; }
+.sec-head .ssub { margin: 0 auto; }
+
+/* BENEFICIOS — cards grid */
+.benefits-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.bcard { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r2); padding: 28px 24px; transition: all .25s; box-shadow: var(--shadow); }
+.bcard:hover { border-color: var(--border-c); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.bcard-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(0,212,240,0.12), rgba(124,58,237,0.08)); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.bcard-icon svg { width: 22px; height: 22px; color: var(--c2); }
+.bcard h3 { font-family: var(--f2); font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.bcard p { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+/* COMO FUNCIONA */
+.process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+.process-steps::before { content: ''; position: absolute; top: 34px; left: 12.5%; right: 12.5%; height: 2px; background: linear-gradient(90deg, var(--c), var(--v)); opacity: .2; }
+.pstep { padding: 0 20px; text-align: center; }
+.pstep-num { width: 68px; height: 68px; border-radius: 50%; background: #fff; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--f2); font-size: 20px; font-weight: 800; background: linear-gradient(135deg, var(--c), var(--v)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: var(--c); margin: 0 auto 24px; position: relative; z-index: 1; box-shadow: var(--shadow); transition: all .25s; }
+.pstep:hover .pstep-num { border-color: var(--c); box-shadow: 0 0 0 4px rgba(0,212,240,0.1), var(--shadow); transform: translateY(-3px); }
+.pstep h3 { font-family: var(--f2); font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+.pstep p { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+/* CTA BAND */
+.cta-band { padding: 110px 0; position: relative; overflow: hidden; background: var(--dark2); }
+.cta-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
+.cta-orb1 { position: absolute; top: -20%; left: -10%; width: 60vw; height: 60vw; max-width: 600px; max-height: 600px; background: radial-gradient(circle, rgba(0,212,240,0.1) 0%, transparent 65%); pointer-events: none; }
+.cta-orb2 { position: absolute; bottom: -20%; right: -10%; width: 50vw; height: 50vw; max-width: 500px; max-height: 500px; background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 65%); pointer-events: none; }
+.cta-inner { max-width: 680px; margin: 0 auto; padding: 0 24px; text-align: center; position: relative; z-index: 1; }
+.cta-inner .stag { justify-content: center; color: var(--c); }
+.cta-inner .stag::before { display: none; }
+.cta-inner h2 { font-family: var(--f2); font-size: clamp(28px, 4vw, 46px); font-weight: 800; color: #fff; letter-spacing: -1.5px; margin-bottom: 14px; }
+.cta-inner p { font-size: 16px; color: rgba(255,255,255,0.55); margin-bottom: 40px; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-outline { background: transparent; color: rgba(255,255,255,0.8); padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 600; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.15); transition: all .2s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-outline:hover { border-color: var(--c); color: var(--c); }
+
+/* FOOTER */
+footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 72px 0 32px; }
+.footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 40px; margin-bottom: 52px; }
+.footer-tag { font-size: 11px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+.footer-about { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 20px; }
+.footer-social { display: flex; gap: 8px; }
+.soc-btn { width: 36px; height: 36px; border-radius: 9px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; text-decoration: none; color: rgba(255,255,255,0.35); transition: all .2s; }
+.soc-btn:hover { background: rgba(0,212,240,0.1); border-color: var(--border-c); color: var(--c); }
+.footer-col h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.2); margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-col ul a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color .2s; }
+.footer-col ul a:hover { color: var(--c); }
+.footer-contact { display: flex; flex-direction: column; gap: 11px; }
+.citem { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.4); font-size: 13px; }
+.citem svg { width: 14px; height: 14px; color: var(--c); flex-shrink: 0; }
+.citem a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color .2s; }
+.citem a:hover { color: var(--c); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.2); }
+.footer-bl { display: flex; gap: 20px; }
+.footer-bl a { font-size: 12px; color: rgba(255,255,255,0.2); text-decoration: none; transition: color .2s; }
+.footer-bl a:hover { color: var(--c); }
+
+/* WHATSAPP FLOAT */
+.wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 9999; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 28px rgba(37,211,102,0.4); text-decoration: none; transition: transform .2s; animation: waPulse 3s ease-in-out infinite; }
+.wa-float:hover { transform: scale(1.1); }
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+@keyframes waPulse { 0%,100%{box-shadow:0 6px 28px rgba(37,211,102,0.4)}50%{box-shadow:0 6px 40px rgba(37,211,102,0.65)} }
+
+/* ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .benefits-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .process-steps::before { display: none; }
+}
+@media(max-width:768px) {
+  .nav-links, .topbar-links { display: none; } .hamburger { display: flex; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-links">
+      <a href="mailto:contato@rptech.com.br">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contato@rptech.com.br
+      </a>
+      <a href="https://wa.me/5511999999999" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13"/></svg>
+        (11) 9 8888-7777
+      </a>
+    </div>
+    <div class="topbar-links">
+      <a href="#">Suporte 24/7</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="rptech.html" class="nav-logo">
+      <img src="assets/rptech_logo1fundo.png" alt="RP Tech — Tecnologia para Eventos" style="height:44px;width:auto;display:block">
+    </a>
+    <ul class="nav-links">
+      <li><a href="rptech.html">Início</a></li>
+      <li><a href="rptech.html#sobre">Sobre</a></li>
+      <li>
+        <a href="rptech.html#solucoes">Soluções ▾</a>
+        <div class="dropdown">
+          <a href="#"><span class="d-dot"></span>Credenciamento</a>
+          <a href="sistema-inscricao-rptech.html"><span class="d-dot"></span>Sistema de Inscrição</a>
+          <a href="#"><span class="d-dot"></span>Venda Online</a>
+          <a href="#"><span class="d-dot"></span>Manual do Expositor</a>
+          <a href="#"><span class="d-dot"></span>CAEX</a>
+          <a href="#"><span class="d-dot"></span>Controle de Salas</a>
+          <a href="#"><span class="d-dot"></span>Controle de Acesso</a>
+          <a href="#"><span class="d-dot"></span>Feiras e Exposições</a>
+          <a href="#"><span class="d-dot"></span>Coletor de Leads</a>
+          <a href="#"><span class="d-dot"></span>Biometria Facial</a>
+          <a href="#"><span class="d-dot"></span>App para Eventos</a>
+          <a href="#"><span class="d-dot"></span>Totem Autoatendimento</a>
+          <a href="#"><span class="d-dot"></span>Locação de Equipamentos</a>
+          <a href="#"><span class="d-dot"></span>Catracas para Eventos</a>
+          <a href="#"><span class="d-dot"></span>Certificado Digital</a>
+          <a href="#"><span class="d-dot"></span>Detector de Metal</a>
+        </div>
+      </li>
+      <li><a href="rptech.html#cases">Cases</a></li>
+      <li><a href="rptech.html#faq">FAQ</a></li>
+      <li><a href="https://wa.me/5511999999999" target="_blank" class="nav-cta">Orçamento rápido em até 02 horas</a></li>
+    </ul>
+    <button class="hamburger" id="hambtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Plataforma de inscrição online</div>
+    <h1>Sistema de <span class="gr">Inscrição</span></h1>
+    <p class="lead">Do cadastro ao credenciamento, tudo automatizado e personalizado para o seu evento.</p>
+    <p class="desc">Nossa plataforma de inscrição online é totalmente personalizável com a identidade visual do seu evento. Suporte a múltiplos tipos de ingressos, campos customizados, gestão de lotes e integração com gateway de pagamento. Confirmação automática por e-mail e integração direta com o credenciamento.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Sistema%20de%20Inscri%C3%A7%C3%A3o%20da%20RP%20Tech" target="_blank" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a href="rptech.html#solucoes" class="btn-secondary">
+        Ver outras soluções
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="section benefits-section">
+  <div class="inner">
+    <div class="sec-head fade-up">
+      <div class="stag">Benefícios</div>
+      <h2 class="stitle">Tudo que você precisa<br>em uma única plataforma</h2>
+      <p class="ssub">Recursos pensados para reduzir trabalho operacional e aumentar a conversão de inscrições.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="bcard fade-up">
+        <div class="bcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg>
+        </div>
+        <h3>Formulário personalizado</h3>
+        <p>Campos customizados por tipo de ingresso, com lógica condicional, identidade visual do evento e validação em tempo real.</p>
+      </div>
+      <div class="bcard fade-up d1">
+        <div class="bcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Gestão de lotes</h3>
+        <p>Configure múltiplos lotes com preços, prazos e quantidades. Transições automáticas entre lotes ao atingir limite ou data.</p>
+      </div>
+      <div class="bcard fade-up d2">
+        <div class="bcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
+        <h3>Pagamento integrado</h3>
+        <p>Gateway de pagamento com cartão, Pix e boleto. Conciliação automática e split de recebíveis quando necessário.</p>
+      </div>
+      <div class="bcard fade-up d3">
+        <div class="bcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Confirmação automática</h3>
+        <p>E-mail e WhatsApp disparados na hora da confirmação de pagamento, com QR Code e dados do evento.</p>
+      </div>
+      <div class="bcard fade-up d4">
+        <div class="bcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></svg>
+        </div>
+        <h3>Integração com credenciamento</h3>
+        <p>Inscritos vão direto para o sistema de credenciamento. Zero retrabalho — entrada de dados acontece uma única vez.</p>
+      </div>
+      <div class="bcard fade-up d5">
+        <div class="bcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Relatórios em tempo real</h3>
+        <p>Dashboard ao vivo com inscrições por lote, conversão, receita e origem do tráfego — tudo exportável.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section">
+  <div class="inner">
+    <div class="sec-head fade-up">
+      <div class="stag">Como funciona</div>
+      <h2 class="stitle">Da configuração ao<br>credenciamento integrado</h2>
+      <p class="ssub">Um fluxo único que conecta a inscrição online à entrada do participante no evento.</p>
+    </div>
+    <div class="process-steps">
+      <div class="pstep fade-up">
+        <div class="pstep-num">01</div>
+        <h3>Configuração do evento</h3>
+        <p>Personalizamos a página com sua identidade visual, lotes, ingressos, campos do formulário e regras de pagamento.</p>
+      </div>
+      <div class="pstep fade-up d1">
+        <div class="pstep-num">02</div>
+        <h3>Divulgação e inscrições</h3>
+        <p>Link único para divulgação. Participantes se inscrevem em poucos cliques, com pagamento e validação online.</p>
+      </div>
+      <div class="pstep fade-up d2">
+        <div class="pstep-num">03</div>
+        <h3>Confirmação automática</h3>
+        <p>E-mail e WhatsApp disparados automaticamente com confirmação de pagamento, QR Code e instruções do evento.</p>
+      </div>
+      <div class="pstep fade-up d3">
+        <div class="pstep-num">04</div>
+        <h3>Credenciamento integrado</h3>
+        <p>Dados sincronizam diretamente com o sistema de credenciamento — entrada rápida, sem filas e sem retrabalho.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-bg-grid"></div>
+  <div class="cta-orb1"></div>
+  <div class="cta-orb2"></div>
+  <div class="cta-inner fade-up">
+    <div class="stag">Vamos começar</div>
+    <h2>Pronto para automatizar suas inscrições?</h2>
+    <p>Orçamento personalizado em até 2 horas. Nossa equipe está online agora.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20do%20Sistema%20de%20Inscri%C3%A7%C3%A3o%20da%20RP%20Tech" target="_blank" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a href="mailto:contato@rptech.com.br" class="btn-outline">Enviar E-mail</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/rptech_logo1fundo.png" alt="RP Tech — Tecnologia para Eventos" style="height:48px;width:auto;display:block;margin-bottom:14px">
+        <div class="footer-tag">Tecnologia para eventos</div>
+        <p class="footer-about">+15 anos levando tecnologia e agilidade no credenciamento para eventos em todo o Brasil.</p>
+        <div class="footer-social">
+          <a href="#" class="soc-btn" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3" stroke-linecap="round"/></svg>
+          </a>
+          <a href="https://wa.me/5511999999999" target="_blank" class="soc-btn" aria-label="WhatsApp">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Soluções</h4>
+        <ul>
+          <li><a href="rptech.html#solucoes">Credenciamento</a></li>
+          <li><a href="sistema-inscricao-rptech.html">Sistema de Inscrição</a></li>
+          <li><a href="rptech.html#solucoes">Controle de Salas</a></li>
+          <li><a href="rptech.html#solucoes">Biometria Facial</a></li>
+          <li><a href="rptech.html#solucoes">Coletor de Leads</a></li>
+          <li><a href="rptech.html#solucoes">Totem Autoatendimento</a></li>
+          <li><a href="rptech.html#solucoes">Catracas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="rptech.html#sobre">Sobre a RP Tech</a></li>
+          <li><a href="rptech.html#cases">Cases de Sucesso</a></li>
+          <li><a href="rptech.html">Depoimentos</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Trabalhe Conosco</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <div class="footer-contact">
+          <div class="citem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg>
+            <a href="https://wa.me/5511999999999" target="_blank">(11) 9 8888-7777</a>
+          </div>
+          <div class="citem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:contato@rptech.com.br">contato@rptech.com.br</a>
+          </div>
+          <div class="citem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Av. Paulista, 1636 — São Paulo, SP</span>
+          </div>
+          <div class="citem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            <span>CNPJ: 45.678.901/0001-23</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 RP Tech — Tecnologia para Eventos. Todos os direitos reservados.</p>
+      <div class="footer-bl">
+        <a href="#">Termos de Uso</a>
+        <a href="#">Privacidade</a>
+        <a href="#">LGPD</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511999999999" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  progress.style.width = pct + '%';
+});
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+const hambtn = document.getElementById('hambtn');
+hambtn.addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  const open = links.style.display === 'flex';
+  if(open) {
+    links.style.display = '';
+  } else {
+    links.style.display = 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '66px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'rgba(255,255,255,0.98)';
+    links.style.padding = '16px 24px 24px';
+    links.style.borderBottom = '1px solid rgba(0,0,60,0.08)';
+  }
+});
+</script>
+</body>
+</html>

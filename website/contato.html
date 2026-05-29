@@ -589,6 +589,11 @@
       document.getElementById('telefone').focus();
       return;
     }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Por favor, informe um e-mail válido.');
+      document.getElementById('email').focus();
+      return;
+    }
 
     const texto =
       '🎯 *Solicitação de Orçamento — Worknet*\n\n' +

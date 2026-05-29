@@ -1242,7 +1242,7 @@
         </div>
         <div class="form-group">
           <label>Tipo de feira</label>
-          <select id="tipo">
+          <select id="tipo" required>
             <option value="">Selecione o tipo</option>
             <option>Feira de negócios B2B</option>
             <option>Feira de varejo / B2C</option>
@@ -1284,10 +1284,15 @@
   // Formulário → WhatsApp com dados preenchidos
   function enviarWhatsApp(e) {
     e.preventDefault();
-    const nome      = document.getElementById('nome').value || 'não informado';
-    const empresa   = document.getElementById('empresa').value || 'não informada';
-    const tipo      = document.getElementById('tipo').value || 'não informado';
-    const visitantes = document.getElementById('visitantes').value || 'não informado';
+    const nome       = document.getElementById('nome').value.trim();
+    const empresa    = document.getElementById('empresa').value.trim();
+    const tipo       = document.getElementById('tipo').value;
+    const visitantes = document.getElementById('visitantes').value;
+
+    if (!nome)       { alert('Por favor, preencha seu nome.'); document.getElementById('nome').focus(); return; }
+    if (!empresa)    { alert('Por favor, preencha a empresa / organização.'); document.getElementById('empresa').focus(); return; }
+    if (!tipo)       { alert('Por favor, selecione o tipo de feira.'); document.getElementById('tipo').focus(); return; }
+    if (!visitantes) { alert('Por favor, selecione o número estimado de visitantes.'); document.getElementById('visitantes').focus(); return; }
 
     const msg = encodeURIComponent(
       `Olá! Vim pelo site da Worknet e gostaria de solicitar uma proposta para credenciamento de feira.\n\n` +

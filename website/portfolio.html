@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio | Worknet Eventos</title>
-  <meta name="description" content="Mais de 5.000 eventos realizados em todo o Brasil. Congressos, feiras, festivais e eventos corporativos. Conheça o portfólio da Worknet Eventos." />
+  <title>Casos de Sucesso em Credenciamento e Controle de Acesso</title>
+  <meta name="description" content="Conheça o portfólio da Worknet Eventos. Casos de sucesso em credenciamento digital e controle de acesso de alta volumetria em feiras e congressos." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -205,6 +205,18 @@
     @media (max-width: 640px) {
       .portfolio-grid { grid-template-columns: 1fr; }
     }
+
+    /* Filtros */
+    .pf-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; }
+    .pf-filter {
+      padding: 9px 20px; border-radius: 999px; cursor: pointer;
+      background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--silver); font-family: inherit; font-size: .88rem; font-weight: 600;
+      transition: all var(--transition);
+    }
+    .pf-filter:hover { border-color: rgba(91,163,217,.45); color: #fff; }
+    .pf-filter.active { background: var(--blue, #2e6ea6); border-color: var(--blue, #2e6ea6); color: #fff; }
+    .portfolio-card.is-hidden { display: none; }
   </style>
 </head>
 <body>
@@ -225,9 +237,9 @@
         <span></span>
         Nosso Trabalho
       </div>
-      <h1 class="fade-up">Nosso portfólio de <span>eventos</span></h1>
+      <h1 class="fade-up">Projetos Realizados em Credenciamento e <span>Controle de Acesso</span></h1>
       <p class="hero-sub fade-up">
-        Mais de 5.000 eventos realizados em todo o Brasil. Congressos internacionais, feiras de negócios, festivais culturais e eventos corporativos de alto impacto.
+        Homologação técnica e inteligência de campo comprovadas na prática. Explore nossos casos de sucesso, com infraestruturas robustas de TI, biometria facial e barreiras físicas para gerenciar fluxos complexos em grandes feiras, congressos e festivais de alta volumetria em todo o Brasil.
       </p>
     </div>
   </div>
@@ -236,6 +248,14 @@
 <!-- GRID PORTFÓLIO -->
 <section class="portfolio-section">
   <div class="container">
+    <div class="pf-filters fade-up">
+      <button class="pf-filter active" data-filter="all">Todos</button>
+      <button class="pf-filter" data-filter="feira">Feiras</button>
+      <button class="pf-filter" data-filter="exposicao">Exposições</button>
+      <button class="pf-filter" data-filter="congresso">Congressos</button>
+      <button class="pf-filter" data-filter="corp">Corporativos</button>
+      <button class="pf-filter" data-filter="festival">Festivais</button>
+    </div>
     <div class="portfolio-grid">
 
       <!-- Card 7 -->
@@ -376,6 +396,21 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Filtros do portfólio
+  const filterBtns = document.querySelectorAll('.pf-filter');
+  const cards = document.querySelectorAll('.portfolio-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(card => {
+        const show = f === 'all' || card.dataset.category === f;
+        card.classList.toggle('is-hidden', !show);
+      });
+    });
+  });
 </script>
 </body>
 </html>

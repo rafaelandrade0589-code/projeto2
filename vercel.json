@@ -1,5 +1,8 @@
 {
   "outputDirectory": "website",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/portifolio", "destination": "/portfolio", "permanent": true }
+  ]
 }

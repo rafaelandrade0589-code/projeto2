@@ -513,9 +513,29 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
 .fade-up-delay-4 { transition-delay: .4s; }
 
 /* ====================================================
+   GRID "COMO FUNCIONA" — PÁGINAS DE SERVIÇO
+   ==================================================== */
+.how-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.how-grid img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+/* ====================================================
    RESPONSIVE — SHARED
    ==================================================== */
 @media (max-width: 968px) {
+  .how-grid { grid-template-columns: 1fr; gap: 28px; }
+  /* imagem aparece antes do texto "Como Funciona" no mobile */
+  .how-grid > div:last-child { order: -1; }
   .navbar-nav { display: none; }
   .navbar-nav.open {
     display: flex;
